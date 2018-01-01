@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="afxasert.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Cuid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -605,7 +602,6 @@
     </None>
     <None Include="changelog.txt" />
     <None Include="FreePCB_release_notes.txt" />
-    <None Include="FreePCB_todo_list.txt" />
     <None Include="notes.txt" />
   </ItemGroup>
 </Project>

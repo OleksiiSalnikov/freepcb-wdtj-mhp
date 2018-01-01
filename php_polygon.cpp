@@ -45,6 +45,7 @@
 **                	Added software license language to header comments
 */
 #include "stdafx.h"
+#include <cmath>
 #include <math.h>
 #include "php_polygon_vertex.h"
 #include "php_polygon.h"

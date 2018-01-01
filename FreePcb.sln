@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{71DC9CC4-5882-4F43-93D2-7D8DE57B1621}"
 	ProjectSection(SolutionItems) = preProject
 		MyFileOpen.Dlg = MyFileOpen.Dlg
@@ -7,18 +9,35 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreePcb", "FreePcb.vcxproj", "{48B16142-FBCE-4203-996C-8DEC8AAE6546}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClibPDF-2.02", "ClibPDF-2.02\ClibPDF-2.02.vcxproj", "{5DB93549-3139-4139-8051-247AB03A0260}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
 		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{48B16142-FBCE-4203-996C-8DEC8AAE6546}.Debug|Win32.ActiveCfg = Debug|Win32
 		{48B16142-FBCE-4203-996C-8DEC8AAE6546}.Debug|Win32.Build.0 = Debug|Win32
+		{48B16142-FBCE-4203-996C-8DEC8AAE6546}.Debug|x64.ActiveCfg = Debug|Win32
 		{48B16142-FBCE-4203-996C-8DEC8AAE6546}.Release|Win32.ActiveCfg = Release|Win32
 		{48B16142-FBCE-4203-996C-8DEC8AAE6546}.Release|Win32.Build.0 = Release|Win32
+		{48B16142-FBCE-4203-996C-8DEC8AAE6546}.Release|x64.ActiveCfg = Release|Win32
+		{5DB93549-3139-4139-8051-247AB03A0260}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5DB93549-3139-4139-8051-247AB03A0260}.Debug|Win32.Build.0 = Debug|Win32
+		{5DB93549-3139-4139-8051-247AB03A0260}.Debug|x64.ActiveCfg = Debug|x64
+		{5DB93549-3139-4139-8051-247AB03A0260}.Debug|x64.Build.0 = Debug|x64
+		{5DB93549-3139-4139-8051-247AB03A0260}.Release|Win32.ActiveCfg = Release|Win32
+		{5DB93549-3139-4139-8051-247AB03A0260}.Release|Win32.Build.0 = Release|Win32
+		{5DB93549-3139-4139-8051-247AB03A0260}.Release|x64.ActiveCfg = Release|x64
+		{5DB93549-3139-4139-8051-247AB03A0260}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5DB93549-3139-4139-8051-247AB03A0260} = {71DC9CC4-5882-4F43-93D2-7D8DE57B1621}
 	EndGlobalSection
 EndGlobal

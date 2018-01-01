@@ -1,0 +1,74 @@
+Package name:     ClibPDF
+Version number:   2.02
+Original author:  FastIO Systems <fastio@fastio.com>
+Original URL:     http://www.fastio.com/
+HP-UX URL:        http://hpux.connect.org.uk/hppd/cgi-bin/search?package=&term=ClibPDF-
+Install tree:     /opt/ClibPDF
+Report bugs to:   lavasani@connect.org.uk
+Tested on:        HP 9000/780/C160 running HP-UX 11.00
+C compiler used:  Version A.11.01.21505.GP
+Purpose:
+A library for creating PDF files. ClibPDF is a library of ANSI C functions,
+distributed as source code, for creating PDF (Acrobat) files directly via C
+language programs without relying on any Adobe Acrobat tools and related
+products.
+Date archived:    Tue 23 Jan 2001
+
+-------------------------------------------------------------------------------
+
+Tested platform:
+
+	HP-UX ness B.11.00 A 9000/780 2004670718 two-user license
+
+Package name:
+
+		ClibPDF
+Version:
+
+		2.02
+
+Homepage:
+
+		http://www.fastio.com/
+
+Ftp:
+
+
+Authors:
+
+		FastIO Systems <fastio@fastio.com >
+
+Added:
+	./Makefile
+	./source/Makefile:
+		- New Install rule
+
+Changed:
+
+
+Compile:
+
+	Before you compile all above path it has to be configured for your
+	system
+
+		
+		make
+		make install
+
+Run:
+
+
+Dependency:
+
+
+Note:
+
+
+
+
+Archived:
+Mehdi Lavasani
+lavasani@connect.org.uk
+
+Date:
+23/01/01
