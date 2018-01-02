@@ -1,0 +1,343 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Libraries</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_gerber.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_wizard.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">6. Footprints and Libraries</font></p>
+
+<p><font color="#0000FF" size="4">6.1 Footprint Libraries</font></p>
+
+<p>Footprints are stored in <b>library files</b>, which have the
+extension <font face="Arial Black" size="2">.fpl</font>. Each file contains
+multiple footprints, usually for packages of the same type. FreePCB comes with a
+set of library files, most of which were obtained by converting libraries from <b>Ivex
+Design International Inc., </b>a maker of commercial ECAD software which went
+out of business last year. These files are organized into
+three groups:</p>
+
+<ul>
+  <li>Core libraries - These are the most commonly used libraries. They will be located in the <font face="Arial Black" size="2">C:FreePCB\lib</font>
+folder if you did the
+standard installation.</li>
+  <li>Extra libraries - Libraries with less commonly used parts. They
+    will be located in <font face="Arial Black" size="2">C:FreePCB\lib_extra</font>.</li>
+  <li>Contributed libraries - Libraries contributed by users, located in <font face="Arial Black" size="2">C:FreePCB\lib_contrib</font>.</li>
+</ul>
+<p>When you create a project in FreePCB, you will select a library folder to use
+for the project. Normally, this will be the core library folder. If you need to use any of the other libraries,
+you should copy them into the core library folder. If you want,
+you can copy ALL of the files into the core library folder so they will all be
+in one place.</p>
+
+<p>You can create your own custom footprints using the <b> Footprint Wizard</b>
+or
+the <b> Footprint Editor</b>, which are covered in <a href="user_guide_wizard.htm">Section
+6.2: Footprint Wizard</a> and <a href="user_guide_fp_editor.htm">Section 6.3:
+Footprint </a><a href="user_guide_wizard.htm">Editor</a>. If you create
+your own footprints, I would recommend saving them in separate library files
+instead of the standard files that come with FreePCB. That way, if there are
+updates to the standard libraries, you can replace them without losing your
+custom footprints.</p>
+
+<p>Each library file is documented in a PDF file, which has the same name as the
+library file except for the extension <font face="Arial Black" size="2">.pdf</font>
+instead of <font face="Arial Black" size="2">.fpl</font>. If you are searching for
+a particular footprint, the PDF files are the best place to
+look. You can also browse for footprints in the <font face="System" color="#008000"><u>Add
+&gt; Part</u></font>
+dialog, but the PDF files contain more information such as dimensions and pad sizes.</p>
+
+<p> If you create or
+modify your own libraries, you can make PDF files for them using the <font face="System" color="#008000"><u>Tools
+&gt; Make
+PDF from Library File...</u></font> menu item in the Footprint Editor.</p>
+
+<p>The library files that are currently supplied with FreePCB are listed in the
+sections below. Note that files containing footprints with through-hole pads
+start with &quot;th_&quot; while those with SMT pads start with &quot;sm_&quot;.</p>
+
+<p><font size="3" color="#0000FF"><b>6.11 Core libraries</b></font></p>
+
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <td width="120" align="center"><b>Filename (.fpl)</b></td>
+    <td width="120" align="center"><b>Source(s)</b></td>
+    <td width="120" align="center"><b>Type</b></td>
+    <td width="400" align="center"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="120">th_transistor</td>
+    <td width="120">Ivex, JEDEC</td>
+    <td width="120">through-hole</td>
+    <td width="400">JEDEC TO-series transistor and IC packages</td>
+  </tr>
+  <tr>
+    <td width="120">th_diode</td>
+    <td width="120">Ivex, JEDEC</td>
+    <td width="120">through-hole</td>
+    <td width="400">JEDEC DO-series diode packages</td>
+  </tr>
+  <tr>
+    <td width="120">th_capacitor</td>
+    <td width="120">Ivex</td>
+    <td width="120">through-hole</td>
+    <td width="400">Capacitors, polarized and non-polarized</td>
+  </tr>
+  <tr>
+    <td width="120">th_resistor</td>
+    <td width="120">Ivex</td>
+    <td width="120">through-hole</td>
+    <td width="400">Resistors, including potentiometers</td>
+  </tr>
+  <tr>
+    <td width="120">th_connector</td>
+    <td width="120">Ivex</td>
+    <td width="120">through-hole</td>
+    <td width="400">Connectors</td>
+  </tr>
+  <tr>
+    <td width="120">th_header</td>
+    <td width="120">Ivex</td>
+    <td width="120">through-hole</td>
+    <td width="400">Headers</td>
+  </tr>
+  <tr>
+    <td width="120">th_sip</td>
+    <td width="120">Ivex</td>
+    <td width="120">through-hole</td>
+    <td width="400">SIP (single-in-line) packages (100 mil spacing)</td>
+  </tr>
+  <tr>
+    <td width="120">th_dip</td>
+    <td width="120">Ivex</td>
+    <td width="120">through-hole</td>
+    <td width="400">DIP (dual-in-line) packages (100 mil spacing)</td>
+  </tr>
+  <tr>
+    <td width="120">sm_resistor</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">Chip resistors</td>
+  </tr>
+  <tr>
+    <td width="120">sm_capacitor</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">Chip and tantalum capacitors</td>
+  </tr>
+  <tr>
+    <td width="120">sm_soic</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">SOIC (small outline IC) packages</td>
+  </tr>
+  <tr>
+    <td width="120">sm_sop</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">SOP and TSOP (small outline package) packages</td>
+  </tr>
+  <tr>
+    <td width="120">sm_soj</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">SOJ (small outline J-lead) packages</td>
+  </tr>
+  <tr>
+    <td width="120">sm_lcc</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">LCC (leadless chip carrier) packages</td>
+  </tr>
+  <tr>
+    <td width="120">sm_plcc</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">PLCC (plastic leaded chip carrier) packages</td>
+  </tr>
+  <tr>
+    <td width="120">sm_sot</td>
+    <td width="120">Ivex, Siemens</td>
+    <td width="120">surface-mount</td>
+    <td width="400">SOT (small outline transistor) packages</td>
+  </tr>
+  <tr>
+    <td width="120">led</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Light-emitting diodes</td>
+  </tr>
+  <tr>
+    <td width="120">test_point</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Test points</td>
+  </tr>
+</table>
+<p><font size="3" color="#0000FF"><b>6.12 Extra libraries</b></font></p>
+
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <td width="120" align="center"><b>Filename (.fpl)</b></td>
+    <td width="120" align="center"><b>Source(s)</b></td>
+    <td width="120" align="center"><b>Type</b></td>
+    <td width="400" align="center"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="120">sm_qfp</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">PQFP, SQFP and QFP (quad flat-pack) packages (this file is not in
+      the core library folder because it is so large)</td>
+  </tr>
+  <tr>
+    <td width="120">device</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Various devices</td>
+  </tr>
+  <tr>
+    <td width="120">sm_tantalum_cap</td>
+    <td width="120">Ivex</td>
+    <td width="120">surface_mount</td>
+    <td width="400">Tantalum capacitors from AVX</td>
+  </tr>
+  <tr>
+    <td width="120">elfa_cap</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Capacitors from the ELFA catalog</td>
+  </tr>
+  <tr>
+    <td width="120">elfa_chk</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Various devices from the ELFA catalog</td>
+  </tr>
+  <tr>
+    <td width="120">elfa_pot</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Potentiometers from the ELFA catalog</td>
+  </tr>
+  <tr>
+    <td width="120">elfa_res</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Resistors from the ELFA catalog</td>
+  </tr>
+  <tr>
+    <td width="120">flatpack</td>
+    <td width="120">Ivex, JEDEC</td>
+    <td width="120">mixed</td>
+    <td width="400">Quad flatpacks</td>
+  </tr>
+  <tr>
+    <td width="120">sm_ipc782</td>
+    <td width="120">Ivex, IPC</td>
+    <td width="120">surface-mount</td>
+    <td width="400">Various devices from IPC not in other libraries</td>
+  </tr>
+  <tr>
+    <td width="120">siemens2</td>
+    <td width="120">Ivex, Siemens</td>
+    <td width="120">mixed</td>
+    <td width="400">Siemens LCC packages</td>
+  </tr>
+  <tr>
+    <td width="120">siemens3</td>
+    <td width="120">Ivex, Siemens</td>
+    <td width="120">mixed</td>
+    <td width="400">Siemens SO packages</td>
+  </tr>
+  <tr>
+    <td width="120">siemens4</td>
+    <td width="120">Ivex, Siemens</td>
+    <td width="120">mixed</td>
+    <td width="400">Siemens QFP packages</td>
+  </tr>
+  <tr>
+    <td width="120">transformer</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Transformers</td>
+  </tr>
+  <tr>
+    <td width="120">tx_inst</td>
+    <td width="120">Ivex</td>
+    <td width="120">mixed</td>
+    <td width="400">Various Burr-Brown and Texas Instruments packages</td>
+  </tr>
+</table>
+<p><font size="3" color="#0000FF"><b>6.13 Contributed libraries</b></font></p>
+
+<table border="1" cellpadding="2" cellspacing="0">
+  <tr>
+    <td width="120" align="center"><b>Filename (.fpl)</b></td>
+    <td width="120" align="center"><b>Source(s)</b></td>
+    <td width="120" align="center"><b>Type</b></td>
+    <td width="400" align="center"><b>Description</b></td>
+  </tr>
+  <tr>
+    <td width="120">flintstone</td>
+    <td width="120">Anonymous</td>
+    <td width="120">mixed</td>
+    <td width="400">Various relays, pots, transformers and connectors</td>
+  </tr>
+</table>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_gerber.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_wizard.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

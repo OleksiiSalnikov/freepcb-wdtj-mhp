@@ -1,0 +1,220 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Adding Parts</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_placement.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_add_areas.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.7 Adding Parts and Editing Nets</font></p>
+<p>Modifying a PCB design by adding, replacing or deleting parts or changing the netlist is
+sometimes referred to as &quot;<b>on-the-fly</b>&quot; editing. FreePCB gives you
+virtually unlimited freedom for this type of editing. However, you should use
+this freedom carefully. Keep in mind that by modifying the partlist and netlist,
+you are creating a
+discrepancy between your PCB layout and the original schematic. If you make any
+significant changes you should carefully <b> back-annotate</b> them to the schematic,
+otherwise troubleshooting the PCB can be a nightmare. In general,
+&quot;on-the-fly&quot; editing is best used for relatively minor changes. If you
+need to perform more extensive redesign, you should probably go back to your
+schematic editor and create a new netlist file.</p>
+
+<p>In this section, we will add three bypass capacitors to our PCB, one for each
+of the DIP ICs. We will connect them to the VCC and GND nets. Since FreePCB
+provides several methods for doing this, we will try them all.</p>
+
+<ul>
+  <li>Set the placement grid to a reasonable value for surface-mount capacitors such as
+    50 mils.</li>
+  <li>Select <font color="#008000" face="Fixedsys"><u> Parts...</u></font> from the
+    <font color="#008000" face="Fixedsys"><u>Project</u></font> menu. The <font color="#008000" face="Fixedsys"><u>View/Edit
+    Part List</u></font> dialog should appear.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/partlist2.gif" width="743" height="535"></p>
+
+<ul>
+  <li>Note that the last capacitor in the part list is C4. We will add C5,
+    C6 and C7.</li>
+  <li>Click on <font color="#008000" face="Fixedsys"><u> Add New Part</u></font>. This will bring up the
+    <font color="#008000" face="Fixedsys"><u>Add/Edit Part</u></font> dialog.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_edit_part_8.gif" width="545" height="569"></p>
+
+<ul>
+  <li>Expand the library <font face="Arial Black" size="2">sm_capacitor.fpl </font> by clicking on the
+    &quot;+&quot; sign next to it.&nbsp;</li>
+  <li>Select the footprint &quot;C1206&quot; by clicking on it. The <font color="#008000" face="Fixedsys"><u> Footprint</u></font>
+    field should change to &quot;C1206&quot;.</li>
+  <li>Enter &quot;C5&quot; in the <font color="#008000" face="Fixedsys"><u> Reference</u></font>
+    field.&nbsp;Now you should see:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_edit_part_6.gif" width="545" height="569"></p>
+
+<ul>
+  <li>Click <font color="#008000" face="Fixedsys"><u> OK</u></font> to add the part to the
+    partlist.</li>
+  <li>Now you will be back in the <u> <font color="#008000" face="Fixedsys"> View/Edit Part List</font></u>
+    dialog. Click <font color="#008000" face="Fixedsys"><u> OK</u></font> to exit.
+    Your new capacitor C5 will be visible just to the left of the origin.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part.gif" width="631" height="398"></p>
+
+<ul>
+  <li>Select C5 by clicking on it, and move it near the top of Y1.
+    Move the reference designator text&nbsp; if necessary so that it will be
+    visible.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part_2.gif" width="563" height="397"></p>
+
+<ul>
+  <li>Now we will connect the pins of C5. Lets start by making only the nets VCC
+    and GND visible. Select
+    <font color="#008000" face="Fixedsys"><u>Project &gt; Nets...</u></font> to bring up the
+    <font color="#008000" face="Fixedsys"><u> View/Edit Netlist</u></font>
+    dialog.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/netlist.gif" width="608" height="504"></p>
+
+<ul>
+  <li>Click the <font color="#008000" face="Fixedsys"><u> Make all visible/invisible</u></font> button twice, to clear all of the checkboxes
+    and make all of the nets invisible. Then click on the boxes for VCC and GND,
+    to make these nets visible.
+    Then click <font color="#008000" face="Fixedsys"><u>OK</u></font>. Now only
+    the VCC and GND ratlines are visible, as shown.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part_3.gif" width="564" height="399"></p>
+
+<ul>
+  <li>Click on the right-most pad of C5 to select it. This will be pin 2, unless
+    you rotated the part. Press F1 (&quot;Set
+    Net&quot;) to pop up the following dialog:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/set_net.gif" width="285" height="179"></p>
+
+<ul>
+  <li>From the drop-down menu, select VCC, or just type &quot;VCC&quot; into the
+    text box. Click <font color="#008000" face="Fixedsys"><u> OK</u></font> to connect the pin. Press F8
+    (&quot;Recalc. Ratlines&quot;) to recalculate the ratlines for VCC to
+    include the new pin C5.2.</li>
+  <li>Now select the left-most pad of C5, and repeat the above procedure to connect
+    it to GND. Now you should see ratlines to both pads of C5.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part_4.gif" width="564" height="399"></p>
+
+<ul>
+  <li>Let's use a slightly different method to add C6. Select <font color="#008000" face="Fixedsys"><u>Add
+    &gt; Part</u></font>. The <font color="#008000" face="Fixedsys"><u> Add/Edit Part</u></font> dialog will pop up. This is the same dialog
+    that you invoked previously from the <font color="#008000" face="Fixedsys"><u> View/Edit Partlist</u></font> dialog, except that
+    the <font color="#008000" face="Fixedsys"><u> Drag to position</u></font> button is now
+    enabled and selected. This time, select C0805 for the footprint of the new part. Enter C6 into
+    the <font color="#008000" face="Fixedsys"><u> Reference</u></font> field.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_edit_part_4.gif" width="545" height="569"></p>
+
+<ul>
+  <li>&nbsp;Press <font color="#008000" face="Fixedsys"><u>OK</u></font>. You should find yourself dragging the outline for C6. Place it
+    near pins 19 and 20 of U1, as shown.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part_5.gif" width="564" height="399"></p>
+
+<ul>
+  <li>We will connect C6 to the VCC and GND nets by drawing ratlines between
+    pins. Select the upper pad of C6 by clicking on it.
+    Then press F4 (&quot;Connect Pin&quot;). You should start dragging a ratline
+    from the pad. Move the cursor over the pad for pin 20 of U1 (which is
+    attached to net
+    VCC) and click to
+    connect the ratline to this pin. In similar fashion, connect the lower pad
+    of C6 to pin U1.19. Select C6 by clicking on it, and press F8 (&quot;Recalc.
+    Ratlines&quot;) to recalculate the ratlines for C6. Your layout should look
+    like this:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part_6.gif" width="563" height="398"></p>
+
+<ul>
+  <li>Finally, add C7 using <font color="#008000" face="Fixedsys"><u>Add &gt; Part</u></font>,
+    the same way we added C6. Place
+    it near the top of U2, similarly to the way we placed C5 near the top of
+    Y1.&nbsp;</li>
+  <li> Now let's connect it to VCC and GND by using <font color="#008000" face="Fixedsys"><u>Project
+    &gt; Nets...</u></font>,
+    to pop up the <font color="#008000" face="Fixedsys"><u>View/Edit
+    Netlist</u></font> dialog. Then
+    select the VCC net by clicking on it, as shown.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/edit_netlist.gif" width="608" height="504"></p>
+
+<ul>
+  <li>Now click on <font color="#008000" face="Fixedsys"><u>Edit selection</u></font>.
+    The <font color="#008000" face="Fixedsys"><u>Add/Edit Net</u></font> dialog
+    will appear.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/edit_net.gif" width="300" height="418"></p>
+
+<ul>
+  <li>Enter C7.2 into the text box next to the <font color="#008000" face="Fixedsys"><u>Add
+    Pin</u></font> button. Then click on <font color="#008000" face="Fixedsys"><u>Add
+    Pin</u></font>. C7.2 should be added to the <font color="#008000" face="Fixedsys"><u>Pin
+    list</u></font>. Click <font color="#008000" face="Fixedsys"><u>OK</u></font>
+    to accept it. This will return you to the <font color="#008000" face="Fixedsys"><u>View/Edit
+    Netlist</u></font> dialog.</li>
+  <li>Now select the GND net by clicking on it, and edit the pin list just as
+    you did for VCC, this time adding C7.1.</li>
+  <li><b>Tip:</b> When you add a pin to a net using the <font color="#008000" face="Fixedsys"><u>Add/Edit
+    Net</u></font> dialog, be <b>sure</b> that you click on <font color="#008000" face="Fixedsys"><u>Add
+    Pin</u></font>. Don't just click on <font color="#008000" face="Fixedsys"><u>OK</u></font>, which exits the dialog without adding the pin.</li>
+  <li>Press F8 (&quot;Recalc. Ratlines&quot;)
+    to add ratlines to the newly added pins. The layout should now look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_part_7.gif" width="564" height="398"></p>
+<p align="left">&nbsp;</p>
+<p align="left"> In the next section we will use copper areas and stub traces to
+create power and ground planes for VCC and GND.</p>
+
+<p align="center">&nbsp;</p>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_placement.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_add_areas.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>

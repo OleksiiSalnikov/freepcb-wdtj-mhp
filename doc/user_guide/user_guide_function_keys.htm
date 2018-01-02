@@ -1,0 +1,126 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Function keys</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_layer_list.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_pan_zoom.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p align="left"><font color="#0000FF" size="4">5.6 Function Key and Context Menus</font></p>
+
+<p align="left">Most Windows drawing programs make heavy use of
+&quot;click-dragging&quot; with the mouse for editing. This means holding the
+left mouse button down while moving the mouse. For example, the user may move an
+item by click-dragging it to a new position. An item may be resized by clicking
+on it, which brings up a selection box with &quot;handles&quot;, which may then
+be click-dragged to stretch or shrink the item. The endpoints of lines may be
+click-dragged to new positions, etc., etc.</p>
+<p align="left">However, click-dragging doesn't work very well for routing
+traces, which is the most time-consuming part of PCB layout. Traces are
+basically polylines, consisting of multiple connected line segments. Placing
+each segment requires a separate mouse-click, which implies that the segments
+must be dragged without holding the mouse button down.</p>
+<p align="left">Also, while routing traces or placing parts, it is useful to be
+able to pan and zoom, which I like to do with the scroll wheel on the mouse. It
+is very difficult to use the scroll wheel while simultaneously holding down a
+mouse button.</p>
+<p align="left">Therefore, FreePCB uses a slightly different approach.
+Generally, an item will be selected by clicking on it. This will highlight the
+item, to indicate that it has been selected, and a description of the item will
+appear on the status bar. An editing operation can then be performed by pressing
+a function-key on the keyboard. The operations assigned to each function-key are
+always listed across the bottom of the FreePCB window. This list is
+context-sensitive, and will change depending on which item has been selected.
+For example, the menu when a part is selected is shown below.</p>
+
+<p align="center"><img border="0" src="graphics/function_keys.gif" width="636" height="36"></p>
+
+<p align="left">If the operation requires dragging, this will commence as soon
+as the function-key is pressed. The operation is usually completed by
+left-clicking the mouse, or it can be cancelled by right-clicking. While
+dragging, the function-keys remain active, so that additional operations can be
+performed. For example, while dragging a part, pressing F3 will rotate it, while
+pressing F2 will flip it to the opposite side of the board.&nbsp;</p>
+<p align="left">This style of user interface requires that you keep your left
+hand on the keyboard and your right hand on the mouse while editing (assuming
+that you are right-handed). In the days of DOS, many CAD programs used this
+style, and some still do. If you have any doubt about the speed and efficiency
+of the &quot;left hand on keyboard, right hand on mouse&quot; approach, just
+spend a few minutes watching someone play one of the popular first-person
+shooter games for the PC, such as Doom, Quake, Unreal Tournament, Half-life,
+Tribes, etc. They ALL use this style of user interface. And routing a PCB is
+usually easier than circle-strafing a horde of rampaging Nazi mutants while
+dodging flying chainsaws in zero-G!</p>
+
+<p align="left">The assignment of editing operations to the function keys is not
+completely random, as it might first appear. Since the fingers of the left hand
+will normally rest on keys F1-F4, these are used for the primary editing
+operations. F4 (under the index finger) is used for the most common operation on
+the selected item (such as moving a part), while F2-F3 are used for less common
+operations. F1 is often used to pop up some sort of dialog to edit the
+properties of the selected item. The keys F5-F7 are usually used for deleting or
+unrouting, since they require moving the hand and are less likely to be hit
+accidentally. F8 is reserved for recalculating ratlines. This arrangement is
+obviously optimized for users who are right-handed (like me). I expect to add a
+&quot;left-handed&quot; option in the future.</p>
+
+<p align="left">If you prefer not to use the function keys, right-clicking the
+mouse will pop up a more traditional Windows menu, as shown below. This is
+called the &quot;context menu&quot;.</p>
+
+<p align="center"><img border="0" src="graphics/part_context_menu.gif" width="125" height="116"></p>
+
+<p align="left">The context menu is not available while you are dragging an item
+with the mouse, so function keys must be used to perform operations while
+dragging.</p>
+
+<p align="center">&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_layer_list.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_pan_zoom.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

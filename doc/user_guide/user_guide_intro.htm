@@ -1,0 +1,141 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide</title>
+</head>
+
+<body>
+
+<p align="center"><b><font size="6" color="#800080">FreePCB User Guide</font></b></p>
+<p align="center"><b><font size="6" color="#800080">Version 1.2</font></b></p>
+<p align="center">&nbsp;</p>
+<p align="center"><b><font size="5" color="#800080">Allan Wright</font></b></p>
+<p align="center"><b><font size="5" color="#800080">&nbsp;August 14, 2005</font></b></p>
+<p align="center">&nbsp;</p>
+<p align="left"><font size="5" color="#0000FF">1. Introduction</font></p>
+<p align="left"><b><font size="4" color="#008000">FreePCB</font></b> <font size="3"> is a
+free, open-source PCB layout editor
+for Windows, that I starting writing because I was unhappy with currently available free or
+low-cost PCB editors. The ones that I tried were either crippled by pin and layer
+limits, or buggy and difficult to use. I finally decided that any idiot could
+write a better one, and I was just the idiot to do it!</font></p>
+<p align="left"><font size="3">This user guide contains chapters
+on the PCB design process and the FreePCB user interface, and a
+tutorial which takes the user through the process of creating a PCB from a
+schematic and a netlist file. In the process it describes all of the main features of
+FreePCB.</font></p>
+<p align="left"><font size="3">Currently, FreePCB runs only on Windows.&nbsp; The source code is copyrighted
+but released under the GNU General Public License (version 2 or later). The
+terms of the license are available <a href="gpl.html">here</a>.</font></p>
+<p align="left">My email address is:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img border="3" src="graphics/email2.gif" width="143" height="15"></p>
+<p align="left">Thanks for trying FreePCB.</p>
+<p align="left"><font size="4" color="#0000FF"><a name="1.1 What's new">1.1
+What's new</a> in version 1.2</font></p>
+
+<p align="left">Here are some of the new features that have been added since
+version 1.0:</p>
+
+<ul>
+  <li>
+    <p align="left">When routing with a ratline, you can terminate the trace
+    on any pin in the net by routing to the pin. You could already do this with
+    stub traces.</li>
+  <li>
+    <p align="left"> <u><font color="#008000" face="System">View-&gt;Show part...</font></u>
+    lets you select a part in the project by reference designator, then centers
+    the window on it.</li>
+  <li>
+    <p align="left">Footprints can now contain silkscreen text</li>
+  <li>
+    <p align="left">Oval, octagonal and rounded-rectangle pads are supported.</li>
+  <li>
+    <p align="left">The function-key and layer-list menus are now
+    &quot;clickable&quot;</li>
+  <li>
+    <p align="left">Some of the right-click menus have been expanded.</li>
+  <li>
+    <p align="left">Footprints can now contain SMT pads on both sides of the
+    board. This feature was added mainly for edge connectors.</li>
+  <li>
+    <p align="left">Options have been added to <u><font color="#008000" face="System">File-&gt;Import
+    Netlist</font></u>, to allow choices in how to handle parts, footprints and nets
+    that already exist in the project.</li>
+  <li>
+    <p align="left">The &quot;recent files&quot; list now works properly.</li>
+  <li>
+    <p align="left">You can swap connections to pins by selecting one pin,
+    holding down the &quot;s&quot; key, and then selecting the other pin.</li>
+  <li>
+    <p align="left">You can create cutouts in the solder mask layers (for
+    example, to eliminate &quot;dams&quot; of solder mask between the fingers of
+    an edge connector).</li>
+  <li>
+    <p align="left">A <u><font color="#008000" face="System">Check connectivity</font></u>
+    tool has been added to the <u><font color="#008000" face="System">Tools</font></u>
+    menu. Also, the Design Rule Checker can flag connectivity errors.</li>
+  <li>
+    <p align="left">Cutouts can be added to copper fill areas.</li>
+  <li>
+    <p align="left">A <u><font color="#008000" face="System">Move Origin</font></u>
+    tool has been added to the <u><font color="#008000" face="System">Tools</font></u>
+    menu.</li>
+  <li>
+    <p align="left">An entire trace can be highlighted by holding down the
+    &quot;t&quot; key and clicking on a segment or vertex. An entire net can be
+    highlighted by holding down the &quot;n&quot; key and clicking on a segment,
+    vertex or pin.</li>
+  <li>
+    <p align="left">A &quot;Change layer&quot; function has been added when
+    segments or traces are selected.</li>
+  <li>
+    <p align="left">When you change the trace width of nets in the <u><font color="#008000" face="System">Project-&gt;Nets...</font></u>
+    dialog, you can apply the new width to existing traces.</li>
+  <li>
+    <p align="left">Through-hole pads are now drawn on each copper layer. The
+    &quot;through-hole&quot; layer has been replaced with a &quot;drilled
+    hole&quot; layer.</li>
+  <li>
+    <p align="left">Most items can be moved with the arrow keys.</li>
+  <li>
+    <p align="left">You can select a group of items (such as parts, traces,
+    copper areas, etc.) by drawing a rectangle with the mouse. Then the entire
+    group can be moved with the mouse or arrow keys.</li>
+  <li>
+    <p align="left">Options have been added to the <u><font color="#008000" face="System">File-&gt;Generate
+    CAM files...</font></u> dialog, so you can choose
+    whether to use thermal reliefs on pads and vias, and whether to create openings in the solder mask over
+    via pads.</li>
+  <li>
+    <p align="left">A &quot;Selection mask&quot; menu has been added, so you can
+    control the types of items that can be selected with the mouse.</li>
+  <li>
+    <p align="left">When moving items, the relative distance is shown in the
+    status bar.</li>
+  <li>
+    <p align="left">In the <u><font color="#008000" face="System">Help</font></u>
+    menu, there is an item that shows a list of keyboard shortcuts.</li>
+</ul>
+<p align="left">&nbsp;</p>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"></td>
+    <td width="33%">
+      <p align="center"></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_toc.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

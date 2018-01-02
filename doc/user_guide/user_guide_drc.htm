@@ -1,0 +1,296 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Text</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_sm_cutouts.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_gerber.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.18 Design Rule Checking</font></p>
+<p>In an ideal world, PCBs would always be fabricated exactly as specified in the Gerber and drill files. In real life, of course, this isn't true. Due to the
+inexact nature of the etching process, copper features may turn out slightly larger or
+smaller than specified. Layers on multilayer boards may not line up exactly, and
+the size and position of holes may vary due to manufacturing tolerances. In
+practical terms, this means that there are lower limits on trace widths, pad sizes, and clearances between copper features and/or holes. These
+limits are called <b>Design Rules</b>, and will vary depending on the
+manufacturing process.&nbsp;</p>
+
+<p>The PCB manufacturer should provide design rules for each process that it
+offers. For example, the design rules posted on the Internet for the Advanced
+Circuits low-cost process are shown below:</p>
+
+<div align="center">
+  <center>
+  <table border="1" cellpadding="2" cellspacing="0" width="575">
+    <tr>
+      <td width="480">Minimum trace width</td>
+      <td width="91">0.008 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum clearance between copper features</td>
+      <td width="91">0.008 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum distance from copper to edge of PCB</td>
+      <td width="91">0.014 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum annular ring width (pins)</td>
+      <td width="91">0.007 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum annular ring width (vias)</td>
+      <td width="91">0.005 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum silkscreen line width</td>
+      <td width="91">0.008 inch</td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p>The design rules for the PCB Express low-cost process are:</p>
+
+<div align="center">
+  <center>
+  <table border="1" cellpadding="2" cellspacing="0" width="577">
+    <tr>
+      <td width="480">Minimum trace width</td>
+      <td width="93">0.007 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum clearance between copper features</td>
+      <td width="93">0.007 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum distance from copper to edge of PCB</td>
+      <td width="93">0.020 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum space between pads (using solder mask clearance of
+        0.004 inch)</td>
+      <td width="93">0.013 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum annular ring width (pads and vias)</td>
+      <td width="93">0.0085 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum clearance from inner layer holes to copper</td>
+      <td width="93">0.0175 inch</td>
+    </tr>
+    <tr>
+      <td width="480">Minimum silkscreen line width</td>
+      <td width="93">0.007 inch</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>If you are making the board yourself, you will have to come up with your own
+design rules.</p>
+
+<p>FreePCB has a <b>Design Rule Checker</b> that checks your project for
+compliance with a set of design rules. Selecting <font face="System" color="#008000"><u>Tools
+&gt; Design
+Rule Check</u></font> pops up the following dialog:</p>
+
+<p align="center"><img border="0" src="graphics/drc.gif"></p>
+
+<p>The <font face="System" color="#008000"><u>Show unrouted connections as
+errors</u></font> checkbox allows you to treat connection errors as DRC errors. The
+other fields in the dialog are explained below:</p>
+
+<div align="center">
+  <center>
+  <table border="1" cellpadding="2" cellspacing="0" width="720">
+    <tr>
+      <td width="194">trace width</td>
+      <td width="522">The minimum trace width allowed</td>
+    </tr>
+    <tr>
+      <td width="194">pad to pad</td>
+      <td width="522">The minimum distance from the edge of one pad to another
+        on a different net</td>
+    </tr>
+    <tr>
+      <td width="194">pad to trace</td>
+      <td width="522">The minimum distance from the edge of a pad to a trace on
+        a different net</td>
+    </tr>
+    <tr>
+      <td width="194">trace to trace</td>
+      <td width="522">The minimum distance from the edge of a trace to a trace
+        on a different net</td>
+    </tr>
+    <tr>
+      <td width="194">hole to pad or trace</td>
+      <td width="522">The minimum distance from the edge of a hole to a pad or
+        trace on a different net</td>
+    </tr>
+    <tr>
+      <td width="194">hole to hole</td>
+      <td width="522">The minimum distance from the edge of a hole to the edge
+        of another hole</td>
+    </tr>
+    <tr>
+      <td width="194">annular ring (pins)</td>
+      <td width="522">The minimum width of copper surrounding a hole for a pin</td>
+    </tr>
+    <tr>
+      <td width="194">annular ring (vias)</td>
+      <td width="522">The minimum width of copper surrounding a hole for a via</td>
+    </tr>
+    <tr>
+      <td width="194">board edge to any copper</td>
+      <td width="522">The minimum clearance between any copper feature and the
+        edge of the board</td>
+    </tr>
+    <tr>
+      <td width="194">board edge to hole</td>
+      <td width="522">The minimum clearance between the edge of a hole and the
+        edge of the board</td>
+    </tr>
+    <tr>
+      <td width="194">copper area to copper area</td>
+      <td width="522">The minimum clearance between copper areas</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p>You should set these fields for the design rules that you are
+using. If the PCB manufacturer doesn't give the value for a particular field,
+you will have to guess at a reasonable value. For example, the settings that
+I would use for Advanced Circuits are shown below:</p>
+
+<p align="center"><img border="0" src="graphics/drc_ac.gif"></p>
+
+<p>The settings for <font face="System" color="#008000"><u>trace width</u></font>,
+<font face="System" color="#008000"><u>pad to pad</u></font>, <font face="System" color="#008000"><u>pad
+to trace</u></font>, <font face="System" color="#008000"><u>trace to trace</u></font>,
+<font face="System" color="#008000"><u>annular ring (pins)</u></font>, <font face="System" color="#008000"><u>annular
+ring (vias)</u></font>, <font face="System" color="#008000"><u>board edge to any
+copper</u></font>, <font face="System" color="#008000"><u>hole to pad or
+trace</u></font> and <font face="System" color="#008000"><u>copper area to
+copper area</u></font> were taken from the design rules posted on the Internet. Since there
+were no rules provided for <font face="System" color="#008000"><u>hole to pad or
+trace</u></font>, <font face="System" color="#008000"><u>hole to hole</u></font>
+or <font face="System" color="#008000"><u>board edge to hole</u></font>, I used
+25 mils which seems like a reasonable value. If necessary, I could confirm this
+with the PCB manufacturer.</p>
+
+<p> As an example,
+let's check the project shown below, which contains multiple intentional design rule
+violations.</p>
+
+<p align="center"> <img border="0" src="graphics/drc_proj.gif"></p>
+
+<p align="left">To check the design, select <font face="System" color="#008000"><u>Tools
+&gt; Design
+Rule Check</u></font> and set the design rules as described above. Clicking <font face="System" color="#008000"><u>Check</u></font>
+starts
+the checker and brings up the following dialog that lists all of the violations.</p>
+
+<p align="center"><img border="0" src="graphics/drc_list.gif"></p>
+
+<p align="left">When you close the <font face="System" color="#008000"><u>Design
+Rule Check</u></font> dialog,
+each violation will be indicated in the layout window by a small ring in the color for DRC errors, as
+shown below.</p>
+
+<p align="center"><img border="0" src="graphics/drc_rings.gif"></p>
+
+<p align="left">These small rings may be hard to see in a dense design. If you
+hold down the &quot;d&quot; key, each ring is
+converted to a much larger solid circle, as shown.</p>
+
+<p align="center"><img border="0" src="graphics/drc_circles.gif"></p>
+
+<p align="left">Now you can zoom in on individual errors and fix them. The group
+of errors near the bottom of the board is shown below.</p>
+
+<p align="center"><img border="0" src="graphics/drc_detail.gif"></p>
+
+<p align="left">You can select one of the errors by clicking on the ring. It
+will be highlighted, along with the elements that caused the error, and the status bar
+will show a description of the error. In the screenshot below, I clicked on the
+right-most error.</p>
+
+<p align="center"><img border="0" src="graphics/drc_error.gif"></p>
+
+<p align="left">In this case, the error is a pad-to-trace distance violation,
+where the distance is 0 mils instead of at least 8 mils. We can fix the error by
+moving the pad or trace. The error ring will not automatically disappear when
+you fix the error, but you can delete it by selecting it and pressing the
+&quot;delete&quot; key. You can delete all of the errors by selecting <font face="System" color="#008000"><u>Tools
+&gt; Clear
+DRC Errors</u></font>.</p>
+
+<p align="left"><b>Important note:</b> Compliance with some design rules also
+depends on your Gerber file settings. For example, the settings shown below
+could create&nbsp; violations of the minimum silkscreen line width (which should
+be at least 7 mils for Advanced Circuits) and the annular ring width for pins
+(which should be at least 7 mils), so they should be changed to match the design
+rules.</p>
+
+<p align="center"><img border="0" src="graphics/drc_gerber.gif"></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><b>Another note:</b> If you found this section confusing, some PCB manufacturers provide
+information about design rules on their
+websites.</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_sm_cutouts.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_gerber.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

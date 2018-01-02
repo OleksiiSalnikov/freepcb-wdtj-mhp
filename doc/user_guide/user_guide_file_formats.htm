@@ -1,0 +1,441 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Libraries</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_gerber.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_license.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">8. File Formats</font></p>
+
+<p><font color="#0000FF" size="4">8.1 Project File</font></p>
+
+<p>The <b>project file</b> (*.fpc) is an ASCII text file containing all of the
+information for a single project. It is composed of multiple <b>sections</b>,
+where each section starts with a name surrounded by square brackets, such as
+&quot;[options]&quot;. Within each section, there are multiple <b>items</b>
+where each item starts with a colon-delimited <b>keyword</b>, such as
+&quot;units:&quot; There will usually be one or more <b>parameters</b> following
+each keyword. There may also be items nested below other items. This
+relationship is shown by indenting the lines for the nested items.</p>
+
+<p>The parameters that follow a keyword are strings delimited by whitespace. In
+order to allow whitespace within a parameter, such as a space within a filename,
+the first parameter following a keyword may be surrounded by double-quotes (e.g.
+&quot;test file&quot;), and whitespace between the quotes will not be considered
+a delimiter. Subsequent parameters cannot contain embedded whitespace.&nbsp;</p>
+
+<p>Many of the parameters represent dimensions, such as line lengths or widths.
+By default, dimensions are expressed in nanometers. A suffix may be added to a
+dimension to indicate other units, such as &quot;100MM&quot; or
+&quot;23.5MIL&quot;. For footprints, there is an item called &quot;units:&quot;
+which changes the default units for all of the footprint parameters, so that
+suffixes are not required.</p>
+
+<p>Here is a list of all of the sections and items that may appear in a project
+file. For each item, the keyword is shown, followed by a list of parameters
+where the description of each parameter is surrounded by &quot;&lt;&gt;&quot;.</p>
+
+<p><font SIZE="2">[options]</p>
+
+<p style="margin-top: 0; margin-bottom: 0">project_name: &lt;the name of the
+project, usually the same as the project file name without the &quot;.fpc&quot;
+extension&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">full_library_folder: &lt;the absolute
+path to the default library folder for the project&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">CAM_folder: &lt;the absolute path to
+the folder for CAM files , or &quot;&quot; if not yet defined&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">autosave_interval: &lt;the interval
+between autosaves in msec, or &quot;0&quot; if autosave disabled&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">units: &lt;the currently-selected
+units for the project, either &quot;MM&quot; or &quot;MIL&quot;&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">visible_grid_spacing: &lt;the
+currently-selected visible grid spacing, in nanometers&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+visible_grid_item: &lt;the first item in the menu of visible grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+visible_grid_item: &lt;the next item in the menu of visible grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+visible_grid_item: &lt;the last item in the menu of visible grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">placement_grid_spacing: &lt;the
+currently-selected placement grid spacing, in nanometers&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+placement_grid_item: &lt;the first item in the menu of placement grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+placement_grid_item: &lt;the next item in the menu of placement grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+placement_grid_item: &lt;the last item in the menu of placement grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">routing_grid_spacing: &lt;the
+currently-selected routing grid spacing, in nanometers&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+routing_grid_item: &lt;the first item in the menu of routing grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+routing_grid_item: &lt;the next item in the menu of routing grids&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+routing_grid_item: &lt;the last item in the menu of routing grids&gt;</p>
+<p>snap_angle: &lt;the currently-selected snap angle in degrees&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">fp_visible_grid_spacing: &lt;the
+currently-selected visible grid spacing for the Footprint Editor, in
+nanometers&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fp_visible_grid_item: &lt;the first item in the menu of visible grids&nbsp; for
+the Footprint Editor&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fp_visible_grid_item: &lt;the next item in the menu of visible grids&nbsp; for
+the Footprint Editor&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fp_visible_grid_item: &lt;the last item in the menu of visible grids for the
+Footprint Editor&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">fp_placement_grid_spacing: &lt;the
+currently-selected placement grid spacing for the Footprint Editor, in
+nanometers&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fp_placement_grid_item: &lt;the first item in the menu of placement grids for
+the Footprint Editor&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fp_placement_grid_item: &lt;the next item in the menu of placement grids for the
+Footprint Editor&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+fp_placement_grid_item: &lt;the last item in the menu of placement grids for the
+Footprint Editor&gt;</p>
+<p>fp_snap_angle: &lt;the currently-selected snap angle for the Footprint
+Editor, in degrees&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">fill_clearance: &lt;for Gerber files,
+the copper-copper clearance for copper areas&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">mask_clearance: &lt;for Gerber files,
+the solder-mask clearance&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">thermal_width: &lt;for Gerber files,
+the width of the cross-hairs for thermal reliefs&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">min_silkscreen_width: &lt;for Gerber
+files, the minimum width of silk-screen lines&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">board_outline_width: &lt;for Gerber
+files, the width of board-outline lines&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">hole_clearance: &lt;for Gerber files,
+clearance from holes to copper areas&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">pilot_diameter: &lt;for Gerber files,
+the pilot hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">annular_ring_for_pins: &lt;for Gerber
+files, the width of annular rings for through-hole pins&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">annular_ring_for_vias: &lt;for Gerber
+files, the width of annular rings for vias&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">cam_flags: &lt;bitwise ORed flags for
+CAM options&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">cam_layers: &lt;bitwise ORed flags
+for CAM files to generate&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">cam_drill_file: &lt;flag to make a
+drill file&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">cam_units: &lt;units to use for CAM
+parameters in dialog&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_check_unrouted: &lt;flag to treat
+unrouted connections as DRC errors&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_trace_width: &lt;minimum trace
+width for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_pad_pad: &lt;minimum pad-pad
+clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_pad_trace: &lt;minimum pad-trace
+clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_trace_trace: &lt;minimum
+trace-trace clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_hole_copper: &lt;minimum
+hole-copper clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_annular_ring_pins: &lt;minimum
+annular ring width for pins for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_annular_ring_vias: &lt;minimum
+annular ring width for vias for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_board_edge_copper: &lt;minimum
+copper-board_edge clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_board_edge_hole: &lt;minimum
+hole-board_edge clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_hole_hole: &lt;minimum hole-hole
+clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">drc_copper_copper: &lt;minimum
+copper_area-copper_area clearance for DRC&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">default_trace_width: &lt;default
+trace width for project&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">default_via_pad_width: &lt;default
+via pad width for project&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">default_via_hole_width: &lt;default
+via hole diameter for project&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">n_width_menu: &lt;number of trace
+width menu items&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+width_menu_item: &lt;index of first item&gt; &lt;trace width&gt; &lt;via pad
+width&gt; &lt;via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+width_menu_item: &lt;index of this item&gt; &lt;trace width&gt; &lt;via pad
+width&gt; &lt;via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+width_menu_item: &lt;index of last item&gt; &lt;trace width&gt; &lt;via pad
+width&gt; &lt;via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">n_copper_layers: &lt;number of copper
+layers in project&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+layer_info: &lt;name of first layer&gt; &lt;index into layer array&gt; &lt;color:
+red&gt; &lt;color: green&gt; &lt;color: blue&gt; &lt;flag if visible&gt;&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+layer_info: &lt;name of next layer&gt; &lt;index into layer array&gt; &lt;color:
+red&gt; &lt;color: green&gt; &lt;color: blue&gt; &lt;flag if visible&gt;&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+layer_info: &lt;name of last layer&gt; &lt;index into layer array&gt; &lt;color:
+red&gt; &lt;color: green&gt; &lt;color: blue&gt; &lt;flag if visible&gt;&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">[footprints]</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">name: &lt;name of footprint&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+author: &lt;name of author&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+source: &lt;description of source&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; units:
+&lt;units: &quot;NM&quot;, &quot;MM&quot; or &quot;MIL&quot;&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+sel_rect: &lt;for selection rectangle: left&gt; &lt;bottom&gt; &lt;right&gt;
+&lt;top&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ref_text: &lt;for reference text: height&gt; &lt;left&gt; &lt;bottom&gt;
+&lt;angle&gt; &lt;line width&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; text:
+&lt;text string&gt; &lt;height&gt; &lt;x&gt; &lt;y&gt; &lt;angle&gt; &lt;line
+width&gt; &lt;flag if mirrored&gt; &lt;layer&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...&nbsp;&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+outline_polyline: &lt;line width&gt; &lt;starting x&gt; &lt;starting y&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+next_corner: &lt;next x&gt; &lt;next y&gt; &lt;side style&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+next_corner: &lt;next x&gt; &lt;next y&gt; &lt;side style&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+close_polyline: &lt;if closed polyline, last side style&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; n_pins:
+&lt;number of pins&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pin: &lt;pin name&gt; &lt;hole_diameter&gt; &lt;x&gt; &lt;y&gt; &lt;angle&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+top_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inner_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bottom_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pin: &lt;pin name&gt; &lt;hole_diameter&gt; &lt;x&gt; &lt;y&gt; &lt;angle&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+top_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inner_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bottom_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+pin: &lt;pin name&gt; &lt;hole_diameter&gt; &lt;x&gt; &lt;y&gt; &lt;angle&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+top_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+inner_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+bottom_pad: &lt;shape&gt; &lt;width&gt; &lt;length/2&gt; &lt;length/2&gt;
+&lt;corner radius&gt;</p>
+<p>[board]</p>
+<p style="margin-top: 0; margin-bottom: 0">outline: &lt;number of corners in
+board outline&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">[solder_mask_cutouts]</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">sm_cutout: &lt;number of corners in
+solder mask cutout&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">[parts]</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">part: &lt;reference designator&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+ref_text: &lt;height&gt; &lt;line width&gt; &lt;angle&gt; &lt;x&gt; &lt;y&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+package: &lt;package identifier from netlist file, or &quot;&quot;&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; shape:
+&lt;footprint name&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pos:
+&lt;position: x&gt; &lt;y&gt; &lt;side&gt; &lt;angle&gt; &lt;flag if glued&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">[nets]</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">net: &lt;name of net&gt; &lt;#
+pins&gt; &lt;# connections&gt; &lt;# copper areas&gt; &lt;default trace
+width&gt; &lt;default via pad width&gt; &lt;default via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin:
+&lt;index of first pin in net&gt; &lt;name, such &quot;U1.5&quot;&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin:
+&lt;index of next pin in net&gt; &lt;name, such &quot;U1.5&quot;&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; pin:
+&lt;index of last pin in net&gt; &lt;name, such &quot;U1.5&quot;&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+connect: &lt;index of this connection&gt; &lt;index of start pin&gt; &lt;index of end
+pin&gt; &lt;# segments&gt; &lt;flag if locked&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vtx: &lt;first trace vertex: index&gt; &lt;x&gt; &lt;y&gt; &lt;if first or last
+vertex, pad layer&gt; &lt;flag to force via&gt; &lt;via pad width&gt; &lt;via
+hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+seg: &lt;first trace segment: index&gt; &lt;layer&gt; &lt;width&gt; &lt;via width&gt;
+&lt;via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vtx: &lt;next trace vertex: index&gt; &lt;x&gt; &lt;y&gt; &lt;if first or last
+vertex, pad layer&gt; &lt;flag to force via&gt; &lt;via pad width&gt; &lt;via
+hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+seg: &lt;next trace segment: index&gt; &lt;layer&gt; &lt;width&gt; &lt;via width&gt;
+&lt;via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+seg: &lt;last trace segment: index&gt; &lt;layer&gt; &lt;width&gt; &lt;via width&gt;
+&lt;via hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+vtx: &lt;last trace vertex: index&gt; &lt;x&gt; &lt;y&gt; &lt;if first or last
+vertex, pad layer&gt; &lt;flag to force via&gt; &lt;via pad width&gt; &lt;via
+hole diameter&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; area:
+&lt;index of this copper area&gt; &lt;# corners&gt; &lt;layer&gt; &lt;hatch style&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index of first corner&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt; &lt;flag if
+last corner of this contour&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index of next corner&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt; &lt;flag if
+last corner of this contour&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+...</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+corner: &lt;index of last corner&gt; &lt;x&gt; &lt;y&gt; &lt;style of next side&gt; &lt;flag if
+last corner of this contour&gt;</p>
+</font>
+
+<p><font color="#0000FF" size="4">8</font><font SIZE="2">.</font><font color="#0000FF" size="4">2</font><font SIZE="2"><font color="#0000FF" size="4">
+</font></font><font color="#0000FF" size="4">Library Files</font></p>
+
+<p>A <b>library file</b> (*.fpl) is an ASCII text file containing one or more
+footprints. The format for this file is exactly the same as the [footprints]
+section of the project file, described above.</p>
+
+<p><font color="#0000FF" size="4">8</font><font SIZE="2">.</font><font color="#0000FF" size="4">3<font SIZE="2">
+</font></font><font color="#0000FF" size="4">Configuration File</font></p>
+
+<p>The <b>configuration file</b> (default.cfg) is an ASCII text file containing
+the default parameters that are used for new projects. It is located in the same
+folder as the executable &quot;freepcb.exe&quot;. It uses exactly the same
+format as the [options] section of the project file, as described above, with 2
+extra items:</p>
+
+<font SIZE="2">
+<p style="margin-top: 0; margin-bottom: 0">parent_folder: &lt;the absolute or
+relative path to the default parent folder for new projects&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">library_folder: &lt;the absolute or
+relative path to the default library folder for new projects&gt;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+<p style="margin-top: 0; margin-bottom: 0">&nbsp;</p>
+</font>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_gerber.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_license.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,396 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: PCB Elements</title>
+<script language="JavaScript" fptype="dynamicoutline">
+<!--
+function dynOutline() {}
+//-->
+</script>
+<script language="JavaScript1.2" fptype="dynamicoutline" src="outline.js">
+</script>
+<script language="JavaScript1.2" fptype="dynamicoutline" for="document" event="onreadystatechange()">
+<!--
+initOutline()
+//-->
+</script>
+</head>
+
+<body onclick="dynOutline()">
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_project.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_outline.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.9 PCB Elements</font></p>
+<p><font size="3" color="#0000FF">5.91 Individual Elements</font></p>
+
+<p>The representation of the PCB in the layout window consists of various items, which are
+listed in this section. Note that most of these
+may be selected by clicking on them. Once an item has been selected, operations can be performed
+on it by pressing a function key or by
+right-clicking and making a selection from the context menu. If the operation involves dragging the item, function keys can sometimes be used to
+perform additional operations while dragging.&nbsp;</p>
+
+<p>The elements of the PCB are listed below, along with their associated
+function key operations.</p>
+
+<ul type="square">
+  <li><b>Origin</b>:&nbsp;&nbsp; This is a symbol that identifies the
+    origin of the PCB coordinate system (i.e. the point where X = 0 and Y = 0).
+    It looks like a cross with a small circle at its center. It is always
+    visible, and cannot be selected. It can be moved using <font face="System" color="#008000"><u>Tools
+    &gt; Move
+    origin</u></font>.<br>
+    <br>
+  </li>
+  <li><b>Visible grid</b>:&nbsp;&nbsp; Dots in a regularly-spaced array, used
+    for visual reference. The grid spacing is set by a drop-down menu in the
+    taskbar.<br>
+    <br>
+  </li>
+  <li><b>Board outline</b>:&nbsp;&nbsp; This is a closed polyline, consisting of a set
+    of points (corners), with lines between them (sides). The sides may be straight lines or arcs. The corners and sides are
+    selectable, and may be edited as follows:
+    <br>
+    <ul type="square">
+      <li><b>Corner</b>:&nbsp;
+        <ul>
+          <li>F1 (Set Position) - pop up a dialog that allows you to edit the X
+            and Y coordinates of the corner explicitly</li>
+          <li>F4 (Move Corner) - start dragging the corner with the cursor</li>
+          <li>F5 (Delete Corner) - remove the corner</li>
+          <li>F7 (Delete Outline) - remove the entire board outline<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Side</b>:
+        <ul>
+          <li>F1 (Straight Line) - make the side a straight line</li>
+          <li>F2 (Arc CW) - make the side a clockwise arc</li>
+          <li>F3 (Arc CCW) - make the side a counterclockwise arc</li>
+          <li>F4 (Add Corner) - insert a corner into the side and starts
+            dragging it</li>
+          <li>F7 (Delete Outline) - remove the entire outline<br>
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><b>Part footprint</b>:&nbsp;&nbsp; This is a compound symbol consisting of
+    a set of copper pads, a part outline, a text string for the reference
+    designator of the part, and possibly other text strings. The entire footprint, a single pad or the reference
+    designator may be selected for editing.<br>
+    <ul type="square">
+      <li><b>Entire footprint</b>:
+        <ul>
+          <li>F1 (Edit Part) -&nbsp;pop up a dialog to edit the properties of
+            the part</li>
+          <li>F2 (Edit Footprint) -&nbsp;switch to the Footprint Editor window,
+            with the footprint of the part already imported for editing</li>
+          <li>F3 (Glue/Unglue Part) -&nbsp;a &quot;glued&quot; part can't be
+            moved without &quot;ungluing&quot; it</li>
+          <li>F4 (Move Part) - start dragging the footprint to move it
+            <ul>
+              <li>While dragging:
+                <ul>
+                  <li>F2 - flip part from one side of the board to the other</li>
+                  <li>F3 - rotate part 90 degrees clockwise</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>F7 (Delete Part) -&nbsp;remove the part from the PCB and the
+            partlist</li>
+          <li>F8 (Recalc. Ratlines) - reassign ratlines for all nets which
+            connect to the part to minimize their length<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Pad</b>:
+        <ul>
+          <li>F1 (Set Net) -&nbsp;pop up a dialog to assign the pad to a net</li>
+          <li>F3 (Start Stub) - start dragging a new stub trace</li>
+          <li>F4 (Connect Pin) -&nbsp;start dragging a ratline to another pad</li>
+          <li>F8 (Recalc. Ratlines) - reassign ratlines for the net which
+            connects to this pad to minimize their length<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Reference</b> <b>designator</b> <b>text</b>:
+        <ul>
+          <li>F1 (Set Size) - pop up a dialog that lets you change the size and
+            direction of the text string</li>
+          <li>F4 (Move Ref Text) - start dragging the text string to move it
+            <ul>
+              <li>While dragging:
+                <ul>
+                  <li>F3 (Rotate Ref Text) - rotate the text string 90 degrees
+                    clockwise<br>
+                    <br>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><b>Trace</b>:&nbsp;&nbsp; This is a polyline representing a connection
+    between two pads. It consists of one or more straight-line segments with
+    vertices between the segments. The segments may be routed (i.e. physically
+    present on a copper layer) or unrouted. Unrouted segments are called
+    ratlines.<br>
+    <ul type="square">
+      <li><b>Ratline</b>:&nbsp;&nbsp; This is a line representing an unrouted
+        segment of a trace.
+        <ul type="square">
+          <li>F1 (Set Width) - pop up a dialog that lets you set the change the
+            trace and via widths of the trace or net</li>
+          <li>F3 (Lock/Unlock Connect) - a locked ratline can't be eliminated by
+            the &quot;Recalc. Ratlines&quot; operation</li>
+          <li>F4 (Route Segment) -&nbsp;start dragging the endpoint of a routed
+            segment to replace the ratline
+            <ul type="square">
+              <li>While dragging:
+                <ul type="square">
+                  <li>F4 (Complete Segment) -&nbsp;extend the routed segment
+                    being dragged to the endpoint of the ratline</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>F5 (Change Pin) - change the pin to which the ratline is connected</li>
+          <li>F7 (Delete Connect) -&nbsp; remove the connection (start_pin to
+            end_pin)&nbsp; from the net</li>
+          <li>F8 (Recalc. Ratlines) - reassign ratlines for the net to minimize
+            their length<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Segment</b>: This is a line representing a routed segment of a
+        trace.
+        <ul type="square">
+          <li>F1 (Set Width) - see above</li>
+          <li>F5 (Unroute Segment) - unroute the segment, converting it to a
+            ratline</li>
+          <li>F6 (Unroute Trace) - unroute the entire trace, converting it to a
+            ratline</li>
+          <li>F7 (Delete Connect) - remove the connection (start_pin to
+            end_pin)&nbsp; from the net</li>
+          <li>F8 (Recalc. Ratlines) - reassign ratlines for the net to minimize
+            their length<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Vertex</b>: This is a point at the junction of two segments, or a
+        segment and a ratline. If both segments are routed on different layers,
+        there will be a via at the vertex.
+        <ul type="square">
+          <li>F1 (Set Position) -&nbsp;pop up a dialog that allows you to edit the X
+            and Y coordinates of the vertex explicitly</li>
+          <li>F4 (Move Vertex) -&nbsp;start dragging the vertex to move it</li>
+          <li>F5 (Delete Vertex) -&nbsp;remove vertex, unrouting the adjacent
+            segments</li>
+          <li>F6 (Unroute Trace) - unroute the entire trace</li>
+          <li>F7 (Delete Connect) -&nbsp;remove the connection (start_pin to
+            end_pin)</li>
+          <li>F8 (Recalc. Ratlines) - reassign ratlines for the net to minimize
+            their length<br>
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><b>Stub Trace</b>: A stub trace starts on a pad but doesn't end on a pad.
+    It usually ends with a via, which is used to connect the trace to a copper
+    area on another layer. It may contain ratlines, segments and vertices like a
+    regular trace, but the last segment and last vertex are treated specially.<br>
+    <ul type="square">
+      <li><b>End</b> <b>Segment</b>: The last routed segment.
+        <ul type="square">
+          <li>F1 (Set Width) -&nbsp;</li>
+          <li>F5 (Delete Segment) - remove the segment</li>
+          <li>F7 (Delete Connect) - remove the entire stub trace</li>
+          <li>F8 (Recalc. Ratlines) - reassign ratlines for the net to minimize
+          their length.
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  <ul dynamicoutline type="square">
+    <li><b>End Vertex</b>: The last vertex (i.e. the end-point of the stub
+      trace).
+      <ul type="square">
+        <li>F1 (Set Position) -&nbsp;pop up a dialog that allows you to edit the X
+            and Y coordinates of the vertex explicitly</li>
+        <li>F2 (Add Segment) -&nbsp;start dragging a new segment to extend the
+          stub trace</li>
+        <li>F3 (Add/Delete Via) -&nbsp;add or remove a via at the end of the
+          stub trace</li>
+        <li>F4 (Move Vertex) -&nbsp;start dragging the end vertex to move</li>
+        <li>F5 (Delete Vertex) - remove the segment</li>
+        <li>F7 (Delete Connect) - remove the entire stub trace</li>
+        <li>F8 (Recalc. Ratlines) - reassign ratlines for the net to minimize
+          their length<br>
+          <br>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  </li>
+  <li><b>Copper Area</b>: This is a closed polyline which defines an area of
+    solid or patterned copper on one of the copper layers. It is used to created
+    ground planes, heatsinks, etc. It consists of a set of corners with sides
+    between the corners. It is filled with a hatch pattern of diagonal lines.
+    Note that this hatch pattern is for visual identification of the area only,
+    and does not represent the actual copper pattern which will be applied to
+    the PCB. It may also contain <b>cutouts</b>, which are &quot;holes&quot; in
+    the copper area. Cutouts are edited just like copper areas.<br>
+    <ul type="square">
+      <li><b>Corner</b>:
+        <ul type="square">
+          <li>F1 (Set Position) - pop up a dialog to set the corner position
+            explicitly</li>
+          <li>F4 (Move Corner) - start dragging the corner to move it</li>
+          <li>F5 (Delete Corner) - remove the corner</li>
+          <li>F6 (Add Cutout) - start drawing a new polygon for a cutout in the
+            copper area</li>
+          <li>F7 (Delete Area) - remove the entire area<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Side</b>:
+        <ul type="square">
+          <li>F1 (Straight Line) - if the side is an arc, convert to straight
+            line</li>
+          <li>F2 (Arc (CW) ) - convert side to clockwise arc</li>
+          <li>F3 (Arc (CCW) ) - convert side to counterclockwise arc</li>
+          <li>F4 (Add Corner) - add a new corner and start dragging it</li>
+          <li>F6 (Add Cutout) - start drawing a new polygon for a cutout in the
+            copper area</li>
+          <li>F7 (Delete Area) - remove the entire copper area<br>
+            <br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><b>Text String</b>: This is a string of alphanumeric characters, used for
+    adding labels, copyright notices, etc. It may be placed on a silk-screen or
+    copper layer.
+    <ul type="square">
+      <li>F1 (Edit Text) - pop up a dialog to edit the string and its
+        properties, such as size and stroke width</li>
+      <li>F4 (Move Text) - start dragging the string to move it</li>
+      <li>F7 (Delete Text) - remove the entire string<br>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<ul type="square">
+  <li><b>Solder Mask Cutout</b>: This is a closed polyline that defines a cutout
+    in a solder mask layer.<br>
+    <ul type="square">
+      <li><b>Corner</b>:
+        <ul type="square">
+          <li>F1 (Set Position) - pop up a dialog to set the corner position
+            explicitly</li>
+          <li>F4 (Move Corner) - start dragging the corner to move it</li>
+          <li>F5 (Delete Corner) - remove the corner</li>
+          <li>F6 (Add Cutout) - start drawing a new polygon for a cutout in the
+            copper area</li>
+          <li>F7 (Delete Area) - remove the entire area<br>
+          </li>
+        </ul>
+      </li>
+      <li><b>Side</b>:
+        <ul type="square">
+          <li>F1 (Straight Line) - make the side a straight line</li>
+          <li>F2 (Arc CW) - make the side a clockwise arc</li>
+          <li>F3 (Arc CCW) - make the side a counterclockwise arc</li>
+          <li>F4 (Add Corner) - add a new corner and start dragging it</li>
+          <li>F6 (Add Cutout) - start drawing a new polygon for a cutout in the
+            copper area</li>
+          <li>F7 (Delete Area) - remove the entire copper area<br>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p><font size="3" color="#0000FF">5.92 Groups of&nbsp; Elements</font></p>
+
+<p>A group of elements can be selected by drawing a rectangle around them with
+the mouse. All of the items in the group will be highlighted. Individual items
+can be added to the group or removed from the group by clicking on them with the
+Ctrl key held down. Currently, the only operation that can be performed on the
+group is F4(MoveGroup), which allows you to drag the group to a new position
+with the mouse.</p>
+
+<p>&nbsp;</p>
+
+<p><font size="3" color="#0000FF">5.93 Moving items or groups with the arrow
+keys</font></p>
+
+<p>When an item or group is selected, you can move it by selecting a move
+operation with the function keys or context-menu, and then dragging it with the
+mouse. Most items and groups can also be moved by pressing the arrow keys on the
+keyboard. Pressing an arrow key will move the item or group a distance equal to
+the current setting of the placement grid or routing grid, depending on the item
+selected. Smaller movements can be made by holding down the Shift key when
+pressing the arrow key, which will move the item 1 mil or 0.01 mm,
+depending on the units in use.</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_project.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_outline.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

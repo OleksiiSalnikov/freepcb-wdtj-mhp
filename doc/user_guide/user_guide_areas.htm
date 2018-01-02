@@ -1,0 +1,145 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Copper Areas</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_netlist.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_text.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.15 Copper Areas</font></p>
+<p>Besides traces, <b>copper</b> <b>areas</b> can be used for connections on a
+PCB. These are commonly used for power and ground planes, in which case they may
+occupy an entire layer of the board. In FreePCB, all copper areas must be
+assigned to a net.</p>
+<p>Copper areas are drawn as closed polylines (or polygons), similar to the
+board outline. They can be displayed as a simple outline,&nbsp; an outline with
+internal hatching, or an outline with a little bit of hatching along its inner
+edge. These hatch patterns are for visual reference only, as the actual copper
+area on the PCB will be solid copper. FreePCB will automatically create
+clearances around any pads or traces which pass through the copper area on the
+same layer. However, these clearances will not be displayed, but will be created
+in the Gerber files.</p>
+<p>To create a new copper area, select <font face="System" color="#008000"><u>Copper
+Area</u></font> from the <font face="System" color="#008000"><u>Add</u></font>
+menu. The following dialog will appear.</p>
+<p align="center"><img border="0" src="graphics/add_area.gif" width="239" height="288"></p>
+<p>Select the net for the copper area from the <font face="System" color="#008000"><u>Net</u></font>
+drop-down menu, or type the net name directly into the field. Select the layer
+from the <font face="System" color="#008000"><u>Layer</u></font> list. Choose
+the <font face="System" color="#008000"><u>Hatch pattern</u></font>. Then click <font face="System" color="#008000"><u>OK</u></font>
+to start drawing the area. The cursor will change to cross-hairs, and the
+<b>Routing</b> <b>Grid</b> will be in effect. Move to the desired position of
+the starting corner, and left-click to place it. Now you will be dragging the
+first side of the polyline. As with the board outline, you can change the style
+of the side from straight to a clockwise or counterclockwise arc by using the
+function-key menu. Continue left-clicking to place the rest of the corners, and
+right click to close the polyline. The copper area will then fill with a
+diagonal hatch pattern, to make it more visible.&nbsp;</p>
+<p>An example of a small copper area on the inner 1 layer is shown below. This
+area was assigned to the GND net, and it uses the full hatch pattern.</p>
+<p align="center"><img border="0" src="graphics/small_area.gif" width="446" height="279"></p>
+<p>Once created, a copper area can be edited by selecting corners or sides and
+using the function-key menu. This is exactly the same as editing the board
+outline, so you can just refer to <a href="user_guide_outline.htm">Section 5.10:
+Board Outline</a> for instructions. You can change the hatch pattern by
+selecting a side and right-clicking, then selecting <font face="System" color="#008000"><u>Hatch
+style</u></font> from the context menu.</p>
+<p align="left">Connections between parts and copper areas can be made two ways:</p>
+<ul type="square">
+  <li>
+    <p align="left">Through-hole pins which pass through the copper area can
+    connect using thermal reliefs. These will be placed automatically for pins
+    on the same net as the copper area. They are indicated by an &quot;X&quot;
+    drawn on the pin in the ratline color.</li>
+  <li>
+    <p align="left">SMT pads or through-hole pins which do not pass through the
+    copper area can be connected using stub traces which terminate with vias. A
+    thermal relief will be placed automatically on the via.</li>
+</ul>
+<p align="left">To illustrate, 4 parts have been placed, overlying the copper
+area in our previous example. Only the GND net has been made visible, which is
+the net assigned to the copper area. Note that pins Y1.4, JP2.2, JP2.3, JP2.4,
+JP2.6, JP2.8, JP2.10 have all been automatically connected to the copper area by
+thermal reliefs.</p>
+<p align="center"><img border="0" src="graphics/small_area_parts.gif" width="443" height="279"></p>
+<p align="left">To connect R1.1 and C1.2, we will use stub traces. These have
+been added below. Note that the vias on the ends of the stubs have been
+connected with thermal reliefs. Now the entire GND net has been connected using
+the copper area.</p>
+<p align="center"><img border="0" src="graphics/small_area_stubs.gif" width="439" height="272"></p>
+<p align="left">The hatch pattern in the copper area is only intended as a
+visual aid, to show the extent of the area while allowing other features to show
+through. When the Gerber files are generated, the area will be solid copper with
+clearances for any non-connected pads and traces which pass through it.</p>
+<p align="left">In the tutorial, you will use copper areas to create power and
+ground planes which occupy entire layers of the PCB.</p>
+<p>&nbsp;</p>
+<p><font size="3" color="#0000FF">5.151 Copper Area Cutouts</font></p>
+<p>Sometimes it is useful to &quot;cut out&quot; a portion of a copper area.
+This may be done to create an opening inside the copper area, or to modify its
+outline. To create a cutout, select a side or corner of the area and press F6
+(Add Cutout). Then draw the cutout just as you would draw a new area. The image
+below shows our copper area with cutouts around Y1 and JP2.&nbsp;</p>
+<p align="center"><img border="0" src="graphics/small_area_cutouts.gif" width="436" height="268"></p>
+<p><b>Note:</b> Actually, I cheated a bit to get the screen shot above. If you tried to add the cutouts directly to the area
+as shown, you would get an error message indicating that cutouts are not
+allowed in copper areas that use arcs. This is due to a limitation in the
+polygon clipping library that FreePCB uses, which only allows straight lines in
+polygons. Therefore, I converted the arcs to
+straight lines, added the cutouts, and then converted the straight lines back to
+arcs. Feel free to use this trick in your own designs.</p>
+<p align="center">&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_netlist.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_text.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,231 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Libraries</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_libraries.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_fp_editor.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">6. Footprints and Libraries (continued)</font></p>
+
+<p><font color="#0000FF" size="4">6.2 Footprint Wizard</font></p>
+
+<p>There will be times when you
+need a footprint that is not in one of the libraries that come with FreePCB. The <b>Footprint Wizard</b> is a
+tool for generating footprints for a variety of standard packages. It is
+invoked with the <font face="System" color="#008000"><u>Tools &gt; Footprint
+Wizard</u></font> menu item. This pops up the following dialog:</p>
+
+<p align="center"><img border="0" src="graphics/wizard.gif" width="653" height="487"></p>
+
+<p>&nbsp;</p>
+
+<p>A footprint is created by setting the various controls in the dialog. These
+are described below:</p>
+
+<ul>
+  <li><font face="System" color="#008000"><u>Name</u></font> - This is the name
+    which will be assigned to the footprint when it is saved (e.g.&nbsp; DIP28 )</li>
+  <li><font face="System" color="#008000"><u>Type</u></font> - The type of
+    package. A line diagram of the selected type will be shown in the dialog
+    (QUAD in the example above)
+    <ul>
+      <li><font face="System" color="#008000"><u>SIP</u></font> (for Single
+        Inline Package) - this consists of a single row of one or more pins</li>
+      <li><font face="System" color="#008000"><u>DIP</u></font> (for Dual Inline
+        Package) - two rows of pins, numbered as for a DIP IC package</li>
+      <li><font face="System" color="#008000"><u>QUAD</u></font> - four rows of
+        pins arranged as a rectangle (as shown above) and numbered as for a PLCC
+        or QFP package</li>
+      <li><font face="System" color="#008000"><u>HEADER</u></font> - pins
+        arranged in a grid and numbered sequentially by column</li>
+      <li><font face="System" color="#008000"><u>HEADER2</u></font> - same as <font face="System" color="#008000"><u>HEADER</u></font>
+        except pins numbered sequentially by row</li>
+      <li><font face="System" color="#008000"><u>PGA/BGA</u></font> (for Pin
+        Grid Array or Ball Grid
+        Array) - pins are arranged in a rectangle, and named using the
+        convention for grid arrays</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Units</u></font> - mils or mm</li>
+  <li><font face="System" color="#008000"><u>Number of pins</u></font>
+    <ul>
+      <li><font face="System" color="#008000"><u>Total</u></font> - the total
+        number of pins in the package</li>
+      <li><font face="System" color="#008000"><u>Per horizontal row</u></font>
+        (for QUAD, HEADER and PGA/BGA packages only) - the number of pins per horizontal row</li>
+      <li><font face="System" color="#008000"><u>Per vertical row</u></font>
+        (for QUAD, HEADER and PGA/BGA packages only) - this is filled-in automatically, for
+        information</li>
+      <li><font face="System" color="#008000"><u>Pin 1 position</u></font> (for
+        QUAD packages only) - there are three options:
+        <ul>
+          <li><font face="System" color="#008000"><u>top row, center pin</u></font></li>
+          <li><font face="System" color="#008000"><u>bottom row, left-most pin</u></font></li>
+          <li><font face="System" color="#008000"><u>top row, left-most pin</u></font></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Pads</u></font>
+    <ul>
+      <li><font face="System" color="#008000"><u>Shape</u></font> - there are
+        four options:
+        <ul>
+          <li><font face="System" color="#008000"><u>Rectangular</u></font> -
+            rectangular pads</li>
+          <li><font face="System" color="#008000"><u>Pin 1 square, others round</u></font>
+            - a square pad for pin 1, others round</li>
+          <li><font face="System" color="#008000"><u>Round</u></font> - round
+            pads</li>
+          <li><font face="System" color="#008000"><u>Square</u></font> - square
+            pads</li>
+          <li><font face="System" color="#008000"><u>None</u></font> - used to
+            create a hole without a pad (for a mounting hole, for example)</li>
+        </ul>
+      </li>
+      <li><font face="System" color="#008000"><u>Hole diameter</u></font> - the
+        diameter of the hole in the pad for through-hole pads (blank or
+        &quot;0&quot; for SMT pads)</li>
+      <li><font face="System" color="#008000"><u>Width (X)</u></font> - the pad
+        width (shown as &quot;X&quot; in the line diagram)</li>
+      <li><font face="System" color="#008000"><u>Length (Y)</u></font> - the pad
+        length (shown as &quot;Y&quot; in the line diagram)</li>
+      <li><font face="System" color="#008000"><u>Spacing (E)</u></font> - the
+        center-to-center spacing of pads within a row (&quot;E&quot; in the line
+        diagram)</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Distance between top and bottom
+    rows</u></font> - by selecting one of the three radio buttons, this distance
+    can be set as:
+    <ul>
+      <li><font face="System" color="#008000"><u>Inner-inner (G1)</u></font> - the distance between the inner margins of the pads
+        (&quot;G1&quot; in the diagram)</li>
+      <li><font face="System" color="#008000"><u>Center-center (C1)</u></font> - the distance between the centers of the pads
+        (&quot;C1&quot; in the diagram)</li>
+      <li><font face="System" color="#008000"><u>Outer-outer (Z1)</u></font> - the distance between the outer margins of the pads
+        (&quot;Z1&quot; in the diagram)</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Distance between left and right
+    rows</u></font> - by selecting one of the three radio buttons, this distance
+    can be set as:
+    <ul>
+      <li><font face="System" color="#008000"><u>Inner-inner (G2)</u></font> - the distance between the inner margins of the pads
+        (&quot;G2&quot; in the diagram)</li>
+      <li><font face="System" color="#008000"><u>Center-center (C2)</u></font> - the distance between the centers of the pads
+        (&quot;C2&quot; in the diagram)</li>
+      <li><font face="System" color="#008000"><u>Outer-outer (Z2)</u></font> - the distance between the outer margins of the pads
+        (&quot;Z2&quot; in the diagram)</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Preview</u></font> - clicking this
+    button creates a preview of the footprint in the dialog</li>
+</ul>
+<p>The best source for the dimensions of a
+particular package is the manufacturer's datasheet. This is usually available on the Internet. In some cases,
+the manufacturer will even supply a drawing of the suggested PCB footprint (for
+SMT parts, these are often referred to as &quot;land patterns&quot;).&nbsp;</p>
+<p>After you have entered the settings for the footprint, click on <font face="System" color="#008000"><u>Preview</u></font>
+to see an image of the footprint. If it looks OK, you can save it to a library
+file by clicking Save. This will pop up the Save Footprint dialog, shown below.</p>
+<p align="center"><img border="0" src="graphics/footprint_save_dlg.gif" width="617" height="249"></p>
+<p>The <font face="System" color="#008000"><u>Footprint name</u></font> is
+copied from the Wizard, and can be changed here if you like. The <font face="System" color="#008000"><u>Author</u></font>,
+<font face="System" color="#008000"><u>Source</u></font> and <font face="System" color="#008000"><u>Description</u></font>
+fields may be filled with text describing the footprint. The <font face="System" color="#008000"><u>Library
+file</u></font> list box allows you to select a library file, or enter a new
+file name to create a new one. It will be initialized to <font face="Arial Black" size="2">user_created.fpl</font>.</p>
+<p>Several examples of footprints created with the Footprint Wizard are given
+below.</p>
+<p><font color="#0000FF"><b>6.21 Example 1: Mounting Hole or Test Point with a
+single pin</b></font></p>
+<p>To create a single-pin footprint for a mounting hole or test point, set the <font face="System" color="#008000"><u>Type</u></font>
+to &quot;SIP&quot; and the <font face="System" color="#008000"><u>Number
+of pins</u></font>  to &quot;1&quot;. The settings for a mounting hole with a hole diameter of&nbsp;
+100 mils and a round pad with a diameter of 200 mils are shown below.</p>
+<p align="center"><img border="0" src="graphics/wizard_hole.gif" width="653" height="487"></p>
+<p><br>
+</p>
+<p><font color="#0000FF"><b>6.22 Example 2: Resistor with Axial leads</b></font></p>
+<p>Let's start with a drawing of the resistor, taken from the Panasonic
+datasheet. This footprint will be for the 1/4 watt type ERD25.</p>
+<p align="center"><img border="1" src="graphics/wizard_res_data.gif" width="427" height="441"></p>
+<p align="left">From the datasheet, the package length is 6.35 mm. To allow for
+bending the leads, we will space our pads 12.5 mm. apart. The lead diameter is
+0.60 mm. To allow clearance for insertion, the hole diameter will be 0.9 mm. The
+pad diameter will be 1.4 mm. The Footprint Wizard settings are shown below.</p>
+<p align="center"><img border="0" src="graphics/wizard_res_axial.gif" width="653" height="487"><br>
+</p>
+<p><font color="#0000FF"><b>6.23 Example 3: DIP package with rectangular pads</b></font></p>
+<p>Here are the settings for a DIP IC footprint with 20 through-hole pins. The
+standard DIP package pin spacing is 100 mils and the row spacing is 300 mils. We
+will use rectangular pads 80 X 40 mils in size with a 25 mil hole diameter.</p>
+<p align="center"><img border="0" src="graphics/wizard-dip20rect.gif" width="653" height="487"></p>
+<p><br>
+</p>
+<p><font color="#0000FF"><b>6.24 Example 4: QFP package with 100 pins</b></font></p>
+<p>This footprint is based on the package for the Cypress CY7C1329, a 64K X 32
+synchronous cache RAM. The package dimensions are shown in the drawing below,
+which was copied from the Cypress datasheet.</p>
+<p align="center"><img border="1" src="graphics/wizard_qfp_data_small.gif" width="344" height="309"></p>
+<p>For the footprint, we want the pads to extend 0.5 mm beyond the end of each
+pin, so we will add 1.0 mm to the external dimensions of the pin rows. Also, we have
+turned the package on its side so that pin 1 is in the lower-left corner. The
+settings for the Footprint Wizard are shown below.</p>
+<p align="center"><img border="0" src="graphics/wizard_QFP100.gif" width="653" height="487"></p>
+<p><br>
+</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_libraries.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_fp_editor.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

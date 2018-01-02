@@ -1,0 +1,199 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Projects</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_pan_zoom.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_elements.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p align="left"><font color="#0000FF" size="4">5.8 Projects</font></p>
+
+<p align="left">In FreePCB, PCB layouts are referred to as <b>projects</b>. All
+of the information describing a project is stored in a single text file with the
+extension <font face="Arial Black" size="2">.fpc</font>, which is usually stored
+in a folder with the same name as the project.&nbsp; For example, the project
+named &quot;Motor&quot; would be stored in the file <font face="Arial Black" size="2">Motor.fpc</font>
+in the folder <font face="Arial Black" size="2">C:\FreePCB\projects\Motor</font></p>
+
+<p align="left">A new project is created with <font face="System" color="#008000"><u>File
+&gt; New</u></font>. This will
+launch the <font face="System" color="#008000"><u>Project Options</u></font>
+dialog, which is shown below.</p>
+
+<p align="center"><img border="0" src="graphics/file_new.gif"></p>
+
+<p align="left">Note that most of the fields of the dialog are already filled
+in. These default settings are taken from a file called <font face="Arial Black" size="2">default.cfg</font>
+which must be in the same folder as the <font face="Arial Black" size="2">FreePCB.exe</font>
+application. If you don't want to use the defaults for your project, you can
+change them in the dialog. If you would like to change the defaults for all
+future projects, you can edit the <font face="Arial Black" size="2">defaults.cfg</font>
+file with any text editor. The format of this file is described in <a href="user_guide_file_formats.htm">Section
+8: File Formats</a>.</p>
+
+<p align="left">Each field in the dialog is explained below:</p>
+
+<ul>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Name</u></font>: This
+    is the name of the project. It should not contain spaces or any characters
+    that are illegal in filenames.
+  </li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Project Folder</u></font>:
+    This is the folder where your project file will be saved. It is already
+    filled in with the path to the default parent folder for new projects. As
+    you enter the name of your project in the <font face="System" color="#008000"><u>Name</u></font>
+    field, each character will automatically be appended to the path. For
+    example, if you enter &quot;Motor&quot; in the <font face="System" color="#008000"><u>Name</u></font>
+    field, the <u><font face="System" color="#008000">Projec</font></u><font face="System" color="#008000"><u>t
+    F</u></font><u><font face="System" color="#008000">older</font></u> field
+    will become &quot;..\projects\Motor&quot;. If you would like to use a
+    different project folder, you can override the default by entering a path directly into the <font face="System" color="#008000"><u>Project
+    Folder</u></font> field.
+    <ul>
+      <li>
+        <p align="left"><b>Note</b>: The default path begins with
+        &quot;..\&quot;, indicating that it is a relative path. Actually, it is
+        relative to the location of the <font face="Arial Black" size="2">FreePCB.exe</font>
+        application. If you have performed the default installation into <font face="Arial Black" size="2">C:\FreePCB</font>,
+        the application will be in <font face="Arial Black" size="2">C:\FreePCB\bin</font>,
+        and the project folders will be in <font face="Arial Black" size="2">C:\FreePCB\projects</font>.
+        If you installed FreePCB somewhere else, the default path will still
+        work as long as <font face="Arial Black" size="2">\bin</font>
+        and <font face="Arial Black" size="2">\projects</font>  are in the same
+        folder.&nbsp; If not, you may want to edit the<font face="Arial Black" size="2">
+        default.cfg</font> file. For example, when I am working on the FreePCB
+        source code, I run the application from <font face="Arial Black" size="2">E:\allan\SVNwork\FreePCB\Debug</font>,
+        but I still want to create my projects in <font face="Arial Black" size="2">C:\FreePCB\projects</font>.
+        Therefore, in <font face="Arial Black" size="2">E:\allan\SVNwork\FreePCB\Debug\default.cfg</font>,
+        I changed the line<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font face="Century Gothic" size="2">parent_folder: "..\projects\"</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+        to:&nbsp;<font face="Courier">&nbsp;&nbsp;</font><font face="Century Gothic" size="2"><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; parent_folder: &quot;C:\FreePCB\projects\&quot;
+        </font></li>
+    </ul>
+  </li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Library Folder</u></font>:
+    This is the path to the folder which contains the footprint library files
+    for FreePCB. The default path is relative to the application folder, but it
+    can be changed in the dialog if necessary, and the default can be changed in
+    <font face="Arial Black" size="2">default.cfg</font> just as for the <font face="System" color="#008000"><u>Project
+    Folder</u></font> (see note above).</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Number of copper
+    layers</u></font>: This is the number of copper layers on the PCB, between 1
+    and 8.</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Default trace and via
+    widths (mils)</u></font>: These represent the default values for trace
+    width, via diameter and via hole diameter. They may be overridden later on for
+    particular traces or nets.
+  </li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Menu of trace and via
+    widths</u></font>: This is a list of trace and via widths which will be
+    offered as a menu if you modify the widths of particular traces or nets. You
+    are not limited to these values, but it is convenient to have them on a menu
+    and it reduces the chance of error. You can use the <font face="System" color="#008000"><u>Add</u></font>
+    button to add new entries to the list. If you select an item you can use the
+    <font face="System" color="#008000"><u>Delete</u></font> button to remove it
+    or the <font face="System" color="#008000"><u>Edit</u></font> button to
+    modify it.
+  </li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Autosave</u></font>:
+    Enabling Autosave causes FreePCB to automatically save the project file
+    every few minutes.
+  </li>
+</ul>
+
+<p align="left">When you are satisfied with your entries, click <font face="System" color="#008000"><u>OK</u></font>.
+The project folder will be created if it does not already exist (however, the
+parent folder must exist or you will get an error message). The project file
+will not be written into the folder until you <font face="System" color="#008000"><u>Save</u></font>
+from the <font face="System" color="#008000"><u>File</u></font>  menu. I usually
+do this immediately after I have created a new project.</p>
+
+<p align="left">By the way, the project <font face="System" color="#008000"><u>Name</u></font>
+is only used to create names for the project file and the default project
+folder. After that, FreePCB uses the name of the project file as the project
+name. You can rename the project
+file or use <font face="System" color="#008000"><u>Save
+As</u></font> from the <font face="System" color="#008000"><u>File</u></font>
+menu to save the project under a different name. You may find it useful to keep
+several different versions of your project in the project folder, under
+different names. For example, you could
+experiment with some new ideas in a design, but revert back to an earlier
+version if they don't work out.</p>
+
+<p align="left">As mentioned above, you can modify the defaults for new projects
+by editing the <font face="Arial Black" size="2">default.cfg</font> file in the
+application folder. The format for this file is described in <a href="user_guide_file_formats.htm">Section
+8: File Formats</a>, and you shouldn't
+have any trouble figuring out how to modify it (but save a copy just in case).
+You can also edit the project file, if you like. This is a more complex file,
+with sections describing the project options, footprints, parts, nets, text
+strings, etc. The options section is very similar to the <font face="Arial Black" size="2"> default.cfg</font> file. You
+probably don't want to mess too much with the other sections.</p>
+
+<p align="left">Once a project has been created, it can be closed, saved and
+opened using the usual selections from the <font face="System" color="#008000"><u>File</u></font>
+menu.</p>
+
+<p align="left">After a project has been created, the project options can be
+edited by selecting&nbsp; <font face="System" color="#008000"><u>Options...</u></font>
+in the <font face="System" color="#008000"><u>Project</u></font> menu. This will
+bring back the <font face="System" color="#008000"><u>Project Options</u></font>
+dialog with some fields disabled, as shown below. You can make changes to any of
+the enabled fields, and save them by clicking <font face="System" color="#008000"><u>OK</u></font>.</p>
+
+<p align="center"><img border="0" src="graphics/project_options.gif"></p>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_pan_zoom.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_elements.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

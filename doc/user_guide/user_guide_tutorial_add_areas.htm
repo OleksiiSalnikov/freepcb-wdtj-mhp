@@ -1,0 +1,211 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Copper Areas</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_add_parts.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_routing.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.8 Adding Copper Areas</font></p>
+
+<p>In this section, we will create copper areas on the inner layers for power
+and ground planes.</p>
+
+<ul>
+  <li>Select
+    <font color="#008000" face="Fixedsys"><u>Project &gt; Nets...</u></font>. The <font color="#008000" face="Fixedsys"><u>View/Edit
+    Netlist</u></font> dialog should appear. If you are continuing from the last
+    section, only the VCC and GND nets will be visible, as shown.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area_netlist.gif" width="608" height="504"></p>
+
+<ul>
+  <li>Click on <u><font color="#008000" face="Fixedsys">Make all
+    visible/invisible</font></u> one or two times to make all of the nets
+    invisible. Then click on the GND checkbox to make only that net visible.</li>
+  <li>Notice that the trace width for every net is &quot;0&quot;. That means
+    that the project default of 10 mils will be used. Let's change the trace
+    width for GND to 15 mils.&nbsp;</li>
+  <li>Select the GND net by clicking on its name, which should highlight it.
+    Then click on the <u><font color="#008000" face="Fixedsys">Change widths</font></u>
+    button. The following dialog should appear.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area_net_width.gif" width="306" height="230"></p>
+
+<ul>
+  <li>Select &quot;15&quot; for the new width for the GND net by selecting that
+    value from the drop-down menu, or enter &quot;15&quot; into the text box.
+    Leave the <u><font color="#008000" face="Fixedsys">Use default via for this
+    trace width</font></u> radio button selected. If we wanted to override the
+    default via, we could select <u><font color="#008000" face="Fixedsys">Set
+    via widths</font></u> instead, and set the via width and hole size
+    explicitly in the text boxes. Click <u><font color="#008000" face="Fixedsys">OK</font></u>
+    to exit the dialog.</li>
+  <li>The <u><font color="#008000" face="Fixedsys">View/Edit Netlist</font></u>
+    dialog should now look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area_netlist2.gif" width="608" height="504"></p>
+
+<ul>
+  <li>Click <u><font color="#008000" face="Fixedsys">OK</font></u> to exit the
+    dialog. The layout window should now show only the ratlines for the GND net,
+    as shown.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area1.gif" width="790" height="558"></p>
+
+<ul>
+  <li>Now we will add the copper area for the GND plane. First, set the routing
+    grid to 50 mils. Then select <u><font color="#008000" face="Fixedsys">Add &gt;
+    Copper
+    Area</font></u>. The following dialog should appear.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_area.gif" width="239" height="288"></p>
+
+<ul>
+  <li>We will use the &quot;inner 1&quot; copper layer for the GND plane. Select &quot;GND&quot; from the <u><font color="#008000" face="Fixedsys">Net</font></u>
+    drop-down list, or type &quot;GND&quot; into the text box. Select
+    &quot;inner 1&quot; from the <u><font color="#008000" face="Fixedsys">Layer</font></u>
+    list. Set a hatch pattern of <u><font color="#008000" face="Fixedsys">Full</font></u>.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_area2.gif" width="239" height="288"></p>
+
+<ul>
+  <li>&nbsp;Click <u><font color="#008000" face="Fixedsys">OK</font></u> to exit
+    the dialog and start drawing the polyline for the copper area. The cursor
+    should change to a cross-hair. We want to draw the outline of the copper
+    area 50 mils inside the board outline. Place the cursor at the lower-left
+    corner of the copper area, which will be at X = 50, Y = 50. Left-click to
+    place the first corner. Then move the cursor to X = 50, Y = 1950 and
+    left-click to place the second corner. Place the third corner at X = 2950, Y
+    = 1950 and the fourth corner at X = 2950, Y = 50. After placing the fourth
+    corner, right-click to close the polyline. Now your board should look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area2.gif" width="790" height="557"></p>
+
+<ul>
+  <li>Notice that the copper area has been drawn with a diagonal hatch
+    pattern, in the color for layer &quot;inner 1&quot;. Also, most
+    of the ratlines for the GND net have disappeared, and X-shaped symbols in
+    the ratline color have appeared on the through-hole pins in the net. These
+    indicate internal connections of these pins to the GND copper area, using
+    plated-through holes with thermal reliefs.</li>
+  <li>We still have to connect the SMT pins to the GND copper area. For this, we will
+    use <b>stub traces</b>, which are short traces that begin on a pin and
+    end with a via to the GND plane.</li>
+  <li>Let's start with the lower pin of C1. Select the pin
+    by clicking on it. A white box with an &quot;X&quot; through it should appear around the
+    pin, indicating that
+    it has been selected, and the status bar should contain a description of the
+    pin.</li>
+  <li>Now start drawing the stub trace by pressing F3 (&quot;Start Stub&quot; ). The cursor should change to a
+    cross-hair, and you will be dragging the end of a trace segment from the
+    pin, on the top copper layer. You may wish to zoom in with the scroll wheel
+    or the Page Up key. Move the cursor a short distance below the pin, and left-click to set a vertex. Then right-click to end the trace. A
+    via should appear at the vertex, as shown. Notice that there is a
+    thermal-relief symbol on the via, indicating an internal connection to the
+    GND copper area.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area3.gif" width="413" height="394"></p>
+
+<ul>
+  <li>If you are unhappy with your trace, you can delete it by selecting the
+    trace segment or the end via and pressing&nbsp; F7 (&quot;Delete
+    Connection&quot;). You can move the end via by selecting it and pressing F4
+    (&quot;Move Vertex&quot;). You can add segments by selecting the end via and
+    pressing F2 (&quot;Add Segment&quot;).&nbsp;</li>
+  <li>Since stub traces are usually used to connect pins to copper areas on
+    other layers, the end via is added automatically when you end a stub trace.
+    If you want, you can delete the via by selecting it and pressing F3
+    (&quot;Delete Via&quot;). This may be useful if you are connecting a pin to
+    a copper area on the same layer, or if you are using a stub trace for some
+    other purpose such as a shield trace.</li>
+  <li>Now that you know how to do it, add stub traces to all of the SMT pins
+    which have ratlines. You may need to move some of the reference designators
+    to keep them free of the end vias,&nbsp; since it is generally a bad
+    practice to have a silk-screen item overlapping a pad or via. Your board
+    should look something like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area4.gif" width="791" height="559"></p>
+
+<ul>
+  <li>Congratulations, you have now routed the entire GND net, which is by far
+    the largest net in the design. The copper area made it easy.</li>
+  <li>Since we won't be doing any routing on the &quot;inner 1&quot; copper
+    layer, and since the hatch pattern may be annoying when we are working on
+    other layers, let's make it invisible. Select <u><font color="#008000" face="Fixedsys">Layers</font></u>
+    from the <u><font color="#008000" face="Fixedsys">View</font></u> menu to
+    bring up the <u><font color="#008000" face="Fixedsys">View/Edit Layers</font></u>
+    dialog, and uncheck the <u><font color="#008000" face="Fixedsys">Visible</font></u>
+    checkbox next to <u><font color="#008000" face="Fixedsys">Inner 1</font></u>.
+    Click <u><font color="#008000" face="Fixedsys">OK</font></u>, and the copper
+    area should disappear. Alternatively, we could have changed the hatch
+    pattern by selecting a side and right-clicking, then selecting <u><font color="#008000" face="Fixedsys">Hatch
+    style</font></u> from the context menu.</li>
+  <li>Now, let's add a copper area for net VCC on the &quot;inner 2&quot; copper
+    layer. You just need to repeat the same steps that you performed for the GND area. These are:
+    <ul>
+      <li>Make the VCC net visible.</li>
+      <li>Change the VCC trace width to 15 mils.</li>
+      <li>Draw the VCC copper area on the &quot;inner 2&quot; layer (you can use
+        the same corner positions as the GND area).</li>
+      <li>Add stub traces for all of the SMT pads on the VCC net. There should
+        be four, on C1, C5, C6 and C7.</li>
+      <li>Make the &quot;inner 2&quot; layer invisible.</li>
+    </ul>
+  </li>
+  <li>Select&nbsp; <u><font color="#008000" face="Fixedsys">Project &gt; Nets...</font></u>
+    to launch the <u><font color="#008000" face="Fixedsys">View/Edit Netlist</font></u>
+    dialog. Make both VCC and GND visible. Your board should look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/area5.gif" width="790" height="559"></p>
+<p align="center">&nbsp;</p>
+<p align="left"> In the next section we will route the rest of the nets on the
+top and bottom copper layers.</p>
+<p align="center">&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+     <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_add_parts.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_routing.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>

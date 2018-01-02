@@ -1,0 +1,155 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Mounting Holes</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_outline.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_placement.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.5 Adding Mounting Holes</font></p>
+<p>Now we will add mounting holes at the corners of the PCB. You might want to
+review <a href="user_guide_mounting.htm">Section 5.12: Mounting Holes</a> before starting.</p>
+
+<ul>
+  <li>Mounting holes are actually a special type of part, consisting of a single
+    through-hole pin. They are added to a project like any other part.
+    They can be included in the netlist file, or they can be added later. Since
+    our netlist file did not include the mounting holes, we will add them using
+    the <font face="Fixedsys" color="#008000"><u>Ad</u></font><u><font face="Fixedsys" color="#008000">d
+    &gt; Pa</font></u><font face="Fixedsys" color="#008000"><u>rt</u></font>
+    menu.</li>
+  <li>Set the placement grid to a small number such as 25 mils.</li>
+  <li>Select <font face="Fixedsys" color="#008000"><u>Part</u></font> from the <font face="Fixedsys" color="#008000"><u>Add</u></font> menu.
+    The following dialog should pop up
+    <p align="center"><img border="0" src="graphics/add_edit_part.gif" width="545" height="569"></p>
+    <p align="center">&nbsp;</li>
+  <li>Enter &quot;H1&quot; in the <font face="Fixedsys" color="#008000"><u>Reference</u></font>
+    field of the dialog. This will be the reference designator for the first
+    mounting hole.</li>
+  <li>Expand the <font face="Arial Black" size="2">C:\FreePCB\lib\th_mounting_hole.fpl</font>
+    library file by clicking on the &quot;+&quot; next to it. Then click on
+    &quot;HOLE_125_SQUARE_250&quot;. This is the footprint for a mounting hole
+    125 mils in diameter, with a square pad 250 mils in diameter. It is about
+    the right size for a #4 machine screw. Now the dialog should look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_edit_part_5.gif" width="545" height="569"></p>
+
+<ul>
+  <li>Click <font face="Fixedsys" color="#008000"><u>OK</u></font> to close the
+    dialog and begin dragging the mounting hole. Move it to X = 150, Y = 150 as
+    shown below.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_3.gif" width="817" height="592"></p>
+<ul>
+  <li>Click the left mouse button to place the hole. Now the layout should look
+    like</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_4.gif" width="817" height="592"></p>
+
+<ul>
+  <li>In similar fashion, add 3 more mounting holes at the other corners of
+    the PCB, using reference designators H2, H3 and H4, as shown below. Note
+    that&nbsp; when you use the <font face="Fixedsys" color="#008000"><u>Add &gt;
+    Part</u></font>
+    dialog to add these holes, it will come up initialized with the last
+    footprint that you added, with the reference designator incremented by one,
+    so you only have to click OK or press &quot;return&quot; to add the next
+    part.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_5.gif" width="817" height="592">.&nbsp;</p>
+
+<ul>
+  <li>Now we will connect H4 to the GND net, so that it can be
+    used to ground the PCB to its enclosure. To do this, we must select the <b>pin</b>
+    H4.1, instead of the <b>part</b> H4, since connections are always made to
+    pins .Notice that in the
+    screen shot above, the selection rectangle around H4 does not have an
+    &quot;X&quot; through it, indicating that the part is selected and not the
+    pin. The status
+    bar also shows that part H4 has been selected.&nbsp;</li>
+  <li> To select the pin for H4, click
+    anywhere on the pad. Now the selection rectangle should contain an
+    &quot;X&quot;, and the
+    status bar should indicate that pin H4.1 has been selected, as shown below.
+    If you wanted to reselect the part (to move it, for
+    example) you would click again on the pad.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_6.gif" width="817" height="592"></p>
+
+<ul>
+  <li>With the pin selected, press F1 (&quot;Set Net&quot;), which pops up the following dialog.
+    Use the drop-down menu to select the GND net, as shown.&nbsp;</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_net.gif" width="285" height="179"></p>
+
+<ul>
+  <li>Click <font face="Fixedsys" color="#008000"><u>OK</u></font> to assign
+    H4.1 to the GND net. A ratline to the pin should appear.&nbsp;</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_7.gif" width="817" height="592"></p>
+
+<ul>
+  <li> Now we will connect H3.1 to GND, by drawing a ratline from H4.1 to H3.1.
+    With the pin H4.1 still selected, press F4 (&quot;connect Pin&quot;). Now
+    you will be dragging a ratline from H4.1. Place the end of the ratline over
+    H3 and left-click to connect H3.1 to H4.1, as shown below.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_8.gif" width="817" height="592"></p>
+
+<ul>
+  <li> In similar fashion, connect H4 to H1 and H2.&nbsp;</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_10.gif" width="817" height="592"></p>
+
+<ul>
+  <li> Now press F8 (&quot;Recalc ratlines&quot;) to redraw the ratlines to
+    minimize their total length.&nbsp;</li>
+</ul>
+<p align="center"><img border="0" src="graphics/add_mounting_9.gif" width="817" height="592"></p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_outline.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_placement.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>

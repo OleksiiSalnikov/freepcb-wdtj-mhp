@@ -1,0 +1,236 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Overview</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_installing.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_screenshot.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">4.
+Overview of the PCB Design Process</font></p>
+<p align="left"><font size="3">This is a brief overview of the PCB design
+process, with explanations of some terms which have special importance to
+FreePCB. These are shown in <b>bold</b> <b>type</b> as they are introduced.&nbsp;</font></p>
+<p align="left"><font color="#0000FF" size="4">4.1 Schematic Diagram</font></p>
+<p align="left"><font size="3">Most PCB designs start out as a <b>Schematic
+Diagram,</b> which shows the <b>Devices</b> used in the design and the<b>
+Connections</b>
+between them. Each device in the schematic has a<b> Reference Designator </b>such as &quot;U1&quot;
+or&nbsp; &quot;R3&quot;. The connection points on the devices are called <b>Pins</b>,
+even though they may actually be non-pin terminals such as tabs, wire leads, screw
+terminals, etc. In general, the PCB should contain devices and connections
+exactly as shown on the schematic. If the designer makes changes to the PCB
+layout which create discrepancies between the PCB and the schematic, the
+schematic should be <b>Back-Annotated</b> to reflect the changes.</font></p>
+<p align="left"><font color="#0000FF" size="4">4.2 Specifying Parts, Packages
+and Pin Names</font></p>
+<p align="left"><font size="3">The first step in designing a PCB from a
+schematic is to select a
+physical <b>Part</b> for each device in the schematic. At the very least,
+the part specification should include the <b>Package</b> and <b>Pinout</b> for the
+part. Once parts and packages have been chosen, it may be necessary to go back to the
+schematic and assign <b>Pin Names</b>. A name must be assigned to every pin
+in the design, even on parts which have interchangeable pins, such as resistors.&nbsp;</font></p>
+<p align="left"><font size="3"><b>
+Pin names</b> are usually numbers, but may also contain letters. If letters are
+used, FreePCB requires that they precede any numbers. For example,
+&quot;12&quot;, &quot;A&quot;, &quot;SOURCE&quot; and &quot;A23&quot; are legal
+pin names, while &quot;1A&quot; and &quot;A1A&quot; are not. Characters other
+than letters and numbers are not allowed.</font></p>
+<p align="left"><font size="3">The <b>Package</b> <b>Identifier</b>   is a
+string such as &quot;DIP16&quot;&nbsp; which identifies
+the package to FreePCB, and determines which <b>Footprint</b>  to use for the
+part. The footprint includes the copper <b>Pads</b> to which pins will be
+soldered, as well as graphical elements such as a <b>Part</b> <b>Outline</b> and
+a <b>Text String</b> for the reference designator.</font></p>
+<p align="left"><font color="#0000FF" size="4">4.3 The Partlist</font></p>
+<p align="left"><font size="3"> The <b>Partlist</b> is a list of all of
+the parts in a design, with their reference designators and package identifiers. A
+sample partlist is
+shown below:</font></p>
+<table border="1" width="480">
+  <tr>
+    <td><b>Reference Designator</b></td>
+    <td><b>Package Identifier</b></td>
+  </tr>
+  <tr>
+    <td>U1</td>
+    <td>DIP14</td>
+  </tr>
+  <tr>
+    <td>R1</td>
+    <td>RES_1/4W_AXIAL</td>
+  </tr>
+  <tr>
+    <td>C1</td>
+    <td>CHIP_0805</td>
+  </tr>
+</table>
+<p align="left"><font color="#0000FF" size="4">4.4 The Netlist</font></p>
+<p align="left"><font size="3"> A <b>Net</b> is a set of pins which
+are connected together by lines on the schematic. Each pin in the net is identified by a
+text string consisting of the reference designator of the part containing the pin, the character
+&quot;.&quot;, and the pin name. For example, pin 8 on part U5 would be
+&quot;U5.8&quot;. Each net must have a unique name, which may be meaningful and
+descriptive, or merely distinctive. The set of pins in a net is called the <b>Pin
+List</b>.&nbsp;</font></p>
+<p align="left"><font size="3">A <b>Netlist</b> is a list of all of the nets in
+the design, with their pin lists. A sample netlist is shown below:</font></p>
+<table border="1" width="500" height="98">
+  <tr>
+    <td height="19"><b>Net Name</b></td>
+    <td height="19"><b>Pin List</b></td>
+  </tr>
+  <tr>
+    <td height="19">VCC</td>
+    <td height="19">U1.14,&nbsp;&nbsp; R1.1,&nbsp;&nbsp; C1.1,&nbsp;&nbsp; Q1.C</td>
+  </tr>
+  <tr>
+    <td height="19">GND</td>
+    <td height="19">U1.7,&nbsp;&nbsp; C1.2,&nbsp;&nbsp; Q1.E</td>
+  </tr>
+  <tr>
+    <td height="17">$$1234</td>
+    <td height="17">U1.1,&nbsp;&nbsp; R1.2,&nbsp;&nbsp; U1.2,&nbsp;&nbsp; Q1.B</td>
+  </tr>
+</table>
+<p align="left"><font color="#0000FF" size="4">4.5 Making Netlist
+Files</font></p>
+<p align="left">If the schematic was created with a schematic editor, the
+partlist and netlist can be automatically written to a <b>Netlist
+File</b>. Most editors will produce netlist files in a variety of formats. You
+should choose a format which is recognized by FreePCB, such as
+&quot;PADS-PCB&quot;. A netlist file in this format is shown below. The
+listing is pretty much self-explanatory.</p>
+<code>*PADS-PCB*<br>
+*PARTS*<br>
+U1 DIP14<br>
+R1 RES_1/4W_AXIAL<br>
+C1 C0805<br><br>
+*NETS*<br>
+*SIGNAL* GND<br>
+U1.7 C1.2<br><br>
+*SIGNAL* $1234<br>
+U1.1 R1.2 U1.2<br>
+
+
+</code>
+<p>If you are
+working from a printed or hand-drawn schematic, you will have the make the netlist
+file manually. This is actually pretty easy, although it can get tedious on a large
+design. I usually make a photocopy of the schematic that I can draw on. Then I start
+making the netlist file using a text editor. For each part, I
+highlight the reference designator on the schematic with a yellow felt-tip pen as I add
+it the partlist. Then I assign net names and pin names (if they are not already on the
+schematic) and make the netlist. For each net, I use the yellow highlighter and draw over
+each connection as I add it to the pin list. When I
+am finished, every part and every connection on the schematic should be
+highlighted in yellow. Then, I print out the netlist file and check it line-by-line. As I go, I again highlight the parts and
+connections in the schematic, this time with a red pen, making sure that
+every part and every connection is included. I have made quite large netlist
+files this way without errors.</p>
+<p align="left"><font color="#0000FF" size="4">4.6 Importing
+Netlist Files into FreePCB</font></p>
+<p align="left">Once your netlist file is complete, you can
+import it into FreePCB to start your design. FreePCB will try to find a
+footprint to match the package identifier for each part. If this is
+unsuccessful, you can assign footprints manually, or go back and edit the
+netlist. All of the footprints will be placed near the lower left corner of
+the PCB design area. FreePCB then loads the nets from the netlist, breaking each net into a set of connections between
+the pins in the net. These will appear as &quot;rubber-band&quot; lines between
+the pins, called <b>Ratlines</b>. As you move the parts around, the ratlines
+will move with them.</p>
+
+<p align="left"><font color="#0000FF" size="4">4.7 Adding Parts and Nets
+&quot;On-the-Fly&quot;</font></p>
+<p align="left"> Alternatively, you can create a
+design in FreePCB without a netlist file by using the &quot;<b>on-the-fly</b>&quot;
+editing technique. Starting with an empty design, add each part, net&nbsp;and
+connection using the <font face="Fixedsys" color="#008000"><u>Modify</u></font>
+and <font face="Fixedsys" color="#008000"><u>Add</u></font> menus. You
+will be prompted for the reference designators and net names as necessary. This works
+reasonably well for small designs, but I prefer to create a netlist file as described
+above.</p>
+
+<p align="left"><font color="#0000FF" size="4">4.8 Placing Parts</font></p>
+<p align="left">The next step is to <b>Place</b> the parts on the PCB by moving
+and rotating them as necessary. After you move a part, FreePCB will
+automatically reassign the ratlines of every net connected to the part to minimize their total length. Alignment
+of parts is made easier by using a <b>Snap Grid</b>.</p>
+
+<p align="left"><font color="#0000FF" size="4">4.9 Routing Traces</font></p>
+<p align="left">Once the parts are placed, <b>Routing</b> begins. This is
+usually the most time-consuming part of the PCB design process. Each connection
+must be converted to a copper <b>Trace</b>, consisting of multiple straight-line
+<b>Segments</b>. The points where trace segments join are called <b>Vertices</b>.
+The segments may all be on the same copper <b>Layer</b>, or may
+be on different layers, in which case they will be connected by <b>Vias</b>. At
+this point, FreePCB only supports full-thickness vias, not blind or hidden vias.
+<b>Copper</b>
+<b>Areas</b> can also be created, which are useful for ground and power planes. <b>Stub
+Traces</b> can be used to connect SMT pads to the copper areas. The snap grid is very useful for aligning traces. You can also set a <b>Snap Angle</b>,
+which forces trace segments to be oriented at multiples of the snap angle
+(usually 45 degrees).&nbsp;</p>
+
+<p align="left"><font color="#0000FF" size="4">4.10 Adding Text</font></p>
+<p align="left"> <b>Text</b>  <b>Strings</b> may be added for labels, revision
+numbers, copyright notices, etc. These will usually be placed on the
+silk-screen layers.</p>
+
+<p align="left"><font color="#0000FF" size="4">4.11 Plot and Drill Files</font></p>
+<p align="left">Plots of each layer can be exported as <b>Gerber</b> <b>Files, </b>which are used to make <b>Photoplots</b>
+for PCB fabrication. FreePCB can also produce <b>Drill Files</b>, which specify
+all of the holes to be drilled in the board. You can use a free <b>Gerber Viewer</b>
+such as ViewMate by PentaLogix to check your files and make <b>Check Plots</b>
+on a Windows printer. Then send
+your Gerber and drill files to a <b> PCB Fabrication Company</b> (along with some
+<b>Money</b>), and they will send back finished boards, usually in a couple of
+days. How <b>Cool</b> is that!</p>
+
+<p>&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_installing.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_screenshot.htm">NEXT</a></td>
+  </tr>
+</table>
+
+<p align="left">&nbsp;</p>
+
+</body>
+
+</html>

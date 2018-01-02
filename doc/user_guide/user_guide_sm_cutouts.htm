@@ -1,0 +1,96 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Text</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_text.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_drc.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.17 Solder Mask Cutouts</font></p>
+<p><b>Solder mask</b> is a coating that is applied to a PCB to prevent solder
+from sticking to it. It is not really necessary for hand-soldered boards, but is
+essential for boards that are soldered automatically using solder bath or reflow
+techniques. In the CAM process, the solder mask is considered to be a
+&quot;layer&quot; of the PCB, and is described by a Gerber file similarly to
+copper or silkscreen layers. There will usually be top and bottom solder masks,
+with separate Gerber files for each.</p>
+
+<p>Openings must be made in the solder mask for pads, since they require solder.
+FreePCB creates these openings automatically in the Gerber files for the solder
+mask layers, using the clearance specified in the CAM dialog.&nbsp;</p>
+
+<p>Sometimes it may be necessary to create additional openings in the solder
+mask. For example, board edge connectors should have an opening around them to
+prevent &quot;dams&quot; of solder mask between the fingers of the connector.
+Or, you might want to have an area of bare copper for application of shielding
+or a heatsink. In FreePCB, these openings are referred to as <b>cutouts</b>. You
+can add cutouts to the solder mask layers using <font face="System" color="#008000"><u>Add
+&gt; Solder
+Mask Cutout</u></font>. This pops up the following dialog:</p>
+
+<p align="center"><img border="0" src="graphics/sm_dialog.gif" width="264" height="179"></p>
+
+<p>&nbsp;</p>
+
+<p>You must select the top or bottom solder mask layer, and the hatch pattern.
+Clicking <font face="System" color="#008000"><u>OK</u></font> allows you to draw
+the cutout as a closed polyline, similarly to the board outline or a copper
+area. It will be shown in the color for the &quot;top sm cutout&quot; or &quot;bot
+sm cutout&quot; layer in the layer list. An example of a solder mask cutout
+around an edge connector is shown below. For a double-sided edge connector,
+cutouts should be made on both the top and bottom solder mask layers.</p>
+<p align="center"><img border="0" src="graphics/sm_edge.gif" width="310" height="340"></p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_text.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_drc.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

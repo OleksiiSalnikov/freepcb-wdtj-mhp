@@ -1,0 +1,303 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Parts</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_outline.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_mounting.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.11 Parts</font></p>
+<p><font color="#0000FF" size="3"><b>5.111 The Anatomy of a Part</b></font></p>
+<p>Every PCB will include one or more <b>parts</b>.&nbsp; Each part contains the
+following elements:</p>
+
+<ul type="square">
+  <li><b>reference designator</b>, such as &quot;U1&quot;&nbsp; -&nbsp; This is usually assigned in a <b>schematic diagram</b>,
+    and must be unique.&nbsp;</li>
+  <li><b>package</b> <b>identifier</b>, such as &quot;DIP14&quot;&nbsp; -&nbsp; Parts come in various
+physical packages, and the PCB designer must know which package will be
+used for each part, because this will determine the <b>footprint</b> for the
+part in the PCB layout.&nbsp;</li>
+  <li><b>pins</b>&nbsp; -&nbsp; The electrical terminals of a part are called pins, even when they are
+non-pin terminals such as wire leads, tabs, etc. Pins are identified by a name
+    (which is usually a number) which is appended to the reference designator, such as &quot;U1.4&quot; for
+    pin four on part U1. The way pins are named will depend on the
+    package. All pins must be named, even interchangeable pins such as the
+    leads on a resistor.&nbsp;</li>
+  <li><b>mounting holes&nbsp;</b> -&nbsp; Mounting holes may be used to attach
+    parts to a PCB. A fastener such as a machine screw may be passed through the
+    hole, or the part may have built-in fasteners such as press-fit posts or
+    solder tabs. Mounting holes may be insulated, or may have pads and be
+    plated-through. It is not unusual to use a plated-through mounting hole to
+    make an electrical connection to a part, such as a ground connection to a
+    connector shield. Therefore, FreePCB treats all mounting holes as pins. The
+    pin names assigned to mounting holes are usually numbers that are higher than the numbers used for
+    conventional pins. For example, a 9-pin D-SUB connector with 2 mounting
+    holes would have pin numbers 10 and 11 assigned to the mounting holes.</li>
+  <li><b>footprint</b>&nbsp; -&nbsp; This is the pattern of copper pads and other
+    elements which will become part of the PCB layout.</li>
+</ul>
+<p> Actually, when we use the term &quot;part&quot; during
+PCB layout, we are usually referring to the part's footprint, because this is what we
+are working with in the layout. The actual part is the
+electronic component which will be soldered to the footprint when the PCB is
+assembled.&nbsp;&nbsp;</p>
+<p>Footprints have the following elements:</p>
+<ul type="square">
+  <li><b>pads</b>&nbsp; -&nbsp; These are the copper elements to which pins will
+    be soldered. There are two types:&nbsp;
+    <ul type="square">
+      <li> <b>Through-hole pads</b> have a hole drilled through them
+so that the pin can be passed through the hole before soldering. For a
+through-hole pad on a multilayer board, there is usually a pad on each copper layer, connected
+together by plating the hole with copper. This arrangement is called a <b>padstack</b>.
+        Through-hole pads are usually round or square. A common arrangement is to use
+a square pad for pin 1 and round pads for the rest of the pins.&nbsp;</li>
+      <li>
+<b>Surface-mount pads</b> do not have a hole, and are only on one layer.
+Nevertheless, they are still represented by a padstack, although it is a pretty
+simple one with only one pad. Surface-mount
+pads are almost always rectangular.</li>
+    </ul>
+  </li>
+  <li><b>part outline</b>&nbsp; -&nbsp; This is a graphical representation of the
+part on the silk-screen layer.&nbsp;</li>
+  <li><b>reference text</b>&nbsp; -&nbsp; This is a text string for the
+    reference designator on the silk-screen layer.</li>
+  <li><b>other text</b>&nbsp; -&nbsp; Text strings such as pin numbers, etc. can
+    be added to the silk-screen layer.</li>
+  <li><b>selection rectangle</b>&nbsp; -&nbsp; This is invisible until the part
+    is selected, then it is shown in the selection layer color (usually white).
+    It determines the boundary of the part for selection purposes.</li>
+  <li><b>origin</b>&nbsp; -&nbsp; This is an invisible point which serves as
+    the origin for the internal coordinate system of the footprint. When a footprint is created, the
+    position of each element will be specified relative to the origin. When
+    a footprint is dragged during editing, it will be &quot;attached&quot; to
+    the cursor at the origin. When the position of a part is reported in the
+    status bar or in dialogs, it is actually the position of the origin which is
+    reported. The center of pin 1 is often used as the origin.</li>
+</ul>
+
+<p>Some typical footprints are shown below.</p>
+
+<p align="center"><img border="0" src="graphics/several_parts.gif" width="817" height="600"></p>
+
+<p align="left">In the screenshot above, U1 is an IC in a 20-pin DIP package,
+with though-hole pins. It has been placed on the top (or component) side of the
+board, so the silk-screen elements of the footprint are on the top silk-screen layer. It has been selected for editing,
+so its selection rectangle is visible. Since the top copper layer is the active
+routing layer, its&nbsp; top pads are shown in the color for the top copper
+layer.</p>
+
+<p align="left">U2 is an IC in a 20-pin surface-mount PLCC package, also on the
+top side of the board. Its pads are drawn in the color for the top copper layer.
+C10 is a surface-mount capacitor in a chip package. R12
+is a surface-mount resistor in a different chip package, on the bottom (or
+solder) side of the PCB. Its pads are drawn in the color of the bottom copper
+layer and its silk-screen elements are drawn on the bottom silk-screen layer.
+Also, its reference text is drawn as a mirror-image, so that it will
+be readable from the bottom of the board.</p>
+
+<p><font color="#0000FF" size="3"><b>5.112 The Partlist</b></font></p>
+<p>In FreePCB, all of the parts in a project are contained in a data structure
+called the <b>partlist</b>, which is empty when the project is first created.
+Normally, parts are added to the partlist by importing a <b>netlist file</b>
+from a schematic editor. This will be covered in <a href="user_guide_netlist.htm">Section
+5.14: Importing Netlist Files</a>. You can view or edit the partlist by
+selecting <u><font face="System" color="#008000">Parts...</font></u> from the <u><font face="System" color="#008000">Project</font></u>
+menu, which pops up the <u><font face="System" color="#008000">View/Edit Part
+List</font></u> dialog, as shown below.</p>
+
+<p align="center"><img border="0" src="graphics/partlist2.gif" width="743" height="535"></p>
+
+<p>Each part in the project is listed by reference designator, package and
+footprint. Individual parts can be selected from the list by clicking on them,
+or multiple parts can be selected by clicking with the Ctrl key held down. The
+partlist can be modified using the <u><font face="System" color="#008000">Add
+New Part</font></u>, <u><font face="System" color="#008000">Edit Selection</font></u>,
+and <u><font face="System" color="#008000">Delete Selection(s)</font></u>
+buttons. These will be described in the following sections.</p>
+
+<b><u>Important Note</u></b>: You should be careful when modifying the partlist, for two reasons.&nbsp;
+    <ul>
+      <li>If
+you are working from a schematic, editing the partlist can introduce
+discrepancies between the schematic and the PCB. This should not be a problem if
+you are just assigning footprints, but could be very confusing if you add or
+delete parts or change reference designators. If you do make any changes like
+        these, you should <b>back-annotate</b> the schematic to reflect them.</li>
+      <li>Once you click <u><font face="System" color="#008000">OK</font></u>
+        in the <u><font face="System" color="#008000">View/Edit Part List</font></u>
+        dialog, the changes that you made CANNOT be undone with the <u><font face="System" color="#008000">Undo</font></u>
+        function from the <u><font face="System" color="#008000">Edit</font></u>
+        menu. Therefore, you should probably save a copy of your project
+        beforehand.</li>
+    </ul>
+
+<p><font color="#0000FF" size="3"><b>5.113 Editing Parts</b></font></p>
+<p>Parts can be added, deleted or modified from either the <u><font face="System" color="#008000">View/Edit
+Part List</font></u> dialog (shown above) or the layout window, using the
+methods described below.</p>
+<ul>
+  <li>New parts can be added to the partlist using either the <u><font face="System" color="#008000">Part</font></u>
+    selection from the <u><font face="System" color="#008000">Add</font></u>
+    menu, or the <u><font face="System" color="#008000">Add New Part</font></u>
+    button in the&nbsp;<u><font face="System" color="#008000">View/Edit Part
+    List</font></u> dialog. Either method pops up the <u><font face="System" color="#008000">Add/Edit Part</font></u>
+    dialog, shown below
+    <p align="center"><img border="0" src="graphics/add_edit_part_9.gif" width="545" height="565"></p>
+    <p align="center">&nbsp;
+    <ul>
+      <li>A new part is created by entering a reference designator into the <u><font face="System" color="#008000">Reference</font></u>
+        field, and selecting a footprint from the large tree control which
+        occupies the left side&nbsp; of the dialog. This control contains a list of all of the
+        files in the selected library folder. You can change library folders
+        using the <u><font face="System" color="#008000">Browse...</font></u>
+        button. There is
+        also an entry for &quot;local cache&quot;, which contains all of the
+        footprints which are already loaded into the project. You can expand a
+        library by clicking on the &quot;+&quot; next to it. In the example above, the library <font face="Arial Black" size="2">C:
+        \FreePCB\lib\sm_plcc.fpl </font>has been expanded. The footprint &quot;LCC-24&quot; has been
+        selected and is shown in the preview pane. Its name has been
+        automatically entered into the <u><font face="System" color="#008000">Footprint</font></u>
+        field of the dialog. Alternatively, you can just type the footprint name
+        directly into this field.&nbsp;</li>
+      <li>If you leave the <u><font face="System" color="#008000">Position</font></u>
+        radio button set to <u><font face="System" color="#008000">Drag to
+        position</font></u>, you will be dragging the new part when you click <u><font face="System" color="#008000">OK</font></u>.
+        If you want to position the part explicitly, you can use the <u><font face="System" color="#008000">Set
+        position</font></u> radio button and the <u><font face="System" color="#008000">X</font></u>,
+        <u><font face="System" color="#008000">Y</font></u>, <u><font face="System" color="#008000">Angle</font></u>
+        and <u><font face="System" color="#008000">Side</font></u> fields in the
+        <u><font face="System" color="#008000">Position</font></u> box. Then
+        when you click <u><font face="System" color="#008000">OK</font></u>, the
+        new part will be placed at the position that you set. If you select <u><font face="System" color="#008000">Off-board</font></u>,
+        the part will be placed to the left of the origin.</li>
+    </ul>
+    <p>&nbsp;</li>
+  <li>Parts can be deleted or edited from the layout window by selecting them,
+    and using
+    the function-key or context menus. With a part selected, the following menu items are available:
+    <ul>
+      <li><b>F1 (&quot;Edit Part&quot;)</b>&nbsp; -&nbsp; this pops up the same <u><font face="System" color="#008000">Add/Edit
+    Part</font></u> dialog which was shown previously, except that the <u><font face="System" color="#008000">Reference</font></u>
+        and <u><font face="System" color="#008000">Footprint</font></u> fields
+        are filled-in. You can use this dialog to change the footprint or
+        position of the part.</li>
+      <li><b>F3 (&quot;Glue Part&quot;)</b>&nbsp; -&nbsp; this &quot;glues&quot; a
+    part in place so that it cannot be accidentally moved without
+    &quot;ungluing&quot; it. For a part which is already glued, this command
+    changes to &quot;Unglue Part&quot;.</li>
+      <li><b>F4 (&quot;Move Part&quot;)&nbsp;</b> -&nbsp; this is the most commonly
+    used command. It initiates dragging the part with the cursor. Then left-click to &quot;drop&quot; the part at a new
+    position. While dragging, the following function-keys are active:
+    <ul type="square">
+      <li><b>F2 (&quot;Change Side&quot;)</b>&nbsp; -&nbsp; flip the part from
+        the top side to the bottom or vice-versa</li>
+      <li><b>F3 (&quot;Rotate Part&quot;)</b>&nbsp; -&nbsp; perform a 90 degree
+        clockwise rotation of the part</li>
+    </ul>
+      </li>
+      <li><b>F7 (&quot;Delete part&quot;)</b>&nbsp; -&nbsp; this deletes the part
+    from the partlist. You will be asked if you also wish to delete all
+    references to the part from the netlist. Normally you would answer
+    &quot;Yes&quot; unless you think that you might add the part back at a later
+    time.</li>
+      <li><b>F8 (&quot;Recalc. Ratlines&quot;)</b>&nbsp; -&nbsp; this recalculates
+    the ratlines for all nets connected to the part, to minimize their total
+    length. By default, this command is executed automatically each time a part
+    is moved.</li>
+    </ul>
+    <p>&nbsp;</li>
+  <li>Parts may also be deleted or edited from <u><font face="System" color="#008000">View/Edit
+    Part List</font></u>  dialog, as follows.&nbsp;
+    <ul>
+      <li>You can delete one or more parts from the list by clicking on them
+        (holding the Ctrl key down for multiple selections), and then click the <u><font face="System" color="#008000">Delete
+        Selection(s)</font></u> button.&nbsp;References to the part(s) will NOT
+        be removed from the netlist.</li>
+      <li>A single part can be edited using the <font face="System" color="#008000"><u>Edit
+        Selection</u></font>  button, which pops up the <font face="System" color="#008000"><u>Add/Edit
+        Part</u></font> dialog, which was shown earlier. The main reason for using the <u><font face="System" color="#008000">View/Edit
+        Part List</font></u> dialog to edit parts, instead of just selecting
+        them in the layout window and using the function key menu, is to assign
+        footprints to parts which don't already have them. A part without a
+        footprint can't be displayed, so it can't be selected in the layout
+        window. This situation often arises when importing netlist files, as discussed in
+        <a href="user_guide_netlist.htm">Section 5.14:
+        Importing Netlist Files</a>.</li>
+    </ul>
+  </li>
+</ul>
+<p><font color="#0000FF" size="3"><b>5.114 Moving or Resizing the Reference
+Designator</b></font></p>
+The reference designator for a part may be moved by selecting it and pressing F4
+(&quot;Move Ref Tex&quot;). Then you can drag it to a new position. While
+dragging, it can be rotated 90 degrees clockwise by pressing F3 (&quot;Rotate
+Ref Text&quot;).&nbsp;
+<p>You can change the size of the text string by selecting it and pressing F1
+(&quot;Set Size&quot;). This pops up the dialog shown below. You can change the
+character height and the stroke width. If you select <u><font face="System" color="#008000">Use
+default for height</font></u>, the stroke width will automatically be set to
+1/10 of the height.</p>
+<p align="center"><img border="0" src="graphics/ref_text_props.gif" width="275" height="257"></p>
+<p><font color="#0000FF" size="3"><b>5.115 Making the Reference
+Designator Invisible</b></font></p>
+<p>If you set the character height of the reference text to &quot;0&quot;, the
+reference designator will become invisible. To make it visible again, select the part and
+right-click, then select <u><font face="System" color="#008000">Set Ref. Text Size</font></u> from the context menu
+that pops up. Then set the character height to a non-zero value.</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_outline.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_mounting.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

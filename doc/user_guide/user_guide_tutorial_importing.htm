@@ -1,0 +1,147 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Netlist</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_creating.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_outline.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.3 Importing the Netlist File</font></p>
+<p>The netlist file that we will be using is listed in <a href="user_guide_netlist.htm">Section
+5.14: Importing Netlist Files</a>. You might want to review that section before
+continuing. The package for U2 was intentionally left incorrect, so we will have
+to fix it after the file is imported.&nbsp;</p>
+<ul>
+  <li>Select <span>Import</span> from the <span>File</span> menu. A dialog
+    called <span>Open</span> will pop up.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/import.gif" width="426" height="453"></p>
+<ul>
+  <li>If necessary, navigate to the &quot;motor&quot; project folder. Select
+    file <font face="Arial Black" size="2">motor.net</font>.&nbsp;</li>
+  <li>Select <span>Parts and Nets</span> in the <span> Import</span> section of the dialog.</li>
+  <li>Select <span>PADS-PCB</span> in the <span> Format</span> section of the dialog.</li>
+  <li>Click the <span>Open</span> button.</li>
+  <li>FreePCB will open a <span>Log</span> window and import the netlist,
+    describing its progress in the <span>Log</span>. You should see a message indicating that
+    a footprint was not found for U2. Click <span>OK</span> to dismiss the <span>Log</span>.</li>
+  <li>All of the imported parts will be stacked up just to the left of the
+    origin symbol in the layout window. Select <span>View &gt; All Parts</span>
+    (or press the &quot;Home&quot; key) to see them. Connections
+    between the pins will be shown as ratlines.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/pcb_parts.gif" width="817" height="592"></p>
+<ul>
+  <li>Now we will fix the missing footprint. Select <span>Parts...</span> from the
+    <span>Project</span> menu. The
+    <span>View/Edit Part List</span> dialog should appear:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/partlist1.gif" width="561" height="535"></p>
+
+<ul>
+  <li>This dialog shows a list of all of the parts which were imported, with
+    their reference designators, package identifiers and footprints.</li>
+  <li>Note that the footprint for U2 is shown as &quot;??????&quot;, indicating
+    that the package identifier &quot;dip14&quot; does not match any of
+    FreePCB's footprints. We need to fix this.</li>
+  <li>Select the line for U2 by clicking on it.</li>
+  <li>Click the <span>Edit Selection(s)</span> button. The <span>Add/Edit Part</span>
+    dialog should
+    appear as shown below.</li>
+</ul>
+
+    <p align="center"><img border="0" src="graphics/add_edit_part_2.gif" width="545" height="569">
+
+<ul>
+  <li>This dialog allows you to edit the parameters for part U2, including its
+    footprint. All of the available footprint libraries are shown in the large
+    tree control occupying most of the dialog. The first entry is &quot;local
+    cache&quot;, which is not actually a library but which contains all of
+    the footprints which are currently loaded into FreePCB.</li>
+  <li>Expand the &quot;th_dip.fpl&quot; library by clicking on the &quot;+&quot;
+    next to it. This library contains footprints for DIP packages. Its name
+    begins with &quot;th_&quot; to indicate that it contains through-hole
+    footprints.</li>
+  <li>Select &quot;14DIP300&quot; from the library by clicking on it. An image
+    of the footprint will appear in the preview window, and &quot;14DIP300&quot;
+    should replace &quot;??????&quot; in the <span>Footprint</span>  field. Now
+    the dialog should look like like:</li>
+</ul>
+
+<p align="center"><img border="0" src="graphics/add_edit_part_3.gif" width="545" height="569"></p>
+
+<ul>
+  <li>Click on <span>OK</span>.</li>
+  <li>A message box should appear asking whether you want to replace all
+    instances of &quot;dip14&quot; with &quot;14DIP300&quot;, or just U2. Since
+    there is only one instance, you can click on either <span>YES</span> or <span>NO</span>.</li>
+  <li>This should return you to the <span>View/Edit Partlist</span> dialog, with
+    &quot;??????&quot; replaced with &quot;14DIP300&quot; for part U2.</li>
+  <li>Click <span>OK</span>. U2 should now have a footprint, placed at position
+    (0,0), as shown below.</li>
+</ul>
+
+<p align="center"><img border="0" src="graphics/pcb_parts2.gif" width="817" height="592"></p>
+
+<p align="center">&nbsp;</p>
+
+<ul>
+  <li>OK, now all of the footprints are loaded. Save your work. In the next
+    section, we will create the board outline.</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_creating.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_outline.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

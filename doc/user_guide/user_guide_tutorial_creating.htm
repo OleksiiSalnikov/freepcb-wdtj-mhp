@@ -1,0 +1,124 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Project</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_schematic.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_importing.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.2 Creating the Project</font></p>
+<p>First we will create a new project called &quot;Motor&quot;.</p>
+
+<ul>
+  <li>Select <u><font face="Fixedsys" color="#008000">New</font></u> from the <font face="Fixedsys" color="#008000"><u>File</u></font> menu. The following
+    dialog should appear.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/file_new.gif" width="309" height="527"></p>
+<ul>
+  <li>Enter the word &quot;motor&quot; in the <font face="Fixedsys" color="#008000"><u>Name</u></font> box.
+    This establishes the name of the project.</li>
+  <li>Since the project folder normally has the same name as the project, &quot;motor&quot;
+    will
+    be automatically added to the end of the folder path in the <font face="Fixedsys" color="#008000"><u>Project Folder</u></font>
+    box, which should now read &quot;..\projects\motor&quot;. Note that this
+    path is relative to the location of the application, which is normally in <font face="Arial Black" size="2">FreePCB\bin</font>. If you wanted to use some other folder as the
+    project folder, you can override the default by entering a different folder
+    path, which can be either relative to the application folder or absolute. If
+    the project folder doesn't already exist, FreePCB will create it (although
+    its parent folder must exist). Since the &quot;motor&quot; project folder already
+    exists and contains the netlist file for the motor controller, I would
+    suggest leaving this path alone.</li>
+  <li>Similarly, you can override the path to the <font face="Fixedsys" color="#008000"><u>Library
+    Folder</u></font>, which contains the footprint libraries. If you did a
+    standard installation of FreePCB this should not be necessary.</li>
+  <li>If you decide to move your folders around, you can change the default
+    paths by editing the file <font face="Arial Black" size="2">default.cfg</font> in the application folder.
+    If you move the library folder after creating the project, you can edit the
+    library path in the project file <font face="Arial Black" size="2">motor.fpc</font>.</li>
+  <li>Leave the number of copper layers at &quot;4&quot;.</li>
+  <li>The <font face="Fixedsys" color="#008000"><u>Default trace and via widths</u></font>
+    will be applied to any net or trace which doesn't have widths explicitly
+    assigned. Since we will be using 10 mils as our default trace width, you can
+    leave them alone..</li>
+  <li>The <font face="Fixedsys" color="#008000"><u>Menu of trace and via widths</u></font>
+    is a list of values which will be presented if you explicitly assign trace
+    or net widths later on. You are not limited to using these values, but using
+    a selection from the menu is convenient and reduces the chance of error. If
+    you know that you will be using certain widths which are not on the default
+    menu, you can add them by clicking on <font face="Fixedsys" color="#008000"><u>Add</u></font>.
+    You can also delete items which you know you will not be using with <font face="Fixedsys" color="#008000"><u>Delete</u></font>,
+    or change an item by selecting it and clicking <font face="Fixedsys" color="#008000"><u>Edit</u></font>.&nbsp;</li>
+  <li>In this tutorial, we will be using trace widths of 10 and 15 mils. Select
+    each of the other widths in the menu and <font face="Fixedsys" color="#008000"><u>Delete</u></font>
+    them.</li>
+  <li><font face="Fixedsys" color="#008000"><u>Autosave</u></font> will
+    automatically save your project periodically. <font face="Fixedsys" color="#008000"><u>Enable</u></font>
+    it and set the save <font face="Fixedsys" color="#008000"><u>Interval</u></font>
+    to 5 minutes.</li>
+  <li>Now your dialog should look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/file_new2.gif" width="309" height="527"></p>
+<ul>
+  <li>Click <font face="Fixedsys" color="#008000"><u> OK</u></font> to exit the dialog.&nbsp;</li>
+  <li>The title bar of the FreePCB window should now read &quot;FreePCB -
+    motor.fpc*&quot;,
+    where <font face="Arial Black" size="2">motor.fpc</font> is the name of the project file that you will be
+    creating. The asterisk indicates that the project has been modified and the
+    information has not been saved. To make sure that you can save the file,
+    select <font face="Fixedsys" color="#008000"><u>Save</u></font> from the <font face="Fixedsys" color="#008000"><u>File</u></font>
+    menu (or press ctrl-s). FreePCB will write the file, and the asterisk will disappear.</li>
+  <li>If you want to look at the project file, you can open <font face="Arial Black" size="2">motor.fpc</font>
+    with a text editor such as NotePad. You will see that there is an [options]
+    section of the file containing the options that you set , along with some
+    other default options. Most of the other sections of the file, such as
+    [shapes], [parts], etc. will be empty.</li>
+  <li>In the next section, we will start designing our PCB by importing the
+    netlist file.</li>
+</ul>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_schematic.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_importing.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

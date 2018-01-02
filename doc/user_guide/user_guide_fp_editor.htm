@@ -1,0 +1,380 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Libraries</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_wizard.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_schematic.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">6. Footprints and Libraries (continued)</font></p>
+
+<p><font color="#0000FF" size="4">6.3 Footprint Editor</font></p>
+
+<p>The Footprint Wizard is the easiest way
+to create new footprints, but it is limited to certain predefined pin patterns.
+There will be times when you need more flexibility in pin placement. Also, you
+may want to create more informative or artistic outlines for your
+footprints.&nbsp;</p>
+
+<p>The Footprint Editor lets you do all of these things. It can be opened from
+FreePCB in several ways:</p>
+
+<ul>
+  <li>By selecting the<font face="System" color="#008000"><u> File &gt; Open
+    Footprint Editor</u></font> menu item&nbsp; - This is available even when
+    there is no project open in FreePCB.</li>
+  <li>By selecting the <font face="System" color="#008000"><u>Tools &gt; Footprint
+    Editor</u></font> menu item - This is available only when there is an open
+    project in FreePCB.</li>
+  <li>By selecting a part, and pressing F2 (&quot;Edit Footprint&quot;) - This opens the Footprint Editor with
+    the footprint for the part already imported. When you leave the Footprint Editor, you will be asked if you wish to
+    replace the part's original footprint with your modified one.</li>
+</ul>
+<p><font color="#0000FF"><b>6.31 The Footprint Editor Window</b></font></p>
+<p>When you open the Footprint Editor, it does not create a new window but
+instead replaces the usual FreePCB window. You can tell that you are in the
+Footprint Editor by looking at the window title bar. When you have finished
+editing footprints, you can return to FreePCB by pressing F8 (&quot;Return to
+PCB&quot;) or selecting the <u><font face="System" color="#008000">File &gt; Return
+to PCB Layout</font></u> or <u><font face="System" color="#008000">Tools &gt; Return
+to PCB layout</font></u> menu items, or by clicking in the &quot;Close&quot; box
+in the upper right corner.</p>
+
+<p>A screenshot of the Footprint Editor window is shown below, with a DIP8
+footprint imported.</p>
+
+<p align="center"><img border="0" src="graphics/footprint_editor_DIP8.gif"></p>
+
+<p>As you might expect, the menus in the Footprint Editor are different from the
+FreePCB menus. They are listed below:</p>
+
+<ul>
+  <li><font face="System" color="#008000"><u>File</u></font> -
+    <ul>
+      <li><font face="System" color="#008000"><u>New footprint</u></font> -
+        Start editing a new footprint..</li>
+      <li><font face="System" color="#008000"><u>Import Footprint</u></font> -
+        Import a footprint from a library file.</li>
+      <li><font face="System" color="#008000"><u>Save Footprint As</u></font> -
+        Save the footprint to a library file.</li>
+      <li><font face="System" color="#008000"><u>Return to PCB layout</u></font>
+        - Close the Footprint Editor and return to FreePCB.</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Edit</u></font> -
+    <ul>
+      <li><font face="System" color="#008000"><u>Undo</u></font> - Undo the last
+        editing operation (if possible).</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>View</u></font> -
+    <ul>
+      <li><font face="System" color="#008000"><u>Entire footprint</u></font> -
+        Resize and recenter the window to display all of the footprint elements.</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Add</u></font> -
+    <ul>
+      <li><font face="System" color="#008000"><u>Pin</u></font> - Add a new pin
+        or row of pins.</li>
+      <li><font face="System" color="#008000"><u>Polyline</u></font> - Add a new
+        polyline to the silk-screen layer.</li>
+      <li><font face="System" color="#008000"><u>Text</u></font> - Add a text
+        string</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Tools</u></font> -
+    <ul>
+      <li><font face="System" color="#008000"><u>Footprint Wizard</u></font> -
+        Invoke the Footprint Wizard.</li>
+      <li><font face="System" color="#008000"><u>Make PDF from Library File</u></font>
+        - Make a PDF file describing the footprints in a library file&nbsp;</li>
+      <li><font face="System" color="#008000"><u>Return to PCB Layout</u></font>
+        - Same as in the File menu.</li>
+    </ul>
+  </li>
+  <li><font face="System" color="#008000"><u>Help</u></font> -
+    <ul>
+      <li><font face="System" color="#008000"><u>About FreePCB</u></font> -
+        Display the &quot;About Box&quot; with the version number.</li>
+    </ul>
+  </li>
+</ul>
+<p>Other elements of the window such as the toolbar, layer list, function key
+menu, status bar and layout window are pretty much the same as for
+FreePCB.</p>
+<p><font color="#0000FF"><b>6.32 Footprint Elements</b></font></p>
+<p> A footprint
+consists of 4 basic elements. These are:&nbsp;</p>
+<ul>
+  <li><b>Pins</b> - these are implemented as <b>padstacks</b>. A padstack
+    contains copper pads for the top, inner and bottom layers as well as an
+    optional hole.</li>
+  <li><b>Polylines</b> - these are graphical elements on the silk-screen layer.
+    They may be <b>closed</b> or <b>open</b>.</li>
+  <li><b>Reference designator</b> - this is a text string for the reference
+    designator. Since the actual reference designator is a property of the part
+    and not the footprint, the Footprint Editor uses the string &quot;REF&quot;
+    as a placeholder. It is always present and cannot be deleted, but it can be
+    resized.</li>
+  <li><b>Selection box </b>- this is a rectangle that encloses all of the other
+    elements, used for selection of a part during PCB layout. It is generated
+    automatically when saving the footprint.</li>
+</ul>
+<p>Creating a footprint is actually very similar to laying out a PCB, so if
+you have used FreePCB then you already have most of the required
+skills. Therefore, we will take a tutorial approach to the subject. In the next
+few sections, we will create a footprint for a polarized capacitor. The
+capacitor dimensions are shown in the drawing below, taken from a
+Panasonic datasheet. We will create a footprint for the 12.5 mm body diameter
+capacitor.</p>
+<p align="center"><img border="1" src="graphics/wizard_cap_data.gif" width="762" height="322"></p>
+<p><font color="#0000FF"><b>6.33 Starting the new footprint</b></font></p>
+<p>From FreePCB, invoke the Footprint Editor from the <font face="System" color="#008000"><u>File</u></font>
+or <font face="System" color="#008000"><u>Tools</u></font> menus. You will start
+with a layout window which is empty except for the origin symbol and the
+reference designator, as shown in the screenshot below. Since we will be using
+metric units, make sure that the <font face="System" color="#008000"><u>Units</u></font>
+are &quot;mm&quot;.</p>
+<p align="center"><img border="0" src="graphics/fp_editor_empty.gif"></p>
+<p>&nbsp;</p>
+<p><font color="#0000FF"><b>6.34 Adding and Editing Pins</b></font></p>
+<p>Select the <font face="System" color="#008000"><u>Add &gt; Pin</u></font> menu
+item. This pops up the <font face="System" color="#008000"><u>Add/Edit Pin</u></font>
+ dialog. The controls in this dialog are pretty much self-explanatory. Some of them
+will be enabled or disabled depending on the pin being added. Since we are
+adding the first pin, the <u><font face="System" color="#008000">Padstack &gt; S</font></u><font face="System" color="#008000"><u>ame
+as pin #</u></font> check box is disabled because there are no
+other pins present.&nbsp;</p>
+<p>The capacitor has leads with a diameter of 0.6 mm. For clearance, we will use
+a hole diameter of 0.9 mm. and pad diameters of 1.5 mm. For the first pin, we
+will use square pads on the top and bottom layers and a round pad on the inner
+layers. Select the <u><font face="System" color="#008000">Padstack &gt; Through-hole</font></u>
+radio button and set the <u><font face="System" color="#008000">hole diameter</font></u>
+to 0.9 mm. Set the <font face="System" color="#008000"><u>Top
+pad &gt; Shape</u></font> to &quot;square&quot; and the <font face="System" color="#008000"><u>Width</u></font>
+to 1.5 mm. The<font face="System" color="#008000"><u> Inner pad &gt; Shape</u></font> should be
+&quot;round&quot;. The <font face="System" color="#008000"><u>Bottom pad</u></font> should be the same
+as the<u><font face="System" color="#008000"> Top pad</font></u>. Set the <font face="System" color="#008000"><u>Position</u></font>
+to <font face="System" color="#008000"><u>X</u></font> = 0.0 and <font face="System" color="#008000"><u>Y</u></font>
+= 0.0. The dialog should look like this:</p>
+<p align="center"><img border="0" src="graphics/add_pin_cap1.gif" width="426" height="548"></p>
+<p>Clicking <font face="System" color="#008000"><u>OK</u></font> should result
+in the pad being placed at the origin.</p>
+<p align="center"><img border="0" src="graphics/fp_editor_cap1.gif"></p>
+<p>According to the&nbsp; datasheet, the lead spacing is 5 mm. so we will
+place our second pin at X = 5.0 mm and Y = 0.0 mm. To make this easier, set the <font face="System" color="#008000"><u>Visible</u></font>
+and <font face="System" color="#008000"><u>Placement</u></font> grids to &quot;1
+mm&quot;. Now select <font face="System" color="#008000"><u>Add &gt; Pin</u></font>
+to add the second pin.&nbsp;</p>
+<p align="center"><img border="0" src="graphics/add_pin_cap2.gif" width="426" height="548"></p>
+<p>Since there is already one pin in our footprint, the dialog will come up
+initialized for the second pin, with the <font face="System" color="#008000"><u>Padstack</u></font> the same as pin
+1 by
+default. However, we should use a round pad for pin 2 instead of a square pad.
+Therefore, uncheck the <u><font face="System" color="#008000">Padstack &gt;</font></u><font face="System" color="#008000"><u>
+Same
+as pin #</u></font> check box, and change the <u><font face="System" color="#008000">Padstack
+&gt;</font></u><font face="System" color="#008000"><u> Top
+pad &gt; shape</u></font> to &quot;round&quot;. Then you can check <u><font face="System" color="#008000">Padstack
+&gt; </font></u><font face="System" color="#008000"><u>Inner
+pads &gt; Same as top pad</u></font> and <u><font face="System" color="#008000">Padstack
+&gt; </font></u><font face="System" color="#008000"><u>Bottom
+pad &gt; Same as top pad</u></font>&nbsp; to make&nbsp;these pads are the same as
+the top pad. Now the dialog should look like:</p>
+<p align="center"><img border="0" src="graphics/add_pin_cap3.gif" width="426" height="548"></p>
+<p>Click <font face="System" color="#008000"><u>OK</u></font> to leave the
+dialog and start dragging the pad. Place it at X = 5.0 mm and Y = 0.0 mm, as
+shown.</p>
+<p align="center"><img border="0" src="graphics/fp_editor_cap2.gif"></p>
+<p>&nbsp;</p>
+<p><b><font color="#0000FF">6.35 Adding Polylines</font></b></p>
+<p>Now we will add some silk-screen graphics to our footprint, consisting of a
+part outline (a circle with about the same diameter as the body diameter of the
+capacitor), and a &quot;+&quot; to mark the positive terminal, which by
+convention is pin 1.&nbsp;</p>
+<p>Let's start with the circle. This will be a closed polyline, with arcs for
+sides. Since we will need to place corners mid-way between the pins on the
+X-axis, set the <u><font face="System" color="#008000">Placement</font></u> grid
+to &quot;0.5 mm&quot;. Also, make sure that the <font face="System" color="#008000"><u>Angle</u></font>
+grid is set to &quot;45&quot;. Then select the <font face="System" color="#008000"><u>Add
+&gt; Polyline</u></font>
+menu item. This will pop up the <font face="System" color="#008000"><u>Add
+Polyline</u></font> dialog:</p>
+<p align="center"><img border="0" src="graphics/add_polyline.gif" width="275" height="144"></p>
+<p align="left">For the circle we need a closed polyline so make sure that the <font face="System" color="#008000"><u>Closed</u></font>
+button is selected, as shown above. The <font face="System" color="#008000"><u>Line
+width</u></font> is set to 0.254 mm (or 10 mil) by default. This is a reasonable
+value so you can leave it alone. Click <font face="System" color="#008000"><u>OK</u></font>
+to start dragging the first corner of the polyline. Place it at X = -4.0 mm, Y =
+0.0 mm. While dragging the second corner, press F2 (&quot;Arc (CW)&quot;) to
+change the side style to a clockwise arc. Place the second corner at X = 2.5 mm,
+Y = 6.5 mm. Place the third corner at X = 9.0 mm, Y = 0.0 mm and the fourth
+corner at X = 2.5 mm, Y = -6.5 mm. Then right-click to close the polyline. Your
+circle should look like:</p>
+<p align="center"><font face="System" color="#008000"><u><img border="0" src="graphics/fp_editor_cap3.gif"></u></font></p>
+<p align="left">Now let's add the &quot;+&quot;. Select <font face="System" color="#008000"><u>Add
+&gt; Polyline</u></font>,
+but this time make it an open polyline.&nbsp;Draw a vertical line by placing the
+first corner at X = -6.0 mm, Y = 5.0 mm and the second corner at X = -6.0 mm, Y
+= 1.0 mm. Then right-click to stop drawing. Add another open polyline, and draw
+a horizontal line by placing the first corner at X = -8.0 mm, Y = 3.0 mm and the
+second corner at X = -4.0 mm, Y = 3.0 mm. Now your footprint should look like:
+</p>
+<p align="center"><img border="0" src="graphics/fp_editor_cap4.gif">
+</p>
+<p>&nbsp;
+</p>
+<p><b><font color="#0000FF">6.36 Modifying the Reference Designator</font></b>
+</p>
+<p align="left">Finally, let's move the reference designator out of our part
+outline. Click on it to select it, and press F4 (&quot;Move Ref Text&quot;) to
+start dragging it. Move it above the part outline and place it by
+left-clicking. If you want to make it larger or smaller, you can press F1 (&quot;Set Size&quot;), and
+then use the <font face="System" color="#008000"><u>Reference
+Text Properties</u></font> dialog to change the size and stroke width as you see fit. Your final footprint
+should look something like:
+</p>
+<p align="center"><img border="0" src="graphics/fp_editor_cap5.gif">
+</p>
+<p align="center">&nbsp;
+</p>
+<p><b><font color="#0000FF">6.37 Saving the Footprint</font></b>
+</p>
+<p align="left">To save your new footprint into a library file, select the <font face="System" color="#008000"><u>File
+&gt; Save
+As</u></font> menu item. This will pop up the <font face="System" color="#008000"><u>Save
+Footprint</u></font> dialog. Enter the <font face="System" color="#008000"><u>Footprint
+name</u></font> and (optionally) the <font face="System" color="#008000"><u>Author</u></font>,
+<font face="System" color="#008000"><u>Source</u></font> and a <font face="System" color="#008000"><u>Description</u></font>,
+as shown below. Then select the <font face="System" color="#008000"><u>Library file</u></font>
+that you wish to use (or enter a new filename), and click <font face="System" color="#008000"><u>OK</u></font>
+to save the footprint.
+</p>
+<p align="center"><img border="0" src="graphics/save_fp_cap.gif" width="617" height="249">
+</p>
+<p align="center">&nbsp;
+</p>
+<p><b><font color="#0000FF">6.38 Importing Footprints</font></b>
+</p>
+<p align="left">So far, we have described how to create a footprint from
+scratch. In many cases, it will be easier to start with an existing footprint
+and modify it. You can import a footprint into the Footprint Editor by using the <u><font face="System" color="#008000">F</font></u><font face="System" color="#008000"><u>ile
+&gt; Import&nbsp;
+footprint</u></font> menu item. This pops up the following dialog.
+</p>
+<p align="center"><img border="0" src="graphics/footprint_import.gif" width="554" height="513">
+</p>
+<p align="left">From here, you can select a library folder, open library files
+and select footprints. You will see a preview of the selected footprint in the
+dialog. Click <font face="System" color="#008000"><u> OK</u></font> to import the footprint into the Footprint Editor. Then you can
+edit it.
+</p>
+<p><b><font color="#0000FF">6.39 Using the Footprint Wizard</font></b>
+</p>
+<p align="left">You can also use the Footprint Wizard from within the Footprint
+Editor. Here's an example. Let's make a footprint for the PGA package shown
+below. This is a Kodak image sensor. The pin diameter is 18 mils, and the pin
+spacing is 100 mils. The pins are named as usual for a PGA.
+</p>
+<p align="center"><img border="1" src="graphics/pga_package.gif" width="685" height="440">
+</p>
+<p align="left">From within the Footprint Editor, select <font face="System" color="#008000"><u>Tools
+&gt; Footprint
+Wizard</u></font>. We will use round pads with a diameter of 50 mils, and a hole
+diameter of 28 mils. Since the pins are arranged in 11 columns and 11 rows, we
+will initially create our footprint as a matrix of 11 x 11 = 121 pins. Then we
+will remove the extra ones. Set up the <font face="System" color="#008000"><u>Footprint
+Wizard</u></font> dialog as shown below.&nbsp;
+</p>
+<p align="center"><img border="0" src="graphics/pga_wiz.gif" width="653" height="483">
+</p>
+<p align="left">Click <font face="System" color="#008000"><u>Done</u></font> to
+create the footprint and import it into the Footprint Editor. It should look
+like:
+</p>
+<p align="center"><img border="0" src="graphics/fp_pga.gif">
+</p>
+<p align="left">Now, select each extra pin and delete it. Move the
+&quot;REF&quot; string so that it will be visible with the part in place. Your
+finished footprint should look like:
+</p>
+<p align="center"><img border="0" src="graphics/fp_pga_2.gif">
+</p>
+<p align="center">&nbsp;
+</p>
+<p><b><font color="#0000FF">6.310 Making PDF Files from Libraries</font></b>
+</p>
+<p align="left">If you create or modify a library file, you can make a PDF file
+describing the footprints in the library by selecting <font face="System" color="#008000"><u>Tools
+&gt; Make
+PDF from Library File...</u></font> This will pop up the following dialog:&nbsp;
+</p>
+<p align="center"><img border="0" src="graphics/make_pdf.gif" width="401" height="257">
+</p>
+<p align="left">If necessary, use the <font face="System" color="#008000"><u>Library
+Folder</u></font> field to select a library folder. Use the <font face="System" color="#008000"><u>Library
+File</u></font> drop-down menu to select the file that you wish to document. To
+make PDF files from ALL of the library files in the folder, scroll to the bottom of
+the file menu and select &quot;*** all library files ***&quot;, as shown below.
+You can use the <font face="System" color="#008000"><u>Page size</u></font> menu
+to select between letter and A4 page sizes, and the <font face="System" color="#008000"><u>Units</u></font>
+menu to choose the units that will be used in the PDF. Then click <font face="System" color="#008000"><u>Make
+PDF file</u></font> to make the file(s).
+</p>
+<p align="center"><img border="0" src="graphics/make_pdf_all.gif" width="401" height="257">
+</p>
+<p align="left">A sample page from a PDF file is shown below.</p>
+<p align="center"><img border="1" src="graphics/sample_pdf.gif" width="677" height="822"></p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_wizard.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_schematic.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

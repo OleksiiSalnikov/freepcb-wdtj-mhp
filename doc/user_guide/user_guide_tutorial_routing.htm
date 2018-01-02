@@ -1,0 +1,201 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Routing</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_add_areas.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_text.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.9 Routing</font></p>
+
+<p align="left">Ok, let's route our PCB. Before starting, you might want to
+review <a href="user_guide_nets.htm">Section 5.13: Nets, Ratlines and Routing</a>.</p>
+
+<ul>
+  <li><b>Optional:</b> If you want to try some of the ratline editing features
+    that were
+    described in <a href="user_guide_nets.htm">Section 5.13: Nets, Ratlines and Routing</a>:
+    <ul>
+      <li>Start by saving your project, so you can reload it if you screw
+        up.&nbsp;</li>
+      <li>From the menus, select <font color="#008000" face="Fixedsys"> <u>Projec</u></font><u><font color="#008000" face="Fixedsys">t
+        &gt; Nets...</font></u>
+        to pop up the <u><font color="#008000" face="Fixedsys">View/Edit Netlist</font></u>
+        dialog. Make all of the nets invisible except GND.</li>
+      <li>Select a ratline and delete it by pressing F7
+    (&quot;Delete Connect&quot;). Then press F8 (&quot;Recalc. Ratlines&quot;),
+    and the ratline should reappear.&nbsp;</li>
+      <li> You can add a new ratline between
+    pins on the same net by selecting one of the pins and using F4 (&quot;Connect Pin&quot;),
+        which allows you to draw a ratline to the other pin. Then press F3
+    (&quot;Lock Connect&quot;) to lock it. Now if you press F8 (&quot;Recalc.
+    Ratlines&quot;), some other ratline on the net should disappear.&nbsp;</li>
+      <li>You can unlock the locked connection with F3. Then if you press F8 the
+        connections should revert back to their original state.&nbsp;</li>
+    </ul>
+  </li>
+</ul>
+
+<ul>
+  <li>OK, back to business. Use the <u><font color="#008000" face="Fixedsys">View/Edit Netlist</font></u>
+    dialog to make all of the nets visible.</li>
+  <li>If necessary, use the <u><font color="#008000" face="Fixedsys">View/Edit
+    Layers</font></u> dialog to make the inner 1 and inner 2 copper layers
+    invisible</li>
+  <li>Now your board should look something like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/route.gif" width="880" height="637"></p>
+
+<ul>
+  <li>Select a reasonably small value for the routing grid such as 10 mils.</li>
+  <li>We will be routing traces on the top and bottom copper layers, since inner
+    1 and inner 2 were used for the VCC and GND planes. The currently active
+    layer is shown on the status bar (&quot;Top&quot; in the screenshot above).
+    Press the &quot;4&quot; key to switch to the bottom layer (since there are 4
+    layers). Press the &quot;1&quot; key to switch back to the top layer. Keys
+    &quot;2&quot; and &quot;3&quot; would select the inner layers.</li>
+  <li>Now select one of the longer ratlines, such as the one in the lower left from
+    JP4.8 to U1.14.
+    Press F4 (&quot;Route Segment&quot;) to start routing. The cursor should
+    change to a cross-hair, and you will be dragging a trace segment from
+    whichever pin was closest to the cursor when you pressed F4. Since the
+    active layer is &quot;Top&quot;, the trace segment will be colored green.
+    Notice that the angle of the segment will snap to multiples of 45 degrees.</li>
+  <li>Place the first vertex in the trace by left-clicking the mouse. Now you
+    will be dragging a new segment from the vertex. Press &quot;4&quot; to
+    switch to the bottom layer. The segment will become red, and a via should
+    appear at the vertex.</li>
+  <li>Continue adding segments until you are ready to complete the trace by
+    drawing a segment from the last vertex to the end pin. Press F4
+    (&quot;Complete Segment&quot;) to add the last segment, or just left-click
+    on the end pin. Your trace should look something like the screenshot below.
+    Notice that I have used a few more segments and vias than necessary.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/route2.gif" width="775" height="491">&nbsp;</p>
+
+<ul>
+  <li>Now let's try editing the trace which you just drew. Select one of the
+    vertices by clicking on it. A small white box should appear around it to
+    indicate that it has been selected, and information about the vertex should
+    appear in the status bar. The editing options for a vertex are:
+    <ul>
+      <li>F1 (&quot;Set Position&quot;)&nbsp; -&nbsp; pop up a dialog to set the
+        X and Y coordinates of the vertex explicitly.</li>
+      <li>F4 (&quot;Move Vertex&quot;)&nbsp; -&nbsp; start moving the vertex by
+        dragging it with the mouse. The snap-angle will not be in effect, but
+        the routing grid will.</li>
+      <li>F5 (&quot;Delete Vertex&quot;)&nbsp; -&nbsp; remove the vertex, and
+        unroute the two adjacent segments, which will be replaced by a single
+        ratline segment.</li>
+      <li>F6 (&quot;Unroute trace&quot;)&nbsp; -&nbsp; unroute the entire trace,
+        which will revert to a ratline.</li>
+      <li>F7 (&quot;Delete Connect&quot;)&nbsp; -&nbsp; delete the trace,
+        without replacing it with a ratline.</li>
+      <li>F8 (&quot;Recalc. Ratlines&quot;)&nbsp; -&nbsp; regenerate the
+        ratlines for the net.</li>
+    </ul>
+  </li>
+  <li>Now select one of the trace segments, which should turn white indicating
+    that it has been selected. The editing options for a trace segment are:
+    <ul>
+      <li>F1 (&quot;Set Width&quot;)&nbsp; -&nbsp; pop up a dialog allowing you
+        to set the width of the net, trace or trace segment.</li>
+      <li>F5 (&quot;Unroute Segment&quot;)&nbsp; -&nbsp; replace the segment
+        with a ratline.</li>
+      <li>F6 (&quot;Unroute trace&quot;)&nbsp; -&nbsp; unroute the entire trace,
+        which will revert to a ratline.</li>
+      <li>F7 (&quot;Delete Connect&quot;)&nbsp; -&nbsp; delete the trace,
+        without replacing it with a ratline.</li>
+      <li>F8 (&quot;Recalc. Ratlines&quot;)&nbsp; -&nbsp; regenerate the
+        ratlines for the net.</li>
+    </ul>
+  </li>
+  <li>Most of these editing options are fairly self-explanatory, so
+    you can try them out on your own. Try deleting a vertex or trace segment,
+    and then re-routing the resulting ratline. Ratlines between vertices are
+    routed just like ratlines between pins.</li>
+  <li>Now let's change the widths of some traces. Zoom in on the components in
+    the upper left corner, like this:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/route3.gif" width="585" height="425"></p>
+
+<ul>
+  <li>The traces between JP6, D1, R3, C2 and U3 are power traces, so let's make
+    them wider than the default 10 mils. Select the ratline between JP6.1 and
+    D1.1. The status bar should indicate that this is net &quot;N00534&quot;.
+    Press F1 (&quot;Set Width&quot;). The following dialog should pop up:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/route_width.gif" width="309" height="335"></p>
+
+<ul>
+  <li>The drop-down menu for <u><font color="#008000" face="Fixedsys">Trace
+    width (mils)</font></u> has two options, 10 and 15 mils. Lets use 20 mils
+    instead, by typing &quot;20&quot; directly into the text box. Click <u><font color="#008000" face="Fixedsys">OK</font></u>
+    to exit the dialog.</li>
+  <li>Now route the trace. Since the D1 is an SMT part, the trace segment which
+    connects to D1.1 must be on the top layer. If you start routing from this
+    pin, the active layer will be automatically set to &quot;Top&quot;. If you
+    start routing from JP6.1, which is a through-hole pin, you can start on
+    either &quot;Top&quot; or &quot;Bottom&quot; but you must be on
+    &quot;Top&quot; to complete the trace to D1.1.</li>
+  <li>In similar fashion, set the width of the other power traces to 20 mils and
+    route them. Your board should look like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/route4.gif" width="584" height="416"></p>
+
+<ul>
+  <li>Now route the rest of the traces on the board. Feel free to get creative
+    with trace widths and routing if you like. If we were actually going to
+    produce the board, it might look something like this.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/route5.gif" width="794" height="560"></p>
+
+<p align="center">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_add_areas.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_text.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>

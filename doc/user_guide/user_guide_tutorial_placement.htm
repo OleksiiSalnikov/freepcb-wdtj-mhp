@@ -1,0 +1,174 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Placing Parts</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_mounting.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_add_parts.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.6 Placing Parts</font></p>
+<p>In this section, we will place the parts on our PCB.</p>
+
+<ul>
+  <li>Set the <font face="System" color="#008000"><u>Placement</u></font> grid to a reasonable value such as 100 mils for placing
+    the through-hole parts, which have a pin spacing of 100 mils. This will make
+    it easier to align the parts. Later, we may use a smaller grid for the
+    surface-mount parts.</li>
+  <li>Select <font face="System" color="#008000"><u>Show all</u></font> from
+    the <font face="System" color="#008000"><u>View</u></font> menu (or press
+    the &quot;Home&quot; key) so that you
+    can see all of the parts. It will
+    help if you make the FreePCB window as large as possible (although then you
+    may have trouble seeing this tutorial, unless you have dual monitors).</li>
+  <li>Before placing any parts, take a minute to review the schematic. If you
+    haven't already done it, it may be useful to print the schematic so that you
+    can refer to it while designing the PCB. Since U1 is the largest and most
+    &quot;connected&quot; part, I would suggest placing it somewhere near the
+    center of the board, with the other IC's near it. The headers JP1-JP6 should
+    probably be placed near the edges.</li>
+  <li>Let's start by placing U1. Select it by clicking on it. A white outline
+    should appear around the part, indicating that it has been selected. Be
+    careful not to click on one of the pads or the reference designator, or you
+    will select that instead of the entire part.&nbsp;If you are having trouble
+    finding U1, you can use <font face="System" color="#008000"><u>View &gt; Show
+    part</u></font> to select it by reference designator.&nbsp;</li>
+  <li><b>Tip:</b> Sometimes it can be difficult
+    to select a small part that has relatively large pads, such as a
+    surface-mount capacitor. However, here is a trick that you can use. FreePCB
+    will never select something that is already selected, if there is an
+    alternative. Therefore, if you click on a part and select a pad instead (or
+    any overlapping structure), just click again and you will usually get the
+    part. You have to be sure to allow enough time between clicks that Windows
+    doesn't mistake your two clicks for a double-click, which usually doesn't do
+    anything.</li>
+  <li>With U1 selected, press F4 to begin moving it. Drag it towards the center of the board. The
+    cursor will be &quot;attached&quot; to pin 1 of the part. Rotate it by
+    pressing F3 once, so that it is vertical with pin 1 in the upper left
+    corner. When it is near the center of the board, left-click to place it. It
+    should look something like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/placement1.gif" width="668" height="477"></p>
+
+<ul>
+  <li>Notice that the ratlines moved with the part. After you placed it,
+    you might have noticed that some of the ratlines changed their pin
+    connections. This is because FreePCB automatically optimizes the ratlines
+    for minimum total length after moving a part.</li>
+  <li>Now let's place the other DIP ICs, U1 and Y1, something like this:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/placement2.gif" width="666" height="475"></p>
+
+<ul>
+  <li>Now place the DIP headers around the edges of the board, something like:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/placement3.gif" width="562" height="397"></p>
+
+<ul>
+  <li>As you place the parts, it is a good idea&nbsp; to look at the ratlines to
+    try to find an optimal placement for easy routing. However, you don't
+    necessarily have to see at ALL of the ratlines. On this board, we will be
+    using internal power and ground planes for the VCC and GND nets. Therefore, we might as well make the ratlines for
+    these nets invisible</li>
+  <li>Select <font face="System" color="#008000"><u>Nets...</u></font> from the <font face="System" color="#008000"><u>Project</u></font>
+    menu. The following dialog should appear:</li>
+</ul>
+<p align="center"><img border="0" src="graphics/netlist.gif" width="608" height="504"></p>
+
+<ul>
+  <li>Most of the dialog is occupied by a list of all of the nets.
+    The number of pins and the trace and via widths for each net are shown next to
+    the net name. Also, to the left of&nbsp; each name is a checkbox, which
+    determines the visibility of the net ratlines. Currently, all nets are
+    visible. To make the VCC and GND nets invisible, uncheck the boxes next to
+    them. Then click <font face="System" color="#008000"><u>OK</u></font>. Now there are fewer ratlines visible.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/placement4.gif" width="564" height="397"></p>
+
+<ul>
+  <li>Now place the rest of the parts. As mentioned above, selecting some of the
+    smaller surface-mount capacitors may be tricky, unless you place the cursor
+    precisely between the pads, or use the two-click method. You may want to use
+    a smaller <font face="System" color="#008000"><u>Placement</u></font>  grid,
+    such as 50 mils. As you place each
+    part, you may have to move the other parts around to make room or to improve
+    the efficiency of the connections. Try not to crowd things too much. On a
+    real-life densely populated board, the parts placement may be critical to
+    successful routing, so it pays to take the time to get it right. That
+    shouldn't be much of a problem on this board, however.&nbsp;</li>
+  <li> You can see my final
+    parts placement below. Note that I moved U2 to the right of U1 to shorten
+    the ratlines between these parts.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/placement5.gif" width="563" height="398"></p>
+
+<ul>
+  <li>Now, let's position the reference designators for the
+    parts on the silk-screen layer, so they will be correctly oriented and visible when the parts are
+    soldered on. First, set the <font face="System" color="#008000"><u>Placement</u></font> grid to a
+    small value, such as 10
+    mils, for finer control of the placement of these small items. Select each
+    reference designator by clicking on it, and move it with the F4 key. As with
+    parts, F3 rotates the reference designator while dragging.&nbsp;</li>
+  <li>Since the reference designators for the mounting holes aren't very useful,
+    you can make them invisible by selecting them and pressing F5 (&quot;Set
+    Size&quot;), and then setting their size to zero. Since they are positioned
+    directly over the pads for the mounting holes, you probably won't be able to
+    select them by clicking on them, since you will get either the part or the
+    pin instead. Therefore, use the <b>selection mask</b> to disable selection
+    of parts and/or pins, and then click on the reference designator.
+    Alternatively, with the mounting hole part selected, select <font face="System" color="#008000"><u>Set
+    Ref. Text Size</u></font> from the right-click menu. This is also how you
+    would make them visible again by increasing their size.</li>
+  <li>Here is the
+    final screenshot.</li>
+</ul>
+<p align="center"><img border="0" src="graphics/placement6.gif" width="564" height="398"></p>
+<p align="left">&nbsp;</p>
+<p align="center">&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_mounting.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_add_parts.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>

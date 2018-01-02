@@ -1,0 +1,272 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Netlists</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_nets.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_areas.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.14 Importing Netlist Files</font></p>
+
+<p><font color="#0000FF" size="3"><b>5.141 Netlist Files</b></font></p>
+<p>After a new project is created, parts and nets can added to it by importing a
+<b>netlist file</b>. This file is usually produced by a schematic editor, but
+you can create it by hand if necessary.</p>
+
+<p>A sample netlist file is shown below. This file will be used
+later in the tutorial (see <a href="user_guide_tutorial_schematic.htm">Section
+7. Tutorial</a>). It was produced by a schematic editor called Orcad Capture, in
+PADS-PCB format. This is a common format, and most schematic editors support it.
+Most importantly, FreePCB can read it.&nbsp;</p>
+
+<code>
+*PADS-PCB*<br>
+*PART*<br>
+C1     CHIP_D<br>
+C2     C1206<br>
+C3     CHIP_B<br>
+C4     CHIP_B<br>
+D1     CHIP_B<br>
+JP1    5X2HDR-100<br>
+JP2    5X2HDR-100<br>
+JP3    5X2HDR-100<br>
+JP4    5X2HDR-100<br>
+JP5    3X2HDR-100<br>
+JP6    1X2HDR-100<br>
+R1     C1206<br>
+R2     C1206<br>
+R3     C1206<br>
+U1     28DIP300<br>
+U2     dip14<br>
+U3     TO-220<br>
+Y1     8DIP300<br>
+<br>
+*NET*<br>
+*SIGNAL* N00834<br>
+U2.4 JP1.9<br>
+*SIGNAL* GND<br>
+U2.7 C2.2 U3.3 C1.2 U1.19 Y1.4 JP5.3 JP4.10<br>
+JP4.4 R2.2 C4.2 JP1.10 JP1.5 R1.2 C3.2 U1.8<br>
+JP6.2 JP3.3 JP2.3 JP3.10 JP3.4 JP3.6 JP3.8 JP2.10<br>
+JP2.8 JP2.2 JP2.4 JP2.6 JP3.2<br>
+*SIGNAL* N01846<br>
+Y1.5 U1.9<br>
+*SIGNAL* VCC<br>
+U2.14 Y1.8 JP5.2 U3.2 C1.1 U1.20 JP1.8 JP1.3<br>
+*SIGNAL* N02621<br>
+U2.6 U1.21<br>
+*SIGNAL* N02594<br>
+U2.3 U1.22<br>
+*SIGNAL* N02122<br>
+JP2.1 U1.18<br>
+*SIGNAL* N01526<br>
+JP4.6 U1.15<br>
+*SIGNAL* N01538<br>
+JP4.8 U1.14<br>
+*SIGNAL* N02277<br>
+U1.17 JP3.1<br>
+*SIGNAL* N00797<br>
+JP1.4 U2.1<br>
+*SIGNAL* N00534<br>
+D1.1 JP6.1<br>
+*SIGNAL* N01300<br>
+U1.27 JP5.5<br>
+*SIGNAL* N01342<br>
+U1.28 JP5.4<br>
+*SIGNAL* N01384<br>
+JP5.1 U1.1<br>
+*SIGNAL* N00809<br>
+U2.5 JP1.7 U1.23<br>
+*SIGNAL* N03791<br>
+C3.1 R1.1 JP2.7 U1.3<br>
+*SIGNAL* N01292<br>
+U2.2 U1.24 JP1.2<br>
+*SIGNAL* N03798<br>
+C4.1 R2.1 JP3.7 U1.2<br>
+*SIGNAL* N04614<br>
+U1.13 JP3.5<br>
+*SIGNAL* N04589<br>
+JP2.5 U1.12<br>
+*SIGNAL* N06956<br>
+C2.1 U3.1 R3.2<br>
+*SIGNAL* N07325<br>
+R3.1 D1.2<br>
+*END*<br>
+
+</code>
+<p> The listing is fairly self-explanatory. In the <code>*PART*</code> section of the file,
+there is a line for each part, containing a reference designator (such as &quot;<code>U1</code>&quot;) and a package
+identifier (such as &quot;<code>28DIP300</code>&quot;). In the <code>*NET*</code>
+section, each net starts with the <code>*SIGNAL*</code> keyword, followed by the
+name of the net. All of the pins in the net are then listed on subsequent lines.</p>
+
+<p>In order for FreePCB to assign
+footprints, the package identifier for each part must match a footprint in one
+of the FreePCB libraries. Since there is no universal standard for package
+identifiers, you will probably have to assign these explicitly.</p>
+
+<p>Basically, there are 3 ways to do this:</p>
+
+<ol>
+  <li>In the schematic editor, assign the package identifier as an attribute for
+    each part, using package identifiers that match FreePCB footprints. Then
+    export the netlist, and import it into FreePCB.</li>
+  <li>Export the netlist, edit it using a text editor, and then import it into
+    FreePCB.</li>
+  <li>Export the netlist, import it into FreePCB, and then fix any incorrect or
+    missing footprints within FreePCB.</li>
+</ol>
+<p>Option 1 is definitely the way to go if you think that you might make changes
+to your schematic after you start routing the board, and want to import those
+changes into FreePCB.</p>
+<p><b>Important note:</b>  For FreePCB to find the footprints referenced
+in the netlist file, the libraries containing those footprints must be in the
+default library folder for the project (usually ..\lib). If you are using
+footprints from libraries in other folders, such as ..\lib_contrib or ..\lib_extra,
+you should move those libraries into ..\lib before importing the netlist file.
+If you forget to do this, you can always assign the footprints later, using the <u><font face="System" color="#008000">Project
+&gt; Parts...</font></u>
+dialog.</p>
+<p><font color="#0000FF" size="3"><b>5.142 Importing Netlist Files into a Project</b></font></p>
+<p>To import a netlist file, select <u><font face="System" color="#008000">File &gt;
+Imp</font></u><font face="System" color="#008000"><u>ort
+netlist...</u></font>. This will
+pop up the following dialog.</p>
+<p align="center"><img border="0" src="graphics/import.gif" width="426" height="453"></p>
+<p>Select the netlist file by navigating to the correct folder (if necessary)
+and clicking on the file name. I usually move or copy the netlist file into the
+project folder before importing it, but this is not necessary. Using the radio
+buttons, you can choose to import only the parts from the file, only the nets,
+or both. You can also select the file format (although currently only the
+PADS-PCB format is supported). Then click <font face="System" color="#008000"><u>OK</u></font>.&nbsp;</p>
+<p>If you are importing the netlist file into an empty project, without existing
+parts or nets, the file will load immediately. Otherwise, the <font face="System" color="#008000"><u>Import Options</u></font>
+ dialog will appear, as shown below. This dialog determines how FreePCB handles conflicts that
+may arise when importing a netlist file into a project that already contains
+parts and/or nets. This situation usually arises when you are using a schematic
+editor. For example, suppose that after importing your initial netlist and
+laying out some or all of the PCB, you make some changes in the schematic and
+wish to import those changes. With the the default settings shown
+below, any parts, footprints or nets in the project that don't match the new
+netlist file will be changed or deleted, and the project will exactly match the
+netlist file. Most of the time, this will be what you want.</p>
+<p>However, suppose that you have added some parts to the project (such as
+mounting holes, for example) that aren't in your netlist file, and you have
+connected them to a net. Then you might want to select <font face="System" color="#008000"><u>For
+parts in project but not in netlist file: Keep parts and connections to nets</u></font>
+so that you won't lose these parts and connections. Or, if you changed some of
+the footprints after importing the netlist, you might want to select <font face="System" color="#008000"><u>For
+parts with different footprints in project and netlist file: Keep footprints</u></font>
+so that you don't revert back to the old footprints after the import. If you
+have added nets and wish to keep them, you might select <u><font face="System" color="#008000">For
+nets in project that are not in netlist file: Keep nets</font></u>.&nbsp;</p>
+<p>You should use these options carefully as they may cause unexpected results.
+For example, if you inadvertently change a net name in the schematic editor and
+then import the netlist with the <u><font face="System" color="#008000">Keep
+nets</font></u> option selected, you will wind up with 2 nets with different
+names, with all of the pins in the new net except for any pins that were in the
+old net but not in the new one. Also, you will lose all of the routing on the
+new net (see note below). Or if you changed the reference designator of a part in the
+schematic editor and you select one of the <u><font face="System" color="#008000">Keep
+parts</font></u> options, you will wind up with a duplicate part.</p>
+<p><b>Important note: </b>When importing a netlist file into a project that is already routed, FreePCB
+tries to preserve as much of the routing as possible <b>as long as the net names
+haven't changed</b>. If you change the name of a net in your netlist file,
+you will lose all of the routing on this net, <b>UNLESS</b> you also change the
+name of the net in FreePCB before importing the netlist file.</p>
+<p align="center"><img border="0" src="graphics/import_options.gif"></p>
+<p>Once you have selected the <font face="System" color="#008000"><u>Import
+Options</u></font>, click <font face="System" color="#008000"><u>OK</u></font>.
+The netlist file will load and all of the new parts will be placed in the layout window to the
+left of the origin. To see them, you can select <font face="System" color="#008000"><u>All
+Parts</u></font> from the <font face="System" color="#008000"><u>View</u></font>
+ menu (or press the &quot;Home&quot; key), which will adjust the layout window to make all of the parts visible, as
+shown below.</p>
+<p align="center"><img border="0" src="graphics/pcb_parts.gif" width="817" height="592"></p>
+<p>If FreePCB is unable to match any of the package identifiers with footprints
+from its libraries, the following message will appear.&nbsp;</p>
+<p align="center"><img border="0" src="graphics/import_warning.gif" width="293" height="119"></p>
+&nbsp;In this case, you can check the partlist by selecting <span>Parts...</span>
+from the <span>Project</span> menu. This will pop up the <span>View/Edit Part
+List</span> dialog, as shown below.&nbsp;
+<p align="center"><img border="0" src="graphics/partlist1.gif" width="561" height="535"></p>
+
+<p>Note that the footprint for U2 is shown as &quot;??????&quot;, indicating
+that FreePCB was unable to find a footprint with the identifier
+&quot;dip14&quot;. A footprint can be assigned to this part by selecting it and
+clicking the <span>Edit Selection</span> button, which pops up the <span>Add/Edit
+Part</span> dialog, shown below.</p>
+
+<p align="center"><img border="0" src="graphics/add_edit_part_2.gif" width="545" height="565"></p>
+
+<p>You can assign a footprint to U2 by expanding the library files in the dialog
+until you find the footprint that you want, and then clicking on it to copy it
+into the <span>Footprint</span> field of the dialog, as shown below. If you know the name of the
+footprint, you can just enter it directly.&nbsp;
+
+<p align="center"><img border="0" src="graphics/add_edit_part_7.gif" width="545" height="565">
+<p> U2 should now have a
+footprint in the layout window, placed at whatever position you set in the
+dialog (X = 0, Y = 0 in the example above).
+<p> &nbsp;<p><font color="#0000FF" size="3"><b>5.143 Exporting Netlist Files</b></font></p>
+
+<p> You can export a netlist file from a project using the <span>File &gt; Export
+netlist...</span> menu selection. In the resulting file, the package for each
+part will be set to the name of the actual footprint that was used in the
+project.
+
+<p>&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_nets.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_areas.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

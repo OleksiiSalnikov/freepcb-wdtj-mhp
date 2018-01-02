@@ -1,0 +1,121 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Board Outline</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_elements.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_parts.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.10 Board Outline</font></p>
+<p>The <b>board outline</b> represents the outline of the PCB (duh!). In
+FreePCB, it consists of a <b>closed</b> <b>polyline</b> (or <b>polygon</b>)
+consisting of 3 or more <b>sides</b>, with <b>corners</b> between the sides. The
+sides may be straight line segments or <b>arcs</b>. An arc is one quadrant of an
+ellipse whose major axis is parallel to either x or y. The advantage of using this
+limited definition of an arc is that the arc is completely defined by the
+position of its endpoints and a direction, which may be clockwise or
+counterclockwise. A sample board outline consisting of 10 corners and 10 sides
+is shown below. Note that two of the sides are arcs.</p>
+
+<p align="center"><img border="0" src="graphics/board_outline5.gif" width="537" height="364"></p>
+
+<p>&nbsp;</p>
+<p>The board outline is created by selecting <u><font face="System" color="#008000">Add
+&gt; Boar</font></u><font face="System" color="#008000"><u>d
+Outline</u></font>. There can only be one board outline in a project, so if one already exists
+you will be prompted to delete it. The cursor will change into a cross-hair.
+Place the starting corner by left-clicking the mouse. You will then find
+yourself dragging a rubber-band representation of the first side. Left-clicking
+again will place the second corner, and you will be rubber-banding the second
+side. Continue until you have placed the last corner, then right-click to close
+the polyline by drawing a side back to the starting corner.</p>
+<p>While drawing, you can change the <b>style</b> of the current side from
+straight to an arc by using the appropriate
+function keys (F1 for straight, F2 for a clockwise arc and F3 for a
+counterclockwise arc). The style that you select will remain in effect until you
+change it. Note that arcs become straight lines if the end-points are vertical
+or horizontal.</p>
+<p>Placement of the corners will be controlled by the Placement Grid, which
+should be set to an appropriate value before starting to draw the outline.
+Placement will also be controlled by the Snap Angle. If the Snap Angle is 45
+degrees, then arcs will be quadrants of a circle.&nbsp;</p>
+<p>Once the outline has been created, you can edit it in the following ways:</p>
+<ul>
+  <li>You can reposition a corner by clicking on it to select it. A small white
+    square will appear around the corner indicating that it has been selected,
+    and the status bar will indicate which corner has been selected. Then press
+    F4 (&quot;Move Corner&quot;) to start dragging the corner to a new position.
+    Or press F1 (&quot;Set Position&quot;) to pop up a dialog which will let you
+    set the position of the corner explicitly, as shown below:
+    <p align="center"><img border="0" src="graphics/corner_position.gif"></p>
+    <p align="center">&nbsp;</li>
+  <li>You can add a corner by clicking on a side to select it. It will turn
+    white to indicate that it has been selected. Then press F4 (&quot;Add
+    Corner&quot;) and you will be dragging a new corner, with rubber-band sides
+    to the adjacent corners. Left-click to place it. This only works with
+    straight sides, so if the side is an arc then you will have to change it to
+    a straight line first (see below).</li>
+  <li>You can delete a corner by selecting it and pressing F5 (&quot;Delete
+    Corner&quot;). The corner will disappear, and the adjacent sides will be
+    replaced by one side between the adjacent corners.</li>
+  <li>You can change the style of a side by selecting it and then pressing F1
+    (&quot;Straight Line&quot;), F2 (&quot;Arc CW&quot;) or F3 (&quot;Arc
+    CCW&quot;).</li>
+  <li>The entire outline can be deleted by selecting any side or corner and
+    pressing F7 (&quot;Delete Outline&quot;).</li>
+</ul>
+<p>&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_elements.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_parts.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

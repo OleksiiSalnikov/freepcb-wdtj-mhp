@@ -1,0 +1,262 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Exporting</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_drc.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_libraries.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.19 Exporting Drill and Gerber Files</font></p>
+
+<p><font color="#0000FF" size="3"><b>5.191 Creating Files</b></font></p>
+<p>The final step in creating a PCB layout is to export the files that the
+board house will use to produce your boards. These files are described below.</p>
+
+<ul>
+  <li>Gerber files - These files are used to create the photoplots that will be
+    used to make the copper layers, silk-screens and masks for the PCB. There is
+    one file for each layer or mask. The format is extended Gerber RS274X.</li>
+</ul>
+<ul>
+  <li>Drill file - This will be used by the machine that drills the holes
+    in the PCB. It uses Excellon format, which is the industry standard.
+    Basically, it starts with a list of drill sizes (in inches), and then gives
+    the coordinates of the center of each hole. <b>There is an important issue
+    regarding drill sizes, which is discussed in <a href="#Drill Sizes">Section
+    5.193: Drill
+    Sizes</a>. Please read this section before you send your files to the PCB
+    house for fabrication.</b></li>
+</ul>
+<p>To export drill and Gerber files, select <font face="System" color="#008000"><u>Generate
+CAM files...</u></font> from the <font face="System" color="#008000"><u>File</u></font>
+menu. The following dialog will pop up.</p>
+<p align="center"><img border="0" src="graphics/drc_gerber.gif"></p>
+<p>In the <font face="System" color="#008000"><u>Files</u></font> section,
+select the files that you want to generate by checking or unchecking the
+boxes next to each one.&nbsp;</p>
+<p>The <font face="System" color="#008000"><u>Gerber file options</u></font>
+ section allows you to select or deselect the following options:</p>
+<ul>
+  <li><font face="System" color="#008000"><u>Include board outline</u></font> -
+    check this box to include the board outline in all Gerbers</li>
+  <li><font face="System" color="#008000"><u>Add moires</u></font> - add moire
+    symbols (sometimes called &quot;targets&quot;) for layer registration</li>
+  <li><font face="System" color="#008000"><u>Add layer description text</u></font>
+    - add a text string to each Gerber file indicating the layer that it
+    represents&nbsp;</li>
+  <li><font face="System" color="#008000"><u>Add pilot holes to pads and vias</u></font>
+    - add a pilot hole to through-hole pads and vias on the top and bottom
+    layers, to aid in drilling</li>
+  <li><font face="System" color="#008000"><u>Use thermal reliefs for pins</u></font>
+    - when connecting through-hole pins to internal copper layers, use a thermal
+    relief</li>
+  <li><font face="System" color="#008000"><u>Use thermal reliefs for vias</u></font>
+    - when connecting stub traces to internal copper layers with vias, use a
+    thermal relief</li>
+  <li><font face="System" color="#008000"><u>Make cutouts in solder masks for
+    vias</u></font> - create openings in the solder masks around via pads</li>
+</ul>
+<p>The <font face="System" color="#008000"><u>Gerber file dimensions</u></font>
+section allows you to set values for the following:</p>
+<ul>
+  <li><u><font face="System" color="#008000">Copper to copper-fill clea</font></u><font face="System" color="#008000"><u>rance</u></font> 
+    - is the clearance that FreePCB will create around
+traces or vias that pass through copper layers.&nbsp;</li>
+  <li> <font face="System" color="#008000"><u>Hole-edge
+to copper-f</u></font><u><font face="System" color="#008000">ill clearance</font></u>
+    - is the clearance that
+will be created around drill holes. Please refer to <b><a href="#Drill Clearances">Section
+    5.194: Drill Clearances</a> </b>for an important note about these clearances.&nbsp;</li>
+  <li> <font face="System" color="#008000"><u>Solder
+mask clearance</u></font> - the space that FreePCB will provide around pads in
+the solder masks.</li>
+  <li><font face="System" color="#008000"><u> Pilot hole diameter</u></font>
+    - the diameter of the pilot holes, if you selected them.&nbsp;</li>
+  <li> <font face="System" color="#008000"><u>Minimum
+silkscreen stroke width</u></font>  - the minimum stroke width that FreePCB will
+use for the silkscreen layers, which is usually recommended by the board house.&nbsp;</li>
+  <li> <font face="System" color="#008000"><u>Thermal relief line width</u></font>
+    - the width of the lines that will be used to connect pads or vias to copper
+fill areas using thermal reliefs.&nbsp;</li>
+  <li> <font face="System" color="#008000"><u>Board
+outline line width</u></font>  - the width of the board outline, if used.&nbsp;</li>
+  <li> <font face="System" color="#008000"><u>Annular ring width (pins)</u></font>
+and <font face="System" color="#008000"><u>Annular ring width (vias)</u></font>
+    - the width of annular copper rings placed around inner layer
+pin and via holes with thermal relief connections to copper areas.</li>
+</ul>
+<p>When you click <font face="System" color="#008000"><u>Create Files</u></font>,
+the files will be written to the <font face="System" color="#008000"><u>Output
+folder</u></font>. By default, this is a subfolder of the project folder called <font face="Arial Black" size="2">CAM</font>. It will be created if it doesn't already exist. You can change it if you
+want.</p>
+<p>Assuming that all goes well, you will see the following <font face="System" color="#008000"><u>Log</u></font>
+dialog, with &quot;*** SUCCESS ***&quot; as the final line. If errors occur,
+there will be messages in the log. If an error occurs while creating a file,
+FreePCB will usually abort that file and go on to the next file. Each file is
+named according to its content, such as <font face="Arial Black" size="2">top_copper.grb</font>
+or <font face="Arial Black" size="2">drill_file.drl</font>.</p>
+<p align="center"><img border="0" src="graphics/cam_success.gif" width="417" height="404"></p>
+<p align="left">Click <font face="System" color="#008000"><u>OK</u></font> to
+dismiss the log.&nbsp;</p>
+<p align="left">When you are finished creating files, click <font face="System" color="#008000"><u>Exit</u></font>
+in the <font face="System" color="#008000"><u>Generate Gerber and Drill Files</u></font>
+dialog.</p>
+
+<p><font color="#0000FF" size="3"><b>5.192 Viewing and Printing Files</b></font></p>
+<p align="left">There are a number of free programs that let you view Gerber and
+drill files. Before sending your files to a board house, I would STRONGLY
+suggest that you check them with one of these programs. I have been using <b>ViewMate</b>
+by <b>PentaLogix</b> (formerly Lavenir). You can download this at <a href="http://www.pentalogix.com/Download/download.html">www.pentalogix.com/Download/download.html</a>.
+ViewMate lets you view both Gerber and drill files, and also lets you
+make check-plots by printing them to a Windows printer. Since the printing
+functions in FreePCB are not yet implemented, this is currently the only way to
+print your designs.</p>
+<p align="left">An example of a FreePCB Gerber file as displayed by ViewMate is
+shown below. This Gerber file includes the board outline, moirés and layer
+description text (&quot;Top Copper Layer&quot;).</p>
+<p align="center"><img border="0" src="graphics/gerber.gif" width="753" height="453"></p>
+<p align="center">&nbsp;</p>
+
+<p><p><font color="#0000FF" size="3"><a name="Drill Sizes"></a><b>5.193 Drill Sizes</b></font></p>
+<p align="left"> The drill file specifies the size and position of each hole in
+the PCB. An issue that arises with these
+    files is whether the hole size refers to the actual drill bit size (in
+    which case the final diameter of the hole will be a few mils smaller after
+    plating) or the finish size (or plated size) which is the final
+    hole size after plating. To me, it makes more sense to specify the finish
+    size and let the board house figure out which drill bit to use, since they
+    know how thick their plating will be. FreePCB footprints use finish sizes,
+so these are the sizes which appear in the drill file.&nbsp;</p>
+<p align="left"> You MUST check with your board house, however, as some of them
+    expect actual bit sizes, which must be larger than the finish size. In this case,
+you may have to
+    edit the drill file and increase the drill sizes appropriately. Your board
+    house should be able to help with this, as long as they know what you want.</p>
+<p align="left"> A sample FreePCB drill file is shown in the listing below.</p>
+<code>
+;Holesize 1 = 24.0 PLATED MILS<br>
+;Holesize 2 = 18.0 PLATED MILS<br>
+;Holesize 3 = 14.0 PLATED MILS<br>
+M48<br>
+INCH<br>
+T01C0.024<br>
+T02C0.018<br>
+T03C0.014<br>
+%<br>
+G05<br>
+G90<br>
+T01<br>
+X028000Y018000<br>
+X029000Y018000<br>
+X028000Y017000<br>
+X023000Y010000<br>
+X023000Y011000<br>
+X023000Y012000<br>
+T02<br>
+X012000Y017000<br>
+X006000Y012000<br>
+X012000Y012800<br>
+X024000Y011000<br>
+X024200Y009000<br>
+X024200Y005000<br>
+X024000Y003000<br>
+T03<br>
+X019000Y010000<br>
+M30
+</code>
+<p>
+<code>
+<br>
+</code>
+Lines that begin with &quot;<b>;</b>&quot; are comments. Each different hole
+size is described in a comment, such as<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>;Holesize 1 = 24.0 PLATED MILS<br>
+</code>which indicates a hole diameter of 24 mils, after plating. The line<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<code>
+T01C0.024<br>
+</code>is the actual instruction to the machine that establishes the drill size,
+in inches.&nbsp;</p>
+<p>If you need to change a drill size to allow for plating, you should change
+both the comment and the instruction. For example, to use a 28 mil bit instead
+of a 24 mil bit, change the comment to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>;Holesize 1 = 28.0
+UNPLATED MILS<br>
+</code>and the instruction to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <code>T01C0.028</code></p>
+<p>Some board houses will ask for a separate text file which lists the drill
+sizes. You can tell them to look at the comments at the beginning of the drill
+file, or you can copy these into a separate file.
+</p>
+<p><font color="#0000FF" size="3"><b><a name="Drill Clearances"></a>5.194 Drill
+Clearances</b></font></p>
+<p>Board houses will often recommend a &quot;drill clearance&quot;. This is the
+minimum recommended size of clearance holes in inner layer copper that should be
+created around drill holes, to allow safe passage of the hole without shorting.
+Typically, they will specify something like &quot;drill diameter plus 0.025
+inches&quot;. This refers to the <b>DIAMETER</b> of the clearance hole. FreePCB
+uses the <u><font face="System" color="#008000">Hole-edge to c</font></u><font face="System" color="#008000"><u>opper-fill clearance</u></font>
+value to create these clearances. However, because FreePCB treats this clearance
+as the distance between the edge of the hole and the edge of the copper, it will be
+the difference in <b>RADIUS</b> between the holes, which is half of the
+difference in diameter. Therefore, to create a drill clearance of&nbsp;
+&quot;drill diameter plus 0.025 inches&quot;, you should use a <u><font face="System" color="#008000">Hole-edge
+to c</font></u><font face="System" color="#008000"><u>opper- fill clearance</u></font>
+ of one half of 0.025 inches, or 12.5 mils. This would
+be rounded up to 13 mils.</p>
+<p><br>
+</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_drc.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_libraries.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

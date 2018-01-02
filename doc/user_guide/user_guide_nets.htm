@@ -1,0 +1,390 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Nets and Routing</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_mounting.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_netlist.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.13 Nets, Ratlines and Routing</font></p>
+
+<p><font color="#0000FF" size="3"><b>5.131 Nets</b></font></p>
+<p>A <b>net</b> is a set of pins which will be connected together on the PCB.
+Each net must have a unique name. These names may be descriptive (such as
+&quot;GND&quot; or &quot;video_in&quot;) or merely distinctive (such as
+&quot;N06744&quot;). In FreePCB, net names are limited to 40 characters in
+length, and may contain special characters. Each <b>pin</b>
+in a net is identified by a string consisting of the <b>reference designator</b>
+of the part containing the pin, the character &quot;<b>.</b>&quot;, and the <b>pin
+name</b>.&nbsp;</p>
+<p> Nets are usually read from a <b>netlist
+file</b>, which also includes a list of <b>parts</b> in the design (see <a href="user_guide_netlist.htm">Section
+5.14: Importing Netlist Files</a>). Two examples of nets are shown below.</p>
+<p>Name:&nbsp; N00834<br>
+Pins:&nbsp;&nbsp;&nbsp;&nbsp; U2.4&nbsp; JP1.9</p>
+<p><br>
+Name:&nbsp; GND<br>
+Pins:&nbsp;&nbsp;&nbsp;&nbsp; U2.7&nbsp; C2.2&nbsp; U3.3&nbsp; C1.2&nbsp; U1.19&nbsp;
+Y1.4&nbsp; JP5.3&nbsp; JP4.10<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JP4.4&nbsp;
+R2.2&nbsp; C4.2&nbsp; JP1.10&nbsp; JP1.5&nbsp; R1.2&nbsp; C3.2&nbsp; U1.8<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JP6.2&nbsp;
+JP3.3&nbsp; JP2.3&nbsp; JP3.10&nbsp; JP3.4&nbsp; JP3.6&nbsp; JP3.8&nbsp; JP2.10<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JP2.8&nbsp;
+JP2.2&nbsp; JP2.4&nbsp; JP2.6&nbsp; JP3.2<br>
+</p>
+
+<p><font color="#0000FF" size="3"><b>5.132 The Netlist</b></font></p>
+
+<p>In FreePCB, all of the information about nets is stored in a data structure
+called the <b>netlist</b>. It can be viewed and modified by selecting <font face="System" color="#008000"><u>Nets</u></font>
+from the <font face="System" color="#008000"><u>Project</u></font> menu. This pops up the <font face="System" color="#008000"><u>View/Edit Netlist</u></font>
+ dialog.</p>
+
+<p align="center"><img border="0" src="graphics/netlist2.gif" width="528" height="504"></p>
+
+<p>This dialog contains a list of all of the nets in the project.
+The name, number of pins and the default trace width, via width and via hole
+diameter are shown for each net.&nbsp;</p>
+
+<p> The checkbox next to each name determines the <b>visibility</b>
+of the net. If the visibility box is unchecked, then ratlines for that net will
+NOT be displayed in the layout window. This is useful when you are working with
+a particular net and do not wish to be distracted with other ratlines.
+The <font face="System" color="#008000"><u>Make all visible/invisible</u></font>
+button checks or unchecks all of the boxes.</p>
+
+<p>In the example above, the trace and via widths are set to zero
+for most of the nets. This indicates that the project defaults are to be used.
+The widths for the VCC and GND nets have been set to non-zero values which will
+be used for traces in those nets. Widths can be changed by
+selecting one or more nets, and clicking on the <font face="System" color="#008000"><u>Change
+widths</u></font> button. This pops up the following dialog, which allows
+setting the new widths.</p>
+
+<p align="center"><img border="0" src="graphics/netlist_width.gif" width="306" height="183"></p>
+
+<p>You can perform more extensive editing of a single net by selecting it and
+clicking the <font face="System" color="#008000"><u>Edit selection</u></font>
+button, which pops up:</p>
+
+<p align="center"><img border="0" src="graphics/edit_net_vcc.gif" width="300" height="418"></p>
+
+<p align="left">From here you can change the name, visibility and widths of a
+net, and add or delete pins.</p>
+
+<p><font color="#0000FF" size="3"><b>5.133 Connections and Ratlines</b></font></p>
+<p align="left">Like most PCB editors, FreePCB assumes that nets will be routed
+as a series of connections, where each connection is between 2 pins. For any net
+containing more than 2 pins, there will be multiple possible sets of
+connections. For example, a net consisting of pins U1.1, U2.2 and U3.3 could be
+routed as:
+<ul>
+  <li>(U1.1 to U2.2) and (U2.2 to U3.3)&nbsp;&nbsp;&nbsp; <b>OR</b>
+  <li>(U1.1 to U3.3) and (U2.2 to U3.3)&nbsp;&nbsp;&nbsp; <b>OR</b>
+  <li>(U1.1 to U3.3) and (U1.1 to U2.2)</li>
+</ul>
+For each net, FreePCB automatically generates a set of connections which
+attempts to minimize the total distance between the connected pins. These
+connections are shown as <b>ratlines</b> between pins. An example of two nets
+connecting three parts is shown below.
+<p align="center"><img border="0" src="graphics/ratlines.gif" width="343" height="271"></p>
+After most editing operations, FreePCB recalculates the ratlines for each
+affected net. This is most obvious when
+you are moving parts or adding copper areas. For example, moving D1 to the right
+causes the connections to change, as shown below.
+<p align="center"><img border="0" src="graphics/ratlines2.gif" width="339" height="270"></p>
+<p align="left">If you are designing a PCB &quot;on-the-fly&quot; without a
+netlist, you can use stub traces instead of adding connections and routing them.
+See the note in <a href="#4.137 Stub Traces">Section 5.137: Stub Traces</a> for
+details.</p>
+<p><font color="#0000FF" size="3"><b>5.134 Modifying Ratlines</b></font></p>
+Most of the time, you will use the ratlines which FreePCB calculates. However, there may be situations when you would like more control
+over the ratlines. FreePCB provides several editing options for ratlines:&nbsp;
+<ul>
+  <li>A ratline can be <b>locked</b> by selecting it and pressing F3 (&quot;Lock
+    Connect&quot;). The appearance of the ratline doesn't change, but
+    &quot;(L)&quot; will appear in its description on the status bar to indicate
+    that it is locked. A locked connection will NOT be removed when FreePCB
+    recalculates ratlines. A locked connection may be unlocked by selecting it
+    and pressing F3 (&quot;Unlock Connect&quot;).
+  <li>A connection may be added to a net by selecting the pad for the starting
+    pin of the connection, and pressing F4 (&quot;Connect Pin&quot;). You can
+    then draw a ratline to another pin on the same net. Normally, you should
+    lock the ratline after adding it, otherwise it will probably be removed by
+    FreePCB the next time the ratlines are recalculated. You can also make a connection to
+    an unassigned pin, in which case the new pin will be added to the net.
+  <li>A ratline may be removed from a net by selecting it and pressing F7
+    (&quot;Delete Connect&quot;). If the ratline is locked, you will be prompted
+    to unlock it. If you remove a ratline and don't replace it by adding and
+    locking another one, it will probably reappear the next time the ratlines
+    are recalculated.
+  <li>The ratlines for each net are usually recalculated after each editing
+    operation which affects the net. The exceptions are those operations which
+    directly modify the ratlines, such as the ones described above. To force
+    FreePCB to regenerate ratlines, press F8 (&quot;Recalc. Ratlines&quot;). The
+    scope of this command depends on which item was selected when you pressed
+    F8:
+    <ul>
+      <li>If nothing was selected, ratlines will be regenerated for every net in
+        the project.
+      <li>If a part was selected, ratlines will be regenerated for each net
+        attached to the part.
+      <li>If a pin, ratline, or trace was selected, ratlines will be regenerated
+        for the net attached to that pin, ratline or trace.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><font color="#0000FF" size="3"><b>5.135 Routing</b></font></p>
+<p align="left"><b>Routing</b> is the process of converting ratlines to copper <b>traces</b>.
+Traces consist of one or more straight-line <b>segments</b>, connected together with <b>vertices</b>
+ at their connection points. If two adjacent segments are on different layers, a <b>via</b>
+will be placed at the vertex between them.&nbsp;</p>
+<p align="left">To begin routing, select a ratline by clicking on it. It will
+change to the selection color to indicate that it has been selected. Then press
+F4 (&quot;Route Segment&quot;). You will find yourself dragging a trace segment
+from the pin of the connection that was closest to the cursor when you pressed
+F4. The image below shows a segment being routed from pin 1 of JP6.&nbsp;</p>
+<p align="left">Note that the segment is on the top copper layer because that
+was the active layer when we started routing. You can change the active layer by
+pressing one of the numeric keys &quot;1&quot; through &quot;8&quot;, which
+represent the available layers in top-to-bottom order. For example, for a
+four-layer board, &quot;1&quot; would select the <b>top copper</b> layer,
+&quot;2&quot; would select the <b>inner 1</b> layer, &quot;3&quot; would select
+the <b>inner 2</b> layer, and &quot;4&quot; would select the <b>bottom copper</b>
+layer. If you change layers while routing a segment, it will immediately switch
+to the new active layer.&nbsp;</p>
+<p align="center">&nbsp;<img border="0" src="graphics/route6.gif" width="339" height="268"></p>
+<p>Left-clicking will place a vertex at the cursor position, end the first
+segment at the vertex, and initiate routing a second segment from the vertex, as
+shown in the next image. We have also switched layers by pressing the numeric
+key &quot;4&quot;, so that the new segment is being drawn on the bottom copper
+layer.</p>
+<p align="center"><img border="0" src="graphics/route9.gif" width="337" height="264"></p>
+<p>Left-click again to place the next vertex and start routing the next segment.
+In this way you can draw a trace consisting of multiple connected segments on
+multiple layers. The image below shows our trace nearing completion with several
+segments on different layers, with 2 vias.</p>
+<p align="center"><img border="0" src="graphics/route7.gif" width="336" height="267"></p>
+<p align="left">To finish the trace, press F4 (&quot;Complete Segment&quot;)
+while routing the last segment. The segment will automatically be extended to
+the end-pin of the trace. Alternatively, you can place the cursor over the
+end-pin and left-click. Our final trace is shown below.&nbsp;</p>
+<p align="center"><img border="0" src="graphics/route8.gif" width="341" height="265"></p>
+<p align="left">While routing a trace, you can right-click to stop routing
+before the trace is completed. The unrouted portion of the connection will be
+shown as a ratline between the last vertex and the end-pin. You can finish the
+trace later by selecting the ratline and routing it from either end. A trace can
+even have multiple unrouted portions, as shown below.&nbsp;</p>
+<p align="center"><img border="0" src="graphics/route10.gif" width="624" height="265"></p>
+<p align="left">While a segment is being dragged, the <b>Routing Grid</b> will be in effect. If the starting point for the segment is on the
+routing grid, then the <b>Snap Angle</b> will also be in effect.</p>
+
+<p><font color="#0000FF" size="3"><b>5.136 Changing and Swapping Pins</b></font></p>
+<p align="left"> You can change the end-pin
+of a partially-routed trace by selecting the ratline to the pin and pressing F5
+(&quot;Change Pin&quot;), then drawing a new ratline to a different pin.&nbsp;</p>
+
+<p align="left"> You can
+swap pins in a part by selecting one of them, holding down the &quot;s&quot; key
+and clicking on the other pin. You will be prompted to swap the connections to
+the pins.</p>
+
+<p><font color="#0000FF" size="3"><b><a name="4.137 Stub Traces">5.137 Stub Traces</a></b></font></p>
+<p>Besides traces based on connections between pins, FreePCB supports <b>stub</b> <b>traces</b>.
+These are traces that start at a pin, but do not end at a pin. Instead, they
+end blindly, usually with a via. Stub traces are mainly used to connect SMT pins to
+copper areas, which will be described in <a href="user_guide_areas.htm">Section
+5.14: Copper Areas</a>. To create a stub trace, select the starting pin. Press
+F3 (&quot;Start Stub&quot;) to start dragging a trace segment from the pin. The
+segment will be on the currently active layer, unless the pin is a SMT pin, in
+which case the active layer will change to the layer of the pin. Left-click to
+place a vertex. If you want more than one segment, add additional vertices. Then
+terminate the stub trace by right-clicking. The trace will end at the last
+vertex that you placed, and a via will be added at the vertex. If you don't want
+the via, select it and press F3 (&quot;Delete Via&quot;). If the via passes
+through a copper area on the same net as the starting pin, a thermal relief will
+be placed to connect the via to the copper area. An example of a stub trace
+connecting a pin to a copper area is shown below. The thermal relief is
+represented by the &quot;X&quot; drawn on the via in the ratline color.</p>
+<p align="center"><img border="0" src="graphics/stub_trace.gif" width="227" height="243"></p>
+<p align="left"><b>Important Note:</b> A stub trace can be converted to a regular pin-to-pin trace by
+routing it to a pad. When you place the end-point of a segment anywhere on a pad
+that is connected to the same net (or not connected to any net) the stub trace
+will automatically connect and terminate. This can be very useful if you are
+designing a PCB &quot;on-the-fly&quot;, without a netlist.</p>
+
+<p><font color="#0000FF" size="3"><b>5.138 Modifying Traces</b></font></p>
+<p>Traces can be modified by selecting segments, vertices or ratlines and using
+function-key commands. You can select an entire trace by clicking on a segment or vertex while
+holding down the &quot;t&quot; key. You can select an entire net by clicking on
+a segment, vertex or pin while holding down the &quot;n&quot; key.&nbsp;</p>
+<p>Here are descriptions of the function-key commands:</p>
+<ul>
+  <li>With a ratline selected:
+    <ul>
+      <li>F1 (Set Width) - pop up the <u><font face="System" color="#008000">Set
+        Trace and Via Widths</font></u> dialog, which is described below.</li>
+      <li>F3 (Lock/Unlock Connect) - lock or unlock the ratline. A locked ratline
+        cannot be eliminated by the
+        &quot;Recalc. Ratlines&quot; operation.</li>
+      <li>F4 (Route Segment) -&nbsp;start dragging the endpoint of a routed
+        segment to replace the ratline.</li>
+      <li>F5 (Change Pin) - this is only available if you have the selected a
+        ratline connecting a partially-routed trace to a pin. It allows you to
+        change the pin that the ratline connects to.</li>
+      <li>F7 (Delete Connect) -&nbsp; remove the connection from the net.</li>
+      <li>F8 (Recalc. Ratlines) - recalculate ratlines for the net to minimize
+        their length.</li>
+    </ul>
+    <p>&nbsp;</li>
+  <li>While routing a segment:
+    <ul>
+      <li>F4 (Complete Segment) -&nbsp;extend the segment to the endpoint of the
+        ratline, and stop routing</li>
+    </ul>
+    <p>&nbsp;</li>
+  <li>With a copper segment selected:
+    <ul>
+      <li>F1 (Set Width) - pop up the <u><font face="System" color="#008000">Set
+        Trace and Via Widths</font></u> dialog, which is described below</li>
+      <li>F2 (Change Layer) - pop up a dialog that lets you change the layer of
+        the segment, trace or net</li>
+      <li>F5 (Unroute Segment) - unroute the segment, converting it to a ratline</li>
+      <li>F6 (Unroute Trace) - unroute the entire trace, converting it to a
+        ratline</li>
+      <li>F7 (Delete Connect) - remove the connection from the net</li>
+      <li>F8 (Recalc. Ratlines) - recalculate ratlines for the net to minimize
+        their length<br>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>With a vertex selected:
+    <ul>
+      <li>F1 (Set Position) -&nbsp;pop up a dialog that allows you to edit the X
+        and Y coordinates of the vertex explicitly</li>
+      <li>F4 (Move Vertex) -&nbsp;start dragging the vertex to move it
+      <li>F5 (Delete Vertex) -&nbsp;remove vertex, unrouting the adjacent
+        segments into a ratline
+      <li>F6 (Unroute Trace) - unroute the entire trace, converting it to a
+        ratline
+      <li>F7 (Delete Connect) -&nbsp;remove the connection from the net
+      <li>F8 (Recalc. Ratlines) - recalculate ratlines for the net to minimize
+        their length
+      </li>
+    </ul>
+    <p>&nbsp;
+  </li>
+  <li>With the end-vertex of a stub trace selected:
+    <ul>
+      <li>F1 (Set Position) -&nbsp;pop up a dialog that allows you to edit the X
+        and Y coordinates of the vertex explicitly</li>
+      <li>F2 (Add Segment) -&nbsp;start dragging a new segment from the vertex</li>
+      <li>F3 (Add/Delete Via) -&nbsp;add a via, or delete one that is already
+        present</li>
+      <li>F4 (Move Vertex) -&nbsp;start dragging the vertex to move it
+      <li>F5 (Delete Vertex) -&nbsp;remove vertex, unrouting the adjacent
+        segments into a ratline
+      <li>F7 (Delete Connect) -&nbsp;remove the entire stub trace
+      <li>F8 (Recalc. Ratlines) - recalculate ratlines for the net to minimize
+        their length<br>
+      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>With an entire trace trace selected:
+    <ul>
+      <li>F1 (Set Width) -&nbsp;pop up the <u><font face="System" color="#008000">Set
+        Trace and Via Widths</font></u> dialog, which is described below</li>
+      <li>F2 (Change Layer) - pop up a dialog that lets you change the layer of
+        the trace or net</li>
+      <li>F6 (Unroute Trace) - unroute the entire trace, converting it to a
+        ratline
+      <li>F7 (Delete Connect) -&nbsp;remove the connection from the net
+      <li>F8 (Recalc. Ratlines) - recalculate ratlines for the net to minimize
+        their length<br>
+        <br>
+      </li>
+    </ul>
+  </li>
+  <li>With an entire net selected:
+    <ul>
+      <li>F1 (Set Width) -&nbsp;pop up the <u><font face="System" color="#008000">Set
+        Trace and Via Widths</font></u> dialog, which is described below</li>
+      <li>F2 (Change Layer) - pop up a dialog that lets you change the layer of
+        the net</li>
+      <li>F3 (Edit Net) -&nbsp;add a via, or delete one that is already
+        present</li>
+      <li>F8 (Recalc. Ratlines) - recalculate ratlines for the net to minimize
+        their length<br>
+      </li>
+    </ul>
+  </li>
+</ul>
+<p>The <font face="System" color="#008000"><u>Set Trace and Via Widths</u></font>
+dialog, which is invoked by pressing F1 with a net, trace, segment or vertex selected, is
+shown below.</p>
+<p align="center"><img border="0" src="graphics/route_width.gif" width="309" height="335"><br>
+</p>
+<p>This dialog allows you to modify the trace and via widths for a segment,
+trace, or net. You can also set the net default to the new widths, so that they
+will be used for any future routing of the net.</p>
+<p>&nbsp;</p>
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_mounting.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_netlist.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

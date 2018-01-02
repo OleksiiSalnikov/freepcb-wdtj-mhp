@@ -1,0 +1,124 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB User Guide: Mounting Holes</title>
+<style>
+<!--
+span {color:green; font-family: System; text-decoration: underline}
+tt {color:#007f00; font-family:sans-serif}
+.toc {color:blue}
+-->
+</style>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_parts.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_nets.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p align="left"><font size="5" color="#0000FF">5. PCB Layout (continued)</font></p>
+
+<p><font color="#0000FF" size="4">5.12 Mounting Holes</font></p>
+<p>Mounting holes are used to attach a PCB to an external structure
+such as a bracket or enclosure. In FreePCB, a mounting hole is a part which consists of a single through-hole pin. The padstack for the pin may
+include pads which can be used to connect the mounting hole to a net, just like
+any other pin. The actual hole in the padstack will be shown in the color for
+the drilled-hole layer. If the mounting hole has pads, they will be shown in the
+color for their copper layer.</p>
+
+<p>Since the mounting hole is a part, it can be added to the partlist like any
+other part. It can be included in the netlist file, or it can be added using the
+<font face="System" color="#008000">
+<u>A</u></font><u><font face="System" color="#008000">dd &gt; Pa</font></u><font face="System" color="#008000"><u>rt</u>
+</font>
+or <u> <font face="System" color="#008000">Project &gt; Parts...</font></u>
+menu selections. Some mounting holes of different sizes are included in the
+library file <font face="Arial Black" color="#000000" size="2">th_mounting_hole.fpl</font>.</p>
+
+<p>Examples of mounting holes are shown below. H5 has no pad, H6 has a round pad
+and H7 has a square pad.</p>
+
+<p align="center"><img border="0" src="graphics/mounting_holes.gif" width="307" height="140"></p>
+
+<p>When using the mouse to select a mounting hole, you can select either the part or the
+pin. You would select the part if you wanted to move it, for example, while you
+would select the pin to add a connection to a net. The selection rectangles for the
+part and the pin are almost exactly the same size. Since the pad has priority,
+you will select the pad first when you click on it. You must click again to select the part. You can tell
+whether you have selected the pad or the part by looking at the selection
+rectangle or by checking the status bar.&nbsp;</p>
+
+<p>In the examples below, the left image shows the pad for H6 selected. The
+right image shows the part for H6 selected, after clicking again.</p>
+
+<div align="center">
+  <center>
+  <table border="0">
+    <tr>
+      <td align="center"><img border="0" src="graphics/mounting_holes_pad.gif" width="306" height="138"></td>
+      <td width="50" align="center"></td>
+      <td align="center"><img border="0" src="graphics/mounting_holes_part.gif" width="307" height="138"></td>
+    </tr>
+    <tr>
+      <td align="center">
+        <p align="center"><b>Pad selected</b></td>
+      <td width="50" align="center"></td>
+      <td align="center">
+        <p align="center"><b>Part selected</b></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<p>Selecting the reference designator for a mounting hole may be difficult if it
+overlaps the pad, since clicking on it with the mouse will select either the
+part or the pin. To get around this, you can use the selection mask to disable
+selection of parts and/or pins. Since the reference designator of a mounting
+hole is not very useful, you may want to make it invisible by selecting and it
+and using F1 (&quot;Set Size&quot;) to make its character height zero. You can also set the
+character height by selecting the part and using <u><font face="System" color="#008000">Set
+Ref. Text Size</font></u> from the right-click menu, which is how you would make
+the reference designator visible again if you wanted to.</p>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_parts.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_nets.htm">NEXT</a></td>
+  </tr>
+</table>
+
+</body>
+
+</html>

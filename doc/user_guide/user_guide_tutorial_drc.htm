@@ -1,0 +1,181 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Gerber Files</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">d</td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_text.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_gerber.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.11 Checking Design Rules</font></p>
+
+<p align="left"><b>Design Rules</b> are a set of rules that establish lower
+limits for dimensions such as trace widths and clearances. They are necessary
+because the PCB manufacturing process is subject to certain limitations and
+tolerances, and the design has to allow for this. For example, you can't use
+trace widths of 1 mil in your layout, because it is physically impossible to
+etch them reliably.</p>
+<p align="left">If you are having your PCBs made for you, the board house should
+provide design rules based on their process. For example, Advanced Circuits
+recommends the following for their low-cost process:</p>
+<div align="center">
+  <center>
+  <table border="1" cellpadding="2" cellspacing="0" width="450">
+    <tr>
+      <td width="337">Minimum trace width</td>
+      <td width="109">0.008 inch</td>
+    </tr>
+    <tr>
+      <td width="337">Minimum clearance between copper features</td>
+      <td width="109">0.008 inch</td>
+    </tr>
+    <tr>
+      <td width="337">Minimum distance from copper to edge of PCB</td>
+      <td width="109">0.014 inch</td>
+    </tr>
+    <tr>
+      <td width="337">Minimum annular ring width (pins)</td>
+      <td width="109">0.007 inch</td>
+    </tr>
+    <tr>
+      <td width="337">Minimum annular ring width (vias)</td>
+      <td width="109">0.005 inch</td>
+    </tr>
+    <tr>
+      <td width="337">Minimum silkscreen line width</td>
+      <td width="109">0.008 inch</td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="left">The<b> Design Rule Checker</b>  (or <b>DRC</b>) is a tool that you can use to
+make sure that your project doesn't contain any violations of these rules.&nbsp;
+These are referred to as<b> DRC Errors</b>. Since your
+tutorial project may not actually contain any DRC Errors, I would
+suggest that you close your project and instead open <font face="System" color="#000000">C:\freepcb\tutorial\motor_drc_errors.fpc</font>,
+as shown below. This contains several typical errors. See if you can
+spot them.</p>
+<p align="center"><img border="0" src="graphics/drc_tut_layout.gif" width="817" height="580"></p>
+<p align="left">&nbsp;Now let's run the Design Rule Checker. You can launch it by selecting
+the <font face="System" color="#008000"><u>Tools &gt; Design Rule Check</u></font>
+menu item. This will pop up the following dialog:</p>
+<p align="center"><img border="0" src="graphics/drc.gif" width="252" height="483"></p>
+<p align="left">We will modify the fields in the dialog to match the Advanced
+Circuits values. <font face="System" color="#008000"><u>Trace width</u></font> should be
+set to 8 mils. The <font face="System" color="#008000"><u>pad to pad</u></font>,
+<font face="System" color="#008000"><u>pad to trace</u></font>, <font face="System" color="#008000"><u>trace
+to trace</u></font> and <font face="System" color="#008000"><u>copper area to
+copper area</u></font> values should be set to 8 mils. The <font face="System" color="#008000"><u>annular
+ring (pins)</u></font> values should be set to 7 mils, and the <font face="System" color="#008000"><u>annular
+ring (vias)</u></font> value should be set to 5 mils. The <font face="System" color="#008000"><u>board
+edge to any copper</u></font> field should be set to 14 mils. The <font face="System" color="#008000"><u>hole
+to pad or trace</u></font>, <font face="System" color="#008000"><u>board
+edge to hole</u></font> and <font face="System" color="#008000"><u>hole to hole</u></font>
+values are not given, so let's use 25 mils which seems reasonable. Your dialog
+should look like:</p>
+
+<p align="center"><img border="0" src="graphics/drc_ac.gif" width="252" height="483"></p>
+
+<p align="left">Now click OK to run the checker. A new dialog should pop up with
+a list of errors, as shown below.</p>
+
+<p align="center"><img border="0" src="graphics/drc_errs.gif" width="560" height="483"></p>
+
+<p align="left">Errors 0 and 1 are violations of the minimum clearance between
+pads and the board edge. Errors 2 and 3 are trace-to-pad violations. If you look closely at the layout
+window, you will see that symbols consisting of small orange rings have
+been placed at the site of each error, as shown below.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout2.gif" width="648" height="438"></p>
+
+<p align="left">These small circles may be hard to see, but
+if you press the &quot;d&quot; key on the keyboard they become much larger
+solid circles, as shown.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout3.gif" width="649" height="441"></p>
+
+<p align="left">Now zoom in on one of the errors, such as the one at U1.16.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout4.gif" width="348" height="324"></p>
+
+<p align="left">Click on the DRC Error ring to highlight it. The PCB elements
+that caused the violation will also be highlighted, as shown. Also, a
+description of the error will appear in the status bar.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout5.gif" width="350" height="323"></p>
+
+<p align="left">In this case, the error is a clearance violation between pad
+U1.16 and the trace segment passing through it, which are not on the same net.&nbsp;Oops!
+You can fix the error by rerouting the trace to avoid the pad, as shown. Note
+that the DRC Error symbol doesn't automatically disappear, but you can delete it
+by selecting it and pressing the &quot;Delete&quot; key, or by re-running the
+Design Rule Checker.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout6.gif" width="334" height="318">&nbsp;</p>
+
+<p align="left">Now let's zoom in on the DRC Errors on the left side of the
+board, and select one of them.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout7.gif" width="307" height="324"></p>
+
+<p align="left">In this case, the error is a pad-to-board-edge violation. Basically,
+JP6 is too close to the edge of the board. We can solve the problem by moving it
+further to the right, as shown.</p>
+
+<p align="center"><img border="0" src="graphics/drc_tut_layout8.gif" width="286" height="316"></p>
+
+<p align="left">I will leave it up to you to find and fix the last error. Then
+you can run the Design Rule Checker again, which should not find any errors.</p>
+
+<p align="left">You should reload your&nbsp; <font face="System" color="#000000">motor.fpc</font>&nbsp;
+project before beginning the
+next section. When you close the&nbsp; <font face="System" color="#000000">motor_drc_errors.fpc</font>&nbsp;
+project, I would suggest that you do NOT save your changes, so you or someone
+else can use it again.</p>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+     <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_text.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_tutorial_gerber.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>

@@ -1,0 +1,185 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+<meta name="GENERATOR" content="Microsoft FrontPage 4.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<title>FreePCB Tutorial: Gerber Files</title>
+</head>
+
+<body>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%"></td>
+    <td width="33%">
+      <p align="center"><font size="5" color="#800000">FreePCB User
+Guide</font></td>
+    <td width="34%">
+      <p align="right"><font size="5" color="#800000">&nbsp;Version 1.2</font></td>
+  </tr>
+</table>
+<hr>
+
+<table border="0" width="100%">
+  <tr>
+    <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_drc.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_file_formats.htm">NEXT</a></td>
+  </tr>
+</table>
+<hr>
+
+<p><font size="5" color="#0000FF">7. Tutorial (continued)</font></p>
+
+<p><font color="#0000FF" size="4">7.12 Making Gerber and Drill Files</font></p>
+
+<p align="left">The final step in this tutorial is making the <b>Gerber</b> <b>files</b>
+and <b>Drill file</b> which you would send to the PCB manufacturer. You might
+want to review <a href="user_guide_gerber.htm">Section 5.18: Exporting Gerber and Drill
+Files</a> before proceeding.</p>
+
+<p align="left">Select <font face="System" color="#008000"><u>Generate CAM
+files...</u></font> from the <font face="System" color="#008000"><u>File</u></font>
+menu. &quot;CAM&quot; is an acronym for &quot;Computer-Aided
+Manufacturing&quot;. The following dialog should appear.</p>
+
+<p align="center"><img border="0" src="graphics/cam_files.gif" width="695" height="470"></p>
+
+<p align="left">In the <font face="System" color="#008000"><u>Files</u></font>
+section, select the files that you wish to create by
+checking or unchecking the boxes next to them.&nbsp;</p>
+
+<p align="left">In the <font face="System" color="#008000"><u>Gerber file
+options</u></font> section, you can select:</p>
+
+<ul>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Include board outline</u></font>
+    - add the board outline to each Gerber file</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Add moires</u></font>
+    - add moire patterns (also called &quot;targets&quot;) to each Gerber file</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Add layer description
+    text</u></font> - add a text string describing the layer to each Gerber file</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Add pilot holes</u></font>
+    - add pilot holes to pads and vias on the top and bottom layers</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Use thermal reliefs
+    for pins</u></font> - use thermal reliefs to connect through-hole pins to
+    copper areas</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Use thermal reliefs
+    for vias</u></font> - use thermal reliefs to connect vias to copper areas</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Make cutouts in
+    solder mask for vias</u></font> - make openings for via pads in the solder
+    mask layers</li>
+</ul>
+
+<p align="left">The <font face="System" color="#008000"><u>Gerber file
+dimensions</u></font> section allows you to set numeric parameters for the
+Gerber files. When you make a real board, you would get these from the PCB
+manufacturer. The values shown above are fairly typical of a low-cost,
+multilayer process.</p>
+
+<ul>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Copper to copper-fill clearance</u></font>
+    - the clearance that will be created around traces and vias that pass through copper areas.&nbsp;</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Hole-edge
+to copper-fill clearance</u></font> - the clearance that will be created around
+holes through copper areas.&nbsp;</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Solder
+mask clearance</u></font> - the clearance that will be created around pads and
+    vias in
+the solder masks.&nbsp;</li>
+  <li>
+    <p align="left"><font face="System" color="#008000"><u>Pilot hole diameter</u></font>
+    - the diameter of pilot holes in pads, if you chose to include these.&nbsp;</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Minimum
+silkscreen stroke width</u></font> - the minimum line width that will be used for
+items on the silkscreen layers.&nbsp;</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Thermal
+relief line width</u></font> - the width of the lines in thermal reliefs, which
+connect pads to copper areas.&nbsp;</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Board
+outline line width</u></font> - the width of the lines used to draw the board
+outline.&nbsp;</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Annular ring width (pins)</u></font>
+    - the width of annular rings placed around inner layer pin holes for thermal relief connections.</li>
+  <li>
+    <p align="left"> <font face="System" color="#008000"><u>Annular ring width (vias)</u></font>
+    - the width of annular rings placed around inner layer
+via holes for thermal relief connections.</li>
+</ul>
+
+<p align="left">The <font face="System" color="#008000"><u>Output folder</u></font>
+is the destination folder for the files which will be created. By default, this
+is a subfolder of the project folder named &quot;CAM&quot;. You can change it if
+you like. The folder will be created if it doesn't already exist (although its
+parent folder must exist).</p>
+
+<p align="left">Now click <font face="System" color="#008000"><u>Create files</u></font>
+to make the files. The following dialog should appear.</p>
+
+<p align="center"><img border="0" src="graphics/cam_success.gif" width="417" height="404"></p>
+
+<p align="left">If there were any errors, messages will
+appear in the dialog. Usually, an error will result in FreePCB aborting that
+file and going on to the next one. Click <font face="System" color="#008000"><u>OK</u></font>
+to dismiss the dialog.</p>
+
+<p align="left">Now you can view your Gerber and drill files using a Gerber
+Viewer such as <b>ViewMate</b> by <b>PentaLogix</b> (which is free, and
+available <a href="http://www.pentalogix.com/Download/download.html">here</a>). ViewMate can also print <b>check plots</b> on
+your printer. You should <b>ALWAYS</b> check your files before using them to
+make a PCB. Also, read <a href="user_guide_gerber.htm#Drill Sizes">Section
+5.173: Drill Sizes</a> for important information about the drill file.</p>
+
+<p align="left">Screenshots of the Gerber files for the top silk-screen, top
+copper and inner 1 copper
+layers of our tutorial project are shown below. These look pretty crude in the
+screenshots. To appreciate just how precise they really are, you should open
+your own files in ViewMate and zoom in on some of the smaller features.</p>
+
+<p align="center"><img border="0" src="graphics/motor_gerber_silk.gif" width="543" height="339"></p>
+
+<p align="center"><img border="0" src="graphics/motor_gerber_top.gif" width="543" height="342"></p>
+
+<p align="center"><img border="0" src="graphics/motor_gerber_inner.gif" width="548" height="337"></p>
+
+<p align="center">&nbsp;</p>
+
+<p align="left"> Well, that's the end of the tutorial. I
+have tried to cover most of the major features of FreePCB. Now you should be ready to create a board of your own.</p>
+
+<hr>
+
+
+<table border="0" width="100%">
+  <tr>
+     <td width="33%">
+      <p align="left"><a href="user_guide_tutorial_drc.htm">PREV</a></td>
+    <td width="33%">
+      <p align="center"><a href="user_guide_toc.htm">Table of Contents</a></td>
+    <td width="34%">
+      <p align="right"><a href="user_guide_file_formats.htm">NEXT</a></td>
+   </tr>
+</table>
+
+</body>
+
+</html>
