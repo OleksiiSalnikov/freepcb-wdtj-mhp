@@ -603,5 +603,9 @@
     <None Include="changelog.txt" />
     <None Include="FreePCB_release_notes.txt" />
     <None Include="notes.txt" />
+    <None Include="default.cfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="InstallBuilder.txt" />
   </ItemGroup>
 </Project>

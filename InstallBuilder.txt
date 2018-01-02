@@ -1,0 +1,3 @@
+The InstallBuilder uses a free Visual Studio extention package from Microsoft.  Search for "Microsoft Visual Studio 2015 Installer Projects"
+
+For details on the extention install (east) and install process, see:  https://www.youtube.com/watch?v=tGCuYwVzPFM

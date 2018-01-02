@@ -334,11 +334,16 @@
     <ResourceCompile Include="FreePcb.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="default.cfg">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</DeploymentContent>
+    </None>
     <None Include="res\bga.bmp" />
     <None Include="res\bitmap_d.bmp" />
     <None Include="res\edge.bmp" />
     <None Include="res\edge2.bmp" />
-    <None Include="res\FreePcb.ico" />
+    <Image Include="res\FreePcb.ico" />
     <None Include="res\FreePcb.rc2" />
     <None Include="res\FreePcbDoc.ico" />
     <None Include="res\header.bmp" />
@@ -351,13 +356,20 @@
     <None Include="res\SMT dip.bmp" />
     <None Include="res\Toolbar.bmp" />
     <None Include="changelog.txt" />
-    <None Include="FreePCB_release_notes.txt" />
+    <None Include="FreePCB_release_notes.txt">
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
+      <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</DeploymentContent>
+    </None>
     <None Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ClibPDF-2.02\ClibPDF-2.02.vcxproj">
       <Project>{5db93549-3139-4139-8051-247ab03a0260}</Project>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="InstallBuilder.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

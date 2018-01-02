@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FreePcb", "FreePcb.vcxproj"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ClibPDF-2.02", "ClibPDF-2.02\ClibPDF-2.02.vcxproj", "{5DB93549-3139-4139-8051-247AB03A0260}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "InstallBuilder", "InstallBuilder\InstallBuilder.vdproj", "{95BFE30B-2493-413B-8652-E5DA58F9EACF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -33,6 +35,10 @@ Global
 		{5DB93549-3139-4139-8051-247AB03A0260}.Release|Win32.Build.0 = Release|Win32
 		{5DB93549-3139-4139-8051-247AB03A0260}.Release|x64.ActiveCfg = Release|x64
 		{5DB93549-3139-4139-8051-247AB03A0260}.Release|x64.Build.0 = Release|x64
+		{95BFE30B-2493-413B-8652-E5DA58F9EACF}.Debug|Win32.ActiveCfg = Debug
+		{95BFE30B-2493-413B-8652-E5DA58F9EACF}.Debug|x64.ActiveCfg = Debug
+		{95BFE30B-2493-413B-8652-E5DA58F9EACF}.Release|Win32.ActiveCfg = Release
+		{95BFE30B-2493-413B-8652-E5DA58F9EACF}.Release|x64.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
