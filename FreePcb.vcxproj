@@ -102,6 +102,11 @@
       <SubSystem>Windows</SubSystem>
       <StackReserveSize>100000000</StackReserveSize>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /y default.cfg $(OutDir)
+copy /y Hershey.smf $(OutDir)
+copy /y Hershey.xtb $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
@@ -141,11 +146,21 @@
       <ProgramDatabaseFile>.\Release/FreePcb.pdb</ProgramDatabaseFile>
       <SubSystem>Windows</SubSystem>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /y default.cfg $(OutDir)
+copy /y Hershey.smf $(OutDir)
+copy /y Hershey.xtb $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
     <ClCompile>
       <PreprocessorDefinitions>;NO_WARN_MBCS_MFC_DEPRECATION</PreprocessorDefinitions>
     </ClCompile>
+    <PostBuildEvent>
+      <Command>copy /y default.cfg $(OutDir)
+copy /y Hershey.smf $(OutDir)
+copy /y Hershey.xtb $(OutDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cuid.cpp" />
@@ -334,11 +349,15 @@
     <ResourceCompile Include="FreePcb.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="default.cfg">
+    <Text Include="default.cfg">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</DeploymentContent>
-    </None>
+      <FileType>Document</FileType>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</ExcludedFromBuild>
+    </Text>
     <None Include="res\bga.bmp" />
     <None Include="res\bitmap_d.bmp" />
     <None Include="res\edge.bmp" />
@@ -355,13 +374,24 @@
     <None Include="res\sip.bmp" />
     <None Include="res\SMT dip.bmp" />
     <None Include="res\Toolbar.bmp" />
-    <None Include="changelog.txt" />
+    <None Include="changelog.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</ExcludedFromBuild>
+    </None>
     <None Include="FreePCB_release_notes.txt">
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</DeploymentContent>
       <DeploymentContent Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</ExcludedFromBuild>
     </None>
-    <None Include="notes.txt" />
+    <None Include="notes.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</ExcludedFromBuild>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="ClibPDF-2.02\ClibPDF-2.02.vcxproj">
@@ -369,7 +399,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="InstallBuilder.txt" />
+    <Text Include="InstallBuilder.txt">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">true</ExcludedFromBuild>
+    </Text>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

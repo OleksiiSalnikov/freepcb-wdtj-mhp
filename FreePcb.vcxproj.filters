@@ -275,9 +275,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DlgAddPoly.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Cuid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -545,6 +542,9 @@
     <ClInclude Include="utility.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DlgAddPoly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="FreePcb.rc">
@@ -562,9 +562,6 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\edge2.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="res\FreePcb.ico">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="res\FreePcb.rc2">
@@ -603,9 +600,14 @@
     <None Include="changelog.txt" />
     <None Include="FreePCB_release_notes.txt" />
     <None Include="notes.txt" />
-    <None Include="default.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="InstallBuilder.txt" />
+    <Text Include="default.cfg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\FreePcb.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

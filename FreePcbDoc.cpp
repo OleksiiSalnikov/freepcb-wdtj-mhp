@@ -1544,7 +1544,7 @@ void CFreePcbDoc::ReadOptions( CStdioFile * pcb_file )
 			}
 			else if( np && key_str == "parent_folder" )
 			{
-				m_parent_folder = p[0];
+				m_parent_folder = substituteEnvironment(p[0]);
 			}
 			else if( np && key_str == "library_folder" )
 			{
@@ -4447,6 +4447,42 @@ void CFreePcbDoc::ResetUndoState()
 	m_undo_list->Clear();
 	m_redo_list->Clear();
 	m_bLastPopRedo = FALSE;
+}
+
+/** 
+  Substitute environment variables in the string.
+
+  The psudo-environment variable MY_DOCUMENTS may be used to substitute in
+  the path to the user's Documents directory.
+*/
+CString CFreePcbDoc::substituteEnvironment(CString string)
+{
+    int startIndex = string.Find("${");
+    if(startIndex >= 0 && startIndex + 2 < string.GetLength())
+    {
+        int endIndex = string.Find("}", startIndex);
+        if(endIndex > 0)
+        {
+            CString variableName = string.Mid(startIndex + 2, endIndex-(startIndex+2));
+            CString environmentValue;
+            if(environmentValue.GetEnvironmentVariable(variableName))
+            {
+                string.Replace("${" + variableName + "}", environmentValue);
+            }
+            // OK, not an environment variable, is it MY_DOCUMENTS
+            else if(variableName == "MY_DOCUMENTS")
+            {
+                CHAR my_documents[MAX_PATH];
+                // Get the shell folder for MY_DOCUMENTS
+                HRESULT result = SHGetFolderPath(NULL, CSIDL_PERSONAL, NULL, SHGFP_TYPE_CURRENT, my_documents);
+                if(result == S_OK)
+                {
+                    string.Replace("${" + variableName + "}", my_documents);
+                }
+            }
+        }
+    }
+    return string;
 }
 
 

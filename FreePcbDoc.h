@@ -106,6 +106,7 @@ public:
 	void SetFileLayerMap( int file_layer, int layer );
 	void PurgeFootprintCache();
 	void ResetUndoState();
+    CString substituteEnvironment(CString filename);
 
 #ifdef _DEBUG
 	virtual void AssertValid() const;
