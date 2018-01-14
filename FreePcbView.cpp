@@ -251,6 +251,7 @@ ON_COMMAND(ID_REF_ROTATECCW, OnRefRotateCCW)
 ON_COMMAND(ID_VALUE_ROTATECW, OnValueRotateCW)
 ON_COMMAND(ID_VALUE_ROTATECCW, OnValueRotateCCW)
 ON_COMMAND(ID_SEGMENT_MOVE, OnSegmentMove)
+ON_COMMAND(ID_FILE_PRINT, &CFreePcbView::OnFilePrint)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -581,20 +582,123 @@ void CFreePcbView::OnDraw(CDC* pDC)
 /////////////////////////////////////////////////////////////////////////////
 // CFreePcbView printing
 
-BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
+/**
+    Someone pressed the print button.
+
+    Let CView handle the details
+*/
+void CFreePcbView::OnFilePrint()
 {
-	// default preparation
-	return DoPreparePrinting(pInfo);
+    CView::OnFilePrint();
 }
 
-void CFreePcbView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
+BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// TODO: add extra initialization before printing
+    // Set default paper to Letter TODO: put in defaults.cfg file.
+    PRINTDLG pd;
+    if(theApp.GetPrinterDeviceDefaults(&pd))
+    {
+        DEVMODE *pDevMode = (DEVMODE*)::GlobalLock(pd.hDevMode);
+        pDevMode->dmPaperSize = DMPAPER_LETTER;
+        VERIFY(GlobalUnlock(pDevMode));
+    }
+
+    // Printing out an empty page is illogical
+    if(!getBoardBoundaries(&m_printBoundaries))
+    {
+        AfxMessageBox("Error: Nothing to print");
+        return 0;
+    }
+
+    CPrintDialog *dlg = new CPrintDialog(FALSE);
+    pInfo->m_pPD = dlg;
+
+    // We can't calculate the size of the printed document because we don't yet know
+    // The specs on the printer.  We decide where the end of the document is in 
+    // OnBeginPrinting.  This sets the framework up to do that.
+    pInfo->SetMaxPage(0xFFFF);
+
+    // default preparation
+    auto rc = DoPreparePrinting(pInfo);
+
+    // Todo: Allow us to select any specific boundaries of the board, for now we
+    // do the entire thing.
+
+    return rc;
 }
+
+
+void CFreePcbView::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
+{
+    /* We now know the printer specs, we calculate how many pages will print */
+    int hRes = pDC->GetDeviceCaps(HORZRES); // width, in pixels, of the printable area of the page.
+    int hDpi = pDC->GetDeviceCaps(LOGPIXELSX); // Number of pixels per logical inch
+    long long hSize = (long long)(hRes - hDpi) * 2540 * 10000 / hDpi;
+                                    // Actual world coordinates size of the printable area excluding
+                                    // 2 .5 inch margins (one hDPI)
+
+    int vRes = pDC->GetDeviceCaps(VERTRES); // height, in pixels, of the printable area of the page.
+    int vDpi = pDC->GetDeviceCaps(LOGPIXELSY); // Number of pixels per logical inch
+    long long vSize = (long long)(vRes - vDpi) * 2540 * 10000 / vDpi;
+                                    // Actual world coordinates size of the printable area excluding
+                                    // 2 .5 inch margins (one hDPI)
+
+    // Given the actual size of a page in WU, figure out how many pages wide and high we will print
+    m_numPagesWide = (long long)(abs(m_printBoundaries.Width())) / hSize + 1;
+    m_numPagesHigh = (long long)(abs(m_printBoundaries.Height())) / vSize + 1;
+}
+
+
+void CFreePcbView::OnPrepareDC(CDC* pDC, CPrintInfo* pInfo)
+{
+    CView::OnPrepareDC(pDC, pInfo);
+
+    if(pDC->IsPrinting()) // Is the DC a printer DC.
+    {
+        // We know we're suppose to print m_numPagesWide*m_numPagesHigh pages.
+        pInfo->m_bContinuePrinting = pInfo->m_nCurPage<(m_numPagesWide*m_numPagesHigh);
+    }
+}
+
+
+/**
+For each page being printed, the framework calls this function
+*/
+void CFreePcbView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
+{
+    m_dlist->SetMapping(new CRect(0, 0, 5100, 6600), new CRect(0, 0, 5100, 6600), 0, 0, 10000 / 600, m_printBoundaries.left, m_printBoundaries.top);
+
+    // set window scale (WU per pixel) and origin (WU)
+    pDC->SetMapMode(MM_ANISOTROPIC);
+
+    // Set the WU to be PCB Units 1/10,000 inch.  Y axis is LSB down (cartesian)
+    pDC->SetWindowExt(10000, -10000);
+
+    // Set origin to map to top left of PCB
+    double org_x = (m_printBoundaries.left / 2540) - 5000;
+    double org_y = (m_printBoundaries.top / 2540) + 5000;
+    pDC->SetWindowOrg(org_x, org_y);
+
+    // set viewport to client rect with origin in lower left, rescale to printer units
+    pDC->SetViewportExt(600, 600);
+
+    // we've divided the print into columns, calculate the column and row this page has
+    int column = pInfo->m_nCurPage%m_numPagesWide;
+    int row = pInfo->m_nCurPage/m_numPagesWide;
+
+    pDC->SetViewportOrg(column * (-5100+600), row * (-6600+600));
+    CRgn rgn;
+    rgn.CreateRectRgn(300, 300, 5100 - 300, 6600 - 300);
+    pDC->SelectClipRgn(&rgn);
+
+    // Load pDC with the PCB image
+    //m_dlist->DrawList(pDC, 4, CRect(-22101, 11720, 22400, -11689));
+    m_dlist->DrawList(pDC, 4, CRect(-32767, 32767, 32767, -32767));
+}
+
 
 void CFreePcbView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: add cleanup after printing
 }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -8386,6 +8490,54 @@ void CFreePcbView::OnViewEntireBoard()
 	}
 }
 
+/**
+    Expand r1 to make it bounding r1 & r2.
+*/
+void CFreePcbView::bounds(CRect *r1, CRect *r2)
+{
+    r1->right = max(r1->right, r2->right);
+    r1->left = min(r1->left, r2->left);
+    r1->top = max(r1->top, r2->top);
+    r1->bottom = min(r1->bottom, r2->bottom);
+}
+
+/**
+    Calculate the boundaries of the board.
+
+    If the board is empty, returns false.
+*/
+bool CFreePcbView::getBoardBoundaries(CRect * r)
+{
+    BOOL bOK = FALSE;
+
+    // parts
+    int test = m_Doc->m_plist->GetPartBoundaries(r);
+    if(test != 0)
+        bOK = TRUE;
+
+    // board outline
+    for(int ib = 0; ib<m_Doc->m_board_outline.GetSize(); ib++)
+    {
+        CRect r2 = m_Doc->m_board_outline[ib].GetBounds();
+        bounds(r, &r2);
+        bOK = TRUE;
+    }
+    // nets
+    CRect r2;
+    if(m_Doc->m_nlist->GetNetBoundaries(&r2))
+    {
+        bounds(r, &r2);
+        bOK = TRUE;
+    }
+    // texts
+    if(m_Doc->m_tlist->GetTextBoundaries(&r2))
+    {
+        bounds(r, &r2);
+        bOK = TRUE;
+    }
+    return bOK;
+}
+
 void CFreePcbView::OnViewAllElements()
 {
 	// reset window to enclose all elements
@@ -13303,3 +13455,6 @@ void CFreePcbView::OnSegmentMove()
 	ReleaseDC( pDC );
 	Invalidate( FALSE );
 }
+
+
+

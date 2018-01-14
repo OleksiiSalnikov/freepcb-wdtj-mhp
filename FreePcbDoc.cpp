@@ -89,7 +89,6 @@ BEGIN_MESSAGE_MAP(CFreePcbDoc, CDocument)
 	ON_COMMAND(ID_TOOLS_CHECKCOPPERAREAS, OnToolsCheckCopperAreas)
 	ON_COMMAND(ID_TOOLS_CHECKTRACES, OnToolsCheckTraces)
 	ON_COMMAND(ID_EDIT_PASTEFROMFILE, OnEditPasteFromFile)
-	ON_COMMAND(ID_FILE_PRINT, OnFilePrint)
 	ON_COMMAND(ID_DSN_FILE_EXPORT, OnFileExportDsn)
 	ON_COMMAND(ID_SES_FILE_IMPORT, OnFileImportSes)
 	ON_COMMAND(ID_EDIT_REDO, OnEditRedo)
@@ -4222,11 +4221,6 @@ void CFreePcbDoc::PurgeFootprintCache()
 	}
 }
 
-
-void CFreePcbDoc::OnFilePrint()
-{
-	// TODO: Add your command handler code here
-}
 
 void CFreePcbDoc::OnFileExportDsn()
 {

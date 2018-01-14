@@ -186,7 +186,7 @@ BEGIN
         MENUITEM "Export .dsn file...",         32886
         MENUITEM "Import .ses file...",         ID_SES_FILE_IMPORT
         MENUITEM SEPARATOR
-        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT, GRAYED
+        MENUITEM "&Print...\tCtrl+P",           ID_FILE_PRINT
         MENUITEM "Print Pre&view",              ID_FILE_PRINT_PREVIEW, GRAYED
         MENUITEM "P&rint Setup...",             ID_FILE_PRINT_SETUP, GRAYED
         MENUITEM SEPARATOR

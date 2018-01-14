@@ -334,15 +334,18 @@ id CDisplayList::Remove( dl_element * element )
 
 // Draw the display list using device DC or memory DC
 //
-void CDisplayList::Draw( CDC * dDC )
+void CDisplayList::Draw( CDC * dDC, bool print )
 {
 	CDC * pDC;
-	if( memDC )
+	if( memDC && !print )
 		pDC = memDC;
 	else
 		pDC = dDC;
 
-	pDC->SetBkColor( RGB(0, 0, 0) );
+    if (!print)
+    {
+	    pDC->SetBkColor( RGB(0, 0, 0) );
+    }
 
 	// create pens and brushes
 	CPen * old_pen;
@@ -369,6 +372,7 @@ void CDisplayList::Draw( CDC * dDC )
 	// paint it background color
 	old_brush = pDC->SelectObject( &backgnd_brush );
 	old_pen = pDC->SelectObject( &black_pen );
+
 	CRect client_rect;
 	client_rect.left = m_org_x;
 	client_rect.right = m_max_x;
@@ -376,512 +380,32 @@ void CDisplayList::Draw( CDC * dDC )
 	client_rect.top = m_max_y;
 	pDC->Rectangle( &client_rect );
 
-   DrawVisualGrid(pDC);
+    DrawVisualGrid(pDC);
 
-	// now traverse the lists, starting with the layer in the last element 
-	// of the m_order[] array
-	int nlines = 0;
-	int size_of_2_pixels = 2*m_scale;
-	for( int order=(MAX_LAYERS-1); order>=0; order-- )
-	{
-		int layer = m_layer_in_order[order];
-		if( !m_vis[layer] || layer == LAY_SELECTION )
-			continue;
-
-		CPen line_pen( PS_SOLID, 1, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-		CBrush fill_brush( RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-		pDC->SelectObject( &line_pen );
-		pDC->SelectObject( &fill_brush );
-		dl_element * el = &m_start[layer];
-		while( el->next->next )
-		{
-			el = el->next;
-			if( el->visible && m_vis[el->orig_layer] )
-			{
-				int xi = el->x;
-				int xf = el->xf;
-				int yi = el->y;
-				int yf = el->yf;
-				int w = el->w;
-				if( el->gtype == DL_CIRC || el->gtype == DL_HOLLOW_CIRC )
-				{
-					if( xi-w/2 < m_max_x && xi+w/2 > m_org_x 
-						&& yi-w/2 < m_max_y && yi+w/2 > m_org_y )
-					{
-						if( el->gtype == DL_HOLLOW_CIRC )
-							pDC->SelectObject( GetStockObject( HOLLOW_BRUSH ) );
-						pDC->Ellipse( xi - w/2, yi - w/2, xi + w/2, yi + w/2 );
-						if( el->gtype == DL_HOLLOW_CIRC )
-							pDC->SelectObject( fill_brush );
-					}
-				}
-				if( el->gtype == DL_HOLE )
-				{
-					if( xi-w/2 < m_max_x && xi+w/2 > m_org_x 
-						&& yi-w/2 < m_max_y && yi+w/2 > m_org_y )
-					{
-						if( w>size_of_2_pixels )
-							pDC->Ellipse( xi - w/2, yi - w/2, xi + w/2, yi + w/2 );
-					}
-				}
-				else if( el->gtype == DL_CENTROID )
-				{
-					// x,y are center coords; w = width; 
-					// xf,yf define arrow end-point for P&P orientation
-					if( xi-w/2 < m_max_x && xi+w/2 > m_org_x 
-						&& yi-w/2 < m_max_y && yi+w/2 > m_org_y )
-					{
-						pDC->SelectObject( GetStockObject( HOLLOW_BRUSH ) ); 
-						pDC->Ellipse( xi - w/4, yi - w/4, xi + w/4, yi + w/4 );
-						pDC->SelectObject( fill_brush );
-						xi = el->x - el->w/2;
-						xf = el->x + el->w/2;
-						yi = el->y - el->w/2;
-						yf = el->y + el->w/2;
-						pDC->MoveTo( xi, yi );
-						pDC->LineTo( xf, yf );
-						pDC->MoveTo( xf, yi );
-						pDC->LineTo( xi, yf );
-						pDC->MoveTo( el->x, el->y );	// p&p arrow
-						pDC->LineTo( el->xf, el->yf );	// 
-						if( el->y == el->yf )   
-						{
-							// horizontal arrow
-							pDC->LineTo( el->xf - (el->xf - el->x)/4,
-										el->yf + w/4 );
-							pDC->LineTo( el->xf - (el->xf - el->x)/4,
-										el->yf - w/4 );
-							pDC->LineTo( el->xf, el->yf );
-						}
-						else if( el->x == el->xf )  
-						{
-							// vertical arrow
-							pDC->LineTo( el->xf + w/4, el->yf - (el->yf - el->y)/4 );
-							pDC->LineTo( el->xf - w/4, el->yf - (el->yf - el->y)/4 );
-							pDC->LineTo( el->xf, el->yf );
-						}
-						else
-							ASSERT(0);
-						int w_pp = el->w/10;
-						nlines += 2;
-					}
-				}
-				else if( el->gtype == DL_DONUT )
-				{
-					if( xi-w/2 < m_max_x && xi+w/2 > m_org_x 
-						&& yi-w/2 < m_max_y && yi+w/2 > m_org_y )
-					{
-						int thick = (w - el->holew)/2;
-						int ww = w - thick;	
-						int holew = el->holew;
-						int size_of_2_pixels = m_scale; 
-						if( thick < size_of_2_pixels )
-						{
-							holew = w - 2*size_of_2_pixels;
-							if( holew < 0 )
-								holew = 0;
-							thick = (w - holew)/2;
-							ww = w - thick;
-						}
-						if( w-el->holew > 0 ) 
-						{
-							CPen pen( PS_SOLID, thick, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-							pDC->SelectObject( &pen );
-							pDC->SelectObject( &backgnd_brush );
-							pDC->Ellipse( xi - ww/2, yi - ww/2, xi + ww/2, yi + ww/2 );
-							pDC->SelectObject( line_pen );
-							pDC->SelectObject( fill_brush );
-						}
-						else
-						{
-							CPen backgnd_pen( PS_SOLID, 1, 
-								RGB( m_rgb[LAY_BACKGND][0],
-								m_rgb[LAY_BACKGND][1], 
-								m_rgb[LAY_BACKGND][2] ) );
-							pDC->SelectObject( &backgnd_pen );
-							pDC->SelectObject( &backgnd_brush );
-							pDC->Ellipse( xi - holew/2, yi - holew/2, xi + holew/2, yi + holew/2 );
-							pDC->SelectObject( line_pen );
-							pDC->SelectObject( fill_brush );
-						}
-					}
-				}
-				else if( el->gtype == DL_SQUARE )
-				{
-					if( xi-w/2 < m_max_x && xi+w/2 > m_org_x 
-						&& yi-w/2 < m_max_y && yi+w/2 > m_org_y )
-					{
-						int holew = el->holew;
-						pDC->Rectangle( xi - w/2, yi - w/2, xi + w/2, yi + w/2 );
-						if( holew )
-						{
-							pDC->SelectObject( &backgnd_brush );
-							pDC->SelectObject( &backgnd_pen );
-							pDC->Ellipse( xi - holew/2, yi - holew/2, 
-								xi + holew/2, yi + holew/2 );
-							pDC->SelectObject( fill_brush );
-							pDC->SelectObject( line_pen );
-						}
-					}
-				}
-				else if( el->gtype == DL_OCTAGON || el->gtype == DL_HOLLOW_OCTAGON )
-				{
-					if( xi-w/2 < m_max_x && xi+w/2 > m_org_x 
-						&& yi-w/2 < m_max_y && yi+w/2 > m_org_y )
-					{
-						const double pi = 3.14159265359;
-						POINT pt[8];
-						double angle = pi/8.0;
-						for( int iv=0; iv<8; iv++ )
-						{
-							pt[iv].x = el->x + 0.5 * el->w * cos(angle);
-							pt[iv].y = el->y + 0.5 * el->w * sin(angle);
-							angle += pi/4.0;
-						}
-						int holew = el->holew;
-						if( el->gtype == DL_HOLLOW_OCTAGON )
-							pDC->SelectObject( GetStockObject( HOLLOW_BRUSH ) );
-						pDC->Polygon( pt, 8 );
-						if( el->gtype == DL_HOLLOW_OCTAGON )
-							pDC->SelectObject( fill_brush );
-						if( holew )
-						{
-							pDC->SelectObject( &backgnd_brush );
-							pDC->SelectObject( &backgnd_pen );
-							pDC->Ellipse( xi - holew/2, yi - holew/2, 
-								xi + holew/2, yi + holew/2 );
-							pDC->SelectObject( fill_brush );
-							pDC->SelectObject( line_pen );
-						}
-
-					}
-				}
-				else if( el->gtype == DL_RECT )
-				{
-					if( xf < xi )
-					{
-						xf = xi;
-						xi = el->xf;
-					}
-					if( yf < yi )
-					{
-						yf = yi;
-						yi = el->yf;
-					}
-					if( xi < m_max_x && xf > m_org_x && yi < m_max_y && yf > m_org_y )
-					{
-						int holew = el->holew;
-						pDC->Rectangle( xi, yi, xf, yf );
-						if( holew )
-						{
-							pDC->SelectObject( &black_brush );
-							pDC->SelectObject( &black_pen );
-							pDC->Ellipse( el->x_org - holew/2, el->y_org - holew/2, 
-								el->x_org + holew/2, el->y_org + holew/2 );
-							pDC->SelectObject( fill_brush );
-							pDC->SelectObject( line_pen );
-						}
-					}
-				}
-				else if( el->gtype == DL_HOLLOW_RECT )
-				{
-					if( xf < xi )
-					{
-						xf = xi;
-						xi = el->xf;
-					}
-					if( yf < yi )
-					{
-						yf = yi;
-						yi = el->yf;
-					}
-					if( xi < m_max_x && xf > m_org_x
-						&& yi < m_max_y && yf > m_org_y )
-					{
-						pDC->MoveTo( xi, yi );
-						pDC->LineTo( xf, yi );
-						pDC->LineTo( xf, yf );
-						pDC->LineTo( xi, yf );
-						pDC->LineTo( xi, yi );
-						nlines += 4;
-					}
-				}
-				else if( el->gtype == DL_OVAL || el->gtype == DL_HOLLOW_OVAL )
-				{
-					if( xf < xi )
-					{
-						xf = xi;
-						xi = el->xf;
-					}
-					if( yf < yi )
-					{
-						yf = yi;
-						yi = el->yf;
-					}
-					if( xi < m_max_x && xf > m_org_x && yi < m_max_y && yf > m_org_y )
-					{
-						int h = abs(xf-xi);
-						int v = abs(yf-yi);
-						int r = min(h,v);
-						if( el->gtype == DL_HOLLOW_OVAL )
-							pDC->SelectObject( GetStockObject( HOLLOW_BRUSH ) );
-						pDC->RoundRect( xi, yi, xf, yf, r, r );
-						if( el->gtype == DL_HOLLOW_OVAL )
-							pDC->SelectObject( fill_brush );
-						int holew = el->holew;
-						if( el->holew )
-						{
-							pDC->SelectObject( &black_brush );
-							pDC->SelectObject( &black_pen );
-							pDC->Ellipse( el->x_org - holew/2, el->y_org - holew/2, 
-								el->x_org + holew/2, el->y_org + holew/2 );
-							pDC->SelectObject( fill_brush );
-							pDC->SelectObject( line_pen );
-						}
-					}
-				}
-				else if( el->gtype == DL_RRECT || el->gtype == DL_HOLLOW_RRECT )
-				{
-					if( xf < xi )
-					{
-						xf = xi;
-						xi = el->xf;
-					}
-					if( yf < yi )
-					{
-						yf = yi;
-						yi = el->yf;
-					}
-					if( xi < m_max_x && xf > m_org_x && yi < m_max_y && yf > m_org_y )
-					{
-						int holew = el->holew;
-						if( el->gtype == DL_HOLLOW_RRECT )
-							pDC->SelectObject( GetStockObject( HOLLOW_BRUSH ) );
-						pDC->RoundRect( xi, yi, xf, yf, 2*el->radius, 2*el->radius );
-						if( el->gtype == DL_HOLLOW_RRECT )
-							pDC->SelectObject( fill_brush );
-						if( holew )
-						{
-							pDC->SelectObject( &black_brush );
-							pDC->SelectObject( &black_pen );
-							pDC->Ellipse( el->x_org - holew/2, el->y_org - holew/2, 
-								el->x_org + holew/2, el->y_org + holew/2 );
-							pDC->SelectObject( fill_brush );
-							pDC->SelectObject( line_pen );
-						}
-					}
-				}
-				else if( el->gtype == DL_RECT_X )
-				{
-					if( xf < xi )
-					{
-						xf = xi;
-						xi = el->xf;
-					}
-					if( yf < yi )
-					{
-						yf = yi;
-						yi = el->yf;
-					}
-					if( xi < m_max_x && xf > m_org_x
-						&& yi < m_max_y && yf > m_org_y )
-					{
-						pDC->MoveTo( el->x, el->y );
-						pDC->LineTo( el->xf, el->y );
-						pDC->LineTo( el->xf, el->yf );
-						pDC->LineTo( el->x, el->yf );
-						pDC->LineTo( el->x, el->y );
-						pDC->MoveTo( el->x, el->y );
-						pDC->LineTo( el->xf, el->yf );
-						pDC->MoveTo( el->x, el->yf );
-						pDC->LineTo( el->xf, el->y );
-						nlines += 4;
-					}
-				}
-				else if( el->gtype == DL_ARC_CW )
-				{
-					if( ( (el->xf >= el->x && el->x < m_max_x && el->xf > m_org_x)
-						|| (el->xf < el->x && el->xf < m_max_x && el->x > m_org_x) )
-						&& ( (el->yf >= el->y && el->y < m_max_y && el->yf > m_org_y)
-						|| (el->yf < el->y && el->yf < m_max_y && el->y > m_org_y) ) )
-					{
-						CPen pen( PS_SOLID, el->w, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-						pDC->SelectObject( &pen );
-						DrawArc( pDC, DL_ARC_CW, el->x, el->y, el->xf, el->yf );
-						pDC->SelectObject( line_pen );
-					}
-				}
-				else if( el->gtype == DL_ARC_CCW )
-				{
-					if( ( (el->xf >= el->x && el->x < m_max_x && el->xf > m_org_x)
-						|| (el->xf < el->x && el->xf < m_max_x && el->x > m_org_x) )
-						&& ( (el->yf >= el->y && el->y < m_max_y && el->yf > m_org_y)
-						|| (el->yf < el->y && el->yf < m_max_y && el->y > m_org_y) ) )
-					{
-						CPen pen( PS_SOLID, el->w, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-						pDC->SelectObject( &pen );
-						DrawArc( pDC, DL_ARC_CCW, el->x, el->y, el->xf, el->yf );
-						pDC->SelectObject( line_pen );
-					}
-				}
-				else if( el->gtype == DL_CURVE_CW )
-				{
-					if( ( (el->xf >= el->x && el->x < m_max_x && el->xf > m_org_x)
-						|| (el->xf < el->x && el->xf < m_max_x && el->x > m_org_x) )
-						&& ( (el->yf >= el->y && el->y < m_max_y && el->yf > m_org_y)
-						|| (el->yf < el->y && el->yf < m_max_y && el->y > m_org_y) ) )
-					{
-						CPen pen( PS_SOLID, el->w, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-						pDC->SelectObject( &pen );
-						DrawCurve( pDC, DL_CURVE_CW, el->x, el->y, el->xf, el->yf );
-						pDC->SelectObject( line_pen );
-					}
-				}
-				else if( el->gtype == DL_CURVE_CCW )
-				{
-					if( ( (el->xf >= el->x && el->x < m_max_x && el->xf > m_org_x)
-						|| (el->xf < el->x && el->xf < m_max_x && el->x > m_org_x) )
-						&& ( (el->yf >= el->y && el->y < m_max_y && el->yf > m_org_y)
-						|| (el->yf < el->y && el->yf < m_max_y && el->y > m_org_y) ) )
-					{
-						CPen pen( PS_SOLID, el->w, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-						pDC->SelectObject( &pen );
-						DrawCurve( pDC, DL_CURVE_CCW, el->x, el->y, el->xf, el->yf );
-						pDC->SelectObject( line_pen );
-					}
-				}
-				else if( el->gtype == DL_X )
-				{
-					xi = el->x - el->w/2;
-					xf = el->x + el->w/2;
-					yi = el->y - el->w/2;
-					yf = el->y + el->w/2;
-					if( xi < m_max_x && xf > m_org_x
-						&& yi < m_max_y && yf > m_org_y )
-					{
-						pDC->MoveTo( xi, yi );
-						pDC->LineTo( xf, yf );
-						pDC->MoveTo( xf, yi );
-						pDC->LineTo( xi, yf );
-						nlines += 2;
-					}
-				}
-				else if( el->gtype == DL_LINE )
-				{
-					// only draw line segments which are in viewport
-					// viewport bounds, enlarged to account for line thickness
-					int Yb = m_org_y - w/2;		// y-coord of viewport top	
-					int Yt = m_max_y + w/2;		// y-coord of bottom
-					int Xl = m_org_x - w/2;		// x-coord of left edge
-					int Xr = m_max_x - w/2;		// x-coord of right edge
-					// line segment from (xi,yi) to (xf,yf)
-					int draw_flag = 0;
-					// now test for all conditions where drawing is necessary
-					if( xi==xf )
-					{
-						// vertical line
-						if( yi<yf )
-						{
-							// upward
-							if( yi<=Yt && yf>=Yb && xi<=Xr && xi>=Xl )
-								draw_flag = 1;
-						}
-						else
-						{
-							// downward
-							if( yf<=Yt && yi>=Yb && xi<=Xr && xi>=Xl )
-								draw_flag = 1;
-						}
-					}
-					else if( yi==yf )
-					{
-						// horizontal line
-						if( xi<xf )
-						{
-							// rightward
-							if( xi<=Xr && xf>=Xl && yi<=Yt && yi>=Yb )
-								draw_flag = 1;
-						}
-						else
-						{
-							// leftward
-							if( xf<=Xr && xi>=Xl && yi<=Yt && yi>=Yb )
-								draw_flag = 1;
-						}
-					}
-					else if( !((xi<Xl&&xf<Xl)||(xi>Xr&&xf>Xr)||(yi<Yb&&yf<Yb)||(yi>Yt&&yf>Yt)) )
-					{
-						// oblique line
-						// not entirely above or below or right or left of viewport
-						// get slope b and intercept a so that y=a+bx
-						double b = (double)(yf-yi)/(xf-xi);
-						int a = yi - int(b*xi);
-						// now test for line in viewport
-						if( abs((yf-yi)*(Xr-Xl)) > abs((xf-xi)*(Yt-Yb)) )
-						{
-							// line is more vertical than window diagonal
-							int x1 = int((Yb-a)/b);	
-							if( x1>=Xl && x1<=Xr)
-								draw_flag = 1;		// intercepts bottom of screen
-							else
-							{
-								int x2 = int((Yt-a)/b);	
-								if( x2>=Xl && x2<=Xr )
-									draw_flag = 1;	// intercepts top of screen
-							}
-						}
-						else
-						{
-							// line is more horizontal than window diagonal
-							int y1 = int(a + b*Xl);
-							if( y1>=Yb && y1<=Yt )
-								draw_flag = 1;		// intercepts left edge of screen
-							else
-							{
-								int y2 = a + int(b*Xr);
-								if( y2>=Yb && y2<=Yt )
-									draw_flag = 1;	// intercepts right edge of screen
-							}
-						}
-
-					}
-					// now draw the line segment if not clipped
-					if( draw_flag )
-					{
-						CPen pen( PS_SOLID, w, RGB( m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2] ) );
-						pDC->SelectObject( &pen );
-						pDC->MoveTo( xi, yi );
-						pDC->LineTo( xf, yf );
-						pDC->SelectObject( line_pen );
-						nlines++;
-					}
-				}
-			}
-		}
-		// restore original objects
-		pDC->SelectObject( old_pen );
-		pDC->SelectObject( old_brush );
-	}
+    DrawList(pDC, m_scale, client_rect);
 
 	// origin
-	CRect r;
-	r.top = 25*NM_PER_MIL/m_pcbu_per_wu;
-	r.left = -25*NM_PER_MIL/m_pcbu_per_wu;
-	r.right = 25*NM_PER_MIL/m_pcbu_per_wu;
-	r.bottom = -25*NM_PER_MIL/m_pcbu_per_wu;
-	pDC->SelectObject( &grid_pen );
-	pDC->SelectObject( GetStockObject( HOLLOW_BRUSH ) );
-	pDC->MoveTo( -100*NM_PER_MIL/m_pcbu_per_wu, 0 );
-	pDC->LineTo( -25*NM_PER_MIL/m_pcbu_per_wu, 0 );
-	pDC->MoveTo( 100*NM_PER_MIL/m_pcbu_per_wu, 0 );
-	pDC->LineTo( 25*NM_PER_MIL/m_pcbu_per_wu, 0 );
-	pDC->MoveTo( 0, -100*NM_PER_MIL/m_pcbu_per_wu );
-	pDC->LineTo( 0, -25*NM_PER_MIL/m_pcbu_per_wu );
-	pDC->MoveTo( 0, 100*NM_PER_MIL/m_pcbu_per_wu );
-	pDC->LineTo( 0, 25*NM_PER_MIL/m_pcbu_per_wu );
-	pDC->Ellipse( r );
-	pDC->SelectObject( old_pen );
-	pDC->SelectObject( old_brush );
+    if(!print)
+    {
+        CRect r;
+        r.top = 25 * NM_PER_MIL / m_pcbu_per_wu;
+        r.left = -25 * NM_PER_MIL / m_pcbu_per_wu;
+        r.right = 25 * NM_PER_MIL / m_pcbu_per_wu;
+        r.bottom = -25 * NM_PER_MIL / m_pcbu_per_wu;
+        pDC->SelectObject(&grid_pen);
+        pDC->SelectObject(GetStockObject(HOLLOW_BRUSH));
+        pDC->MoveTo(-100 * NM_PER_MIL / m_pcbu_per_wu, 0);
+        pDC->LineTo(-25 * NM_PER_MIL / m_pcbu_per_wu, 0);
+        pDC->MoveTo(100 * NM_PER_MIL / m_pcbu_per_wu, 0);
+        pDC->LineTo(25 * NM_PER_MIL / m_pcbu_per_wu, 0);
+        pDC->MoveTo(0, -100 * NM_PER_MIL / m_pcbu_per_wu);
+        pDC->LineTo(0, -25 * NM_PER_MIL / m_pcbu_per_wu);
+        pDC->MoveTo(0, 100 * NM_PER_MIL / m_pcbu_per_wu);
+        pDC->LineTo(0, 25 * NM_PER_MIL / m_pcbu_per_wu);
+        pDC->Ellipse(r);
+        pDC->SelectObject(old_pen);
+        pDC->SelectObject(old_brush);
+    }
 
 	// if dragging, draw drag lines or shape 
 	int old_ROP2 = pDC->GetROP2();
@@ -1134,6 +658,505 @@ void CDisplayList::Draw( CDC * dDC )
 			pDC, m_org_x, m_org_y, SRCCOPY );
 	}
 }
+
+void CDisplayList::DrawList(CDC *pDC, double scale, CRect &clip)
+{
+    CPen black_pen(PS_SOLID, 1, RGB(0, 0, 0));
+
+    CPen backgnd_pen(PS_SOLID, 1,
+        RGB(m_rgb[LAY_BACKGND][0],
+            m_rgb[LAY_BACKGND][1],
+            m_rgb[LAY_BACKGND][2]));
+
+    CBrush backgnd_brush(RGB(m_rgb[LAY_BACKGND][0],
+        m_rgb[LAY_BACKGND][1],
+        m_rgb[LAY_BACKGND][2]));
+
+    CBrush black_brush(RGB(0, 0, 0));
+
+    // now traverse the lists, starting with the layer in the last element 
+    // of the m_order[] array
+    int nlines = 0;
+    int size_of_2_pixels = 2 * scale;
+    for(int order = (MAX_LAYERS - 1); order >= 0; order--)
+    {
+        int layer = m_layer_in_order[order];
+        if(!m_vis[layer] || layer == LAY_SELECTION)
+            continue;
+
+        CPen line_pen(PS_SOLID, 1, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+        CBrush fill_brush(RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+        pDC->SelectObject(&line_pen);
+        pDC->SelectObject(&fill_brush);
+        dl_element * el = &m_start[layer];
+        while(el->next->next)
+        {
+            el = el->next;
+            if(el->visible && m_vis[el->orig_layer])
+            {
+                int xi = el->x;
+                int xf = el->xf;
+                int yi = el->y;
+                int yf = el->yf;
+                int w = el->w;
+                if(el->gtype == DL_CIRC || el->gtype == DL_HOLLOW_CIRC)
+                {
+                    if(xi - w / 2 < clip.right && xi + w / 2 > clip.left
+                        && yi - w / 2 < clip.top && yi + w / 2 > clip.bottom)
+                    {
+                        if(el->gtype == DL_HOLLOW_CIRC)
+                            pDC->SelectObject(GetStockObject(HOLLOW_BRUSH));
+                        pDC->Ellipse(xi - w / 2, yi - w / 2, xi + w / 2, yi + w / 2);
+                        if(el->gtype == DL_HOLLOW_CIRC)
+                            pDC->SelectObject(fill_brush);
+                    }
+                }
+                if(el->gtype == DL_HOLE)
+                {
+                    if(xi - w / 2 < clip.right && xi + w / 2 > clip.left
+                        && yi - w / 2 < clip.top && yi + w / 2 > clip.bottom)
+                    {
+                        if(w>size_of_2_pixels)
+                            pDC->Ellipse(xi - w / 2, yi - w / 2, xi + w / 2, yi + w / 2);
+                    }
+                }
+                else if(el->gtype == DL_CENTROID)
+                {
+                    // x,y are center coords; w = width; 
+                    // xf,yf define arrow end-point for P&P orientation
+                    if(xi - w / 2 < clip.right && xi + w / 2 > clip.left
+                        && yi - w / 2 < clip.top && yi + w / 2 > clip.bottom)
+                    {
+                        pDC->SelectObject(GetStockObject(HOLLOW_BRUSH));
+                        pDC->Ellipse(xi - w / 4, yi - w / 4, xi + w / 4, yi + w / 4);
+                        pDC->SelectObject(fill_brush);
+                        xi = el->x - el->w / 2;
+                        xf = el->x + el->w / 2;
+                        yi = el->y - el->w / 2;
+                        yf = el->y + el->w / 2;
+                        pDC->MoveTo(xi, yi);
+                        pDC->LineTo(xf, yf);
+                        pDC->MoveTo(xf, yi);
+                        pDC->LineTo(xi, yf);
+                        pDC->MoveTo(el->x, el->y);	// p&p arrow
+                        pDC->LineTo(el->xf, el->yf);	// 
+                        if(el->y == el->yf)
+                        {
+                            // horizontal arrow
+                            pDC->LineTo(el->xf - (el->xf - el->x) / 4,
+                                el->yf + w / 4);
+                            pDC->LineTo(el->xf - (el->xf - el->x) / 4,
+                                el->yf - w / 4);
+                            pDC->LineTo(el->xf, el->yf);
+                        }
+                        else if(el->x == el->xf)
+                        {
+                            // vertical arrow
+                            pDC->LineTo(el->xf + w / 4, el->yf - (el->yf - el->y) / 4);
+                            pDC->LineTo(el->xf - w / 4, el->yf - (el->yf - el->y) / 4);
+                            pDC->LineTo(el->xf, el->yf);
+                        }
+                        else
+                            ASSERT(0);
+                        int w_pp = el->w / 10;
+                        nlines += 2;
+                    }
+                }
+                else if(el->gtype == DL_DONUT)
+                {
+                    if(xi - w / 2 < clip.right && xi + w / 2 > clip.left
+                        && yi - w / 2 < clip.top && yi + w / 2 > clip.bottom)
+                    {
+                        int thick = (w - el->holew) / 2;
+                        int ww = w - thick;
+                        int holew = el->holew;
+                        int size_of_2_pixels = scale;
+                        if(thick < size_of_2_pixels)
+                        {
+                            holew = w - 2 * size_of_2_pixels;
+                            if(holew < 0)
+                                holew = 0;
+                            thick = (w - holew) / 2;
+                            ww = w - thick;
+                        }
+                        if(w - el->holew > 0)
+                        {
+                            CPen pen(PS_SOLID, thick, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+                            pDC->SelectObject(&pen);
+                            pDC->SelectObject(&backgnd_brush);
+                            pDC->Ellipse(xi - ww / 2, yi - ww / 2, xi + ww / 2, yi + ww / 2);
+                            pDC->SelectObject(line_pen);
+                            pDC->SelectObject(fill_brush);
+                        }
+                        else
+                        {
+                            CPen backgnd_pen(PS_SOLID, 1,
+                                RGB(m_rgb[LAY_BACKGND][0],
+                                    m_rgb[LAY_BACKGND][1],
+                                    m_rgb[LAY_BACKGND][2]));
+                            pDC->SelectObject(&backgnd_pen);
+                            pDC->SelectObject(&backgnd_brush);
+                            pDC->Ellipse(xi - holew / 2, yi - holew / 2, xi + holew / 2, yi + holew / 2);
+                            pDC->SelectObject(line_pen);
+                            pDC->SelectObject(fill_brush);
+                        }
+                    }
+                }
+                else if(el->gtype == DL_SQUARE)
+                {
+                    if(xi - w / 2 < clip.right && xi + w / 2 > clip.left
+                        && yi - w / 2 < clip.top && yi + w / 2 > clip.bottom)
+                    {
+                        int holew = el->holew;
+                        pDC->Rectangle(xi - w / 2, yi - w / 2, xi + w / 2, yi + w / 2);
+                        if(holew)
+                        {
+                            pDC->SelectObject(&backgnd_brush);
+                            pDC->SelectObject(&backgnd_pen);
+                            pDC->Ellipse(xi - holew / 2, yi - holew / 2,
+                                xi + holew / 2, yi + holew / 2);
+                            pDC->SelectObject(fill_brush);
+                            pDC->SelectObject(line_pen);
+                        }
+                    }
+                }
+                else if(el->gtype == DL_OCTAGON || el->gtype == DL_HOLLOW_OCTAGON)
+                {
+                    if(xi - w / 2 < clip.right && xi + w / 2 > clip.left
+                        && yi - w / 2 < clip.top && yi + w / 2 > clip.bottom)
+                    {
+                        const double pi = 3.14159265359;
+                        POINT pt[8];
+                        double angle = pi / 8.0;
+                        for(int iv = 0; iv<8; iv++)
+                        {
+                            pt[iv].x = el->x + 0.5 * el->w * cos(angle);
+                            pt[iv].y = el->y + 0.5 * el->w * sin(angle);
+                            angle += pi / 4.0;
+                        }
+                        int holew = el->holew;
+                        if(el->gtype == DL_HOLLOW_OCTAGON)
+                            pDC->SelectObject(GetStockObject(HOLLOW_BRUSH));
+                        pDC->Polygon(pt, 8);
+                        if(el->gtype == DL_HOLLOW_OCTAGON)
+                            pDC->SelectObject(fill_brush);
+                        if(holew)
+                        {
+                            pDC->SelectObject(&backgnd_brush);
+                            pDC->SelectObject(&backgnd_pen);
+                            pDC->Ellipse(xi - holew / 2, yi - holew / 2,
+                                xi + holew / 2, yi + holew / 2);
+                            pDC->SelectObject(fill_brush);
+                            pDC->SelectObject(line_pen);
+                        }
+
+                    }
+                }
+                else if(el->gtype == DL_RECT)
+                {
+                    if(xf < xi)
+                    {
+                        xf = xi;
+                        xi = el->xf;
+                    }
+                    if(yf < yi)
+                    {
+                        yf = yi;
+                        yi = el->yf;
+                    }
+                    if(xi < clip.right && xf > clip.left && yi < clip.top && yf > clip.bottom)
+                    {
+                        int holew = el->holew;
+                        pDC->Rectangle(xi, yi, xf, yf);
+                        if(holew)
+                        {
+                            pDC->SelectObject(&black_brush);
+                            pDC->SelectObject(&black_pen);
+                            pDC->Ellipse(el->x_org - holew / 2, el->y_org - holew / 2,
+                                el->x_org + holew / 2, el->y_org + holew / 2);
+                            pDC->SelectObject(fill_brush);
+                            pDC->SelectObject(line_pen);
+                        }
+                    }
+                }
+                else if(el->gtype == DL_HOLLOW_RECT)
+                {
+                    if(xf < xi)
+                    {
+                        xf = xi;
+                        xi = el->xf;
+                    }
+                    if(yf < yi)
+                    {
+                        yf = yi;
+                        yi = el->yf;
+                    }
+                    if(xi < clip.right && xf > clip.left
+                        && yi < clip.top && yf > clip.bottom)
+                    {
+                        pDC->MoveTo(xi, yi);
+                        pDC->LineTo(xf, yi);
+                        pDC->LineTo(xf, yf);
+                        pDC->LineTo(xi, yf);
+                        pDC->LineTo(xi, yi);
+                        nlines += 4;
+                    }
+                }
+                else if(el->gtype == DL_OVAL || el->gtype == DL_HOLLOW_OVAL)
+                {
+                    if(xf < xi)
+                    {
+                        xf = xi;
+                        xi = el->xf;
+                    }
+                    if(yf < yi)
+                    {
+                        yf = yi;
+                        yi = el->yf;
+                    }
+                    if(xi < clip.right && xf > clip.left && yi < clip.top && yf > clip.bottom)
+                    {
+                        int h = abs(xf - xi);
+                        int v = abs(yf - yi);
+                        int r = min(h, v);
+                        if(el->gtype == DL_HOLLOW_OVAL)
+                            pDC->SelectObject(GetStockObject(HOLLOW_BRUSH));
+                        pDC->RoundRect(xi, yi, xf, yf, r, r);
+                        if(el->gtype == DL_HOLLOW_OVAL)
+                            pDC->SelectObject(fill_brush);
+                        int holew = el->holew;
+                        if(el->holew)
+                        {
+                            pDC->SelectObject(&black_brush);
+                            pDC->SelectObject(&black_pen);
+                            pDC->Ellipse(el->x_org - holew / 2, el->y_org - holew / 2,
+                                el->x_org + holew / 2, el->y_org + holew / 2);
+                            pDC->SelectObject(fill_brush);
+                            pDC->SelectObject(line_pen);
+                        }
+                    }
+                }
+                else if(el->gtype == DL_RRECT || el->gtype == DL_HOLLOW_RRECT)
+                {
+                    if(xf < xi)
+                    {
+                        xf = xi;
+                        xi = el->xf;
+                    }
+                    if(yf < yi)
+                    {
+                        yf = yi;
+                        yi = el->yf;
+                    }
+                    if(xi < clip.right && xf > clip.left && yi < clip.top && yf > clip.bottom)
+                    {
+                        int holew = el->holew;
+                        if(el->gtype == DL_HOLLOW_RRECT)
+                            pDC->SelectObject(GetStockObject(HOLLOW_BRUSH));
+                        pDC->RoundRect(xi, yi, xf, yf, 2 * el->radius, 2 * el->radius);
+                        if(el->gtype == DL_HOLLOW_RRECT)
+                            pDC->SelectObject(fill_brush);
+                        if(holew)
+                        {
+                            pDC->SelectObject(&black_brush);
+                            pDC->SelectObject(&black_pen);
+                            pDC->Ellipse(el->x_org - holew / 2, el->y_org - holew / 2,
+                                el->x_org + holew / 2, el->y_org + holew / 2);
+                            pDC->SelectObject(fill_brush);
+                            pDC->SelectObject(line_pen);
+                        }
+                    }
+                }
+                else if(el->gtype == DL_RECT_X)
+                {
+                    if(xf < xi)
+                    {
+                        xf = xi;
+                        xi = el->xf;
+                    }
+                    if(yf < yi)
+                    {
+                        yf = yi;
+                        yi = el->yf;
+                    }
+                    if(xi < clip.right && xf > clip.left
+                        && yi < clip.top && yf > clip.bottom)
+                    {
+                        pDC->MoveTo(el->x, el->y);
+                        pDC->LineTo(el->xf, el->y);
+                        pDC->LineTo(el->xf, el->yf);
+                        pDC->LineTo(el->x, el->yf);
+                        pDC->LineTo(el->x, el->y);
+                        pDC->MoveTo(el->x, el->y);
+                        pDC->LineTo(el->xf, el->yf);
+                        pDC->MoveTo(el->x, el->yf);
+                        pDC->LineTo(el->xf, el->y);
+                        nlines += 4;
+                    }
+                }
+                else if(el->gtype == DL_ARC_CW)
+                {
+                    if(((el->xf >= el->x && el->x < clip.right && el->xf > clip.left)
+                        || (el->xf < el->x && el->xf < clip.right && el->x > clip.left))
+                        && ((el->yf >= el->y && el->y < clip.top && el->yf > clip.bottom)
+                            || (el->yf < el->y && el->yf < clip.top && el->y > clip.bottom)))
+                    {
+                        CPen pen(PS_SOLID, el->w, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+                        pDC->SelectObject(&pen);
+                        DrawArc(pDC, DL_ARC_CW, el->x, el->y, el->xf, el->yf);
+                        pDC->SelectObject(line_pen);
+                    }
+                }
+                else if(el->gtype == DL_ARC_CCW)
+                {
+                    if(((el->xf >= el->x && el->x < clip.right && el->xf > clip.left)
+                        || (el->xf < el->x && el->xf < clip.right && el->x > clip.left))
+                        && ((el->yf >= el->y && el->y < clip.top && el->yf > clip.bottom)
+                            || (el->yf < el->y && el->yf < clip.top && el->y > clip.bottom)))
+                    {
+                        CPen pen(PS_SOLID, el->w, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+                        pDC->SelectObject(&pen);
+                        DrawArc(pDC, DL_ARC_CCW, el->x, el->y, el->xf, el->yf);
+                        pDC->SelectObject(line_pen);
+                    }
+                }
+                else if(el->gtype == DL_CURVE_CW)
+                {
+                    if(((el->xf >= el->x && el->x < clip.right && el->xf > clip.left)
+                        || (el->xf < el->x && el->xf < clip.right && el->x > clip.left))
+                        && ((el->yf >= el->y && el->y < clip.top && el->yf > clip.bottom)
+                            || (el->yf < el->y && el->yf < clip.top && el->y > clip.bottom)))
+                    {
+                        CPen pen(PS_SOLID, el->w, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+                        pDC->SelectObject(&pen);
+                        DrawCurve(pDC, DL_CURVE_CW, el->x, el->y, el->xf, el->yf);
+                        pDC->SelectObject(line_pen);
+                    }
+                }
+                else if(el->gtype == DL_CURVE_CCW)
+                {
+                    if(((el->xf >= el->x && el->x < clip.right && el->xf > clip.left)
+                        || (el->xf < el->x && el->xf < clip.right && el->x > clip.left))
+                        && ((el->yf >= el->y && el->y < clip.top && el->yf > clip.bottom)
+                            || (el->yf < el->y && el->yf < clip.top && el->y > clip.bottom)))
+                    {
+                        CPen pen(PS_SOLID, el->w, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+                        pDC->SelectObject(&pen);
+                        DrawCurve(pDC, DL_CURVE_CCW, el->x, el->y, el->xf, el->yf);
+                        pDC->SelectObject(line_pen);
+                    }
+                }
+                else if(el->gtype == DL_X)
+                {
+                    xi = el->x - el->w / 2;
+                    xf = el->x + el->w / 2;
+                    yi = el->y - el->w / 2;
+                    yf = el->y + el->w / 2;
+                    if(xi < clip.right && xf > clip.left
+                        && yi < clip.top && yf > clip.bottom)
+                    {
+                        pDC->MoveTo(xi, yi);
+                        pDC->LineTo(xf, yf);
+                        pDC->MoveTo(xf, yi);
+                        pDC->LineTo(xi, yf);
+                        nlines += 2;
+                    }
+                }
+                else if(el->gtype == DL_LINE)
+                {
+                    // only draw line segments which are in viewport
+                    // viewport bounds, enlarged to account for line thickness
+                    int Yb = clip.bottom - w / 2;		// y-coord of viewport top	
+                    int Yt = clip.top + w / 2;		// y-coord of bottom
+                    int Xl = clip.left - w / 2;		// x-coord of left edge
+                    int Xr = clip.right - w / 2;		// x-coord of right edge
+                                                    // line segment from (xi,yi) to (xf,yf)
+                    int draw_flag = 0;
+                    // now test for all conditions where drawing is necessary
+                    if(xi == xf)
+                    {
+                        // vertical line
+                        if(yi<yf)
+                        {
+                            // upward
+                            if(yi <= Yt && yf >= Yb && xi <= Xr && xi >= Xl)
+                                draw_flag = 1;
+                        }
+                        else
+                        {
+                            // downward
+                            if(yf <= Yt && yi >= Yb && xi <= Xr && xi >= Xl)
+                                draw_flag = 1;
+                        }
+                    }
+                    else if(yi == yf)
+                    {
+                        // horizontal line
+                        if(xi<xf)
+                        {
+                            // rightward
+                            if(xi <= Xr && xf >= Xl && yi <= Yt && yi >= Yb)
+                                draw_flag = 1;
+                        }
+                        else
+                        {
+                            // leftward
+                            if(xf <= Xr && xi >= Xl && yi <= Yt && yi >= Yb)
+                                draw_flag = 1;
+                        }
+                    }
+                    else if(!((xi<Xl&&xf<Xl) || (xi>Xr&&xf>Xr) || (yi<Yb&&yf<Yb) || (yi>Yt&&yf>Yt)))
+                    {
+                        // oblique line
+                        // not entirely above or below or right or left of viewport
+                        // get slope b and intercept a so that y=a+bx
+                        double b = (double)(yf - yi) / (xf - xi);
+                        int a = yi - int(b*xi);
+                        // now test for line in viewport
+                        if(abs((yf - yi)*(Xr - Xl)) > abs((xf - xi)*(Yt - Yb)))
+                        {
+                            // line is more vertical than window diagonal
+                            int x1 = int((Yb - a) / b);
+                            if(x1 >= Xl && x1 <= Xr)
+                                draw_flag = 1;		// intercepts bottom of screen
+                            else
+                            {
+                                int x2 = int((Yt - a) / b);
+                                if(x2 >= Xl && x2 <= Xr)
+                                    draw_flag = 1;	// intercepts top of screen
+                            }
+                        }
+                        else
+                        {
+                            // line is more horizontal than window diagonal
+                            int y1 = int(a + b*Xl);
+                            if(y1 >= Yb && y1 <= Yt)
+                                draw_flag = 1;		// intercepts left edge of screen
+                            else
+                            {
+                                int y2 = a + int(b*Xr);
+                                if(y2 >= Yb && y2 <= Yt)
+                                    draw_flag = 1;	// intercepts right edge of screen
+                            }
+                        }
+
+                    }
+                    // now draw the line segment if not clipped
+                    if(draw_flag)
+                    {
+                        CPen pen(PS_SOLID, w, RGB(m_rgb[layer][0], m_rgb[layer][1], m_rgb[layer][2]));
+                        pDC->SelectObject(&pen);
+                        pDC->MoveTo(xi, yi);
+                        pDC->LineTo(xf, yf);
+                        pDC->SelectObject(line_pen);
+                        nlines++;
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 // set the display color for a layer
 //

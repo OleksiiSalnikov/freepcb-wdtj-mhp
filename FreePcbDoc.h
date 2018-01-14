@@ -281,7 +281,6 @@ public:
 	afx_msg void OnToolsCheckCopperAreas();
 	afx_msg void OnToolsCheckTraces();
 	afx_msg void OnEditPasteFromFile();
-	afx_msg void OnFilePrint();
 	afx_msg void OnFileExportDsn();
 	afx_msg void OnFileImportSes();
 	afx_msg void OnEditRedo();

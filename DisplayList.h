@@ -217,7 +217,9 @@ public:
 	void RemoveAll();
 	void RemoveAllFromLayer( int layer );
 	id Remove( dl_element * element );
-	void Draw( CDC * pDC );
+	void Draw( CDC * pDC, bool print=false );
+    void DrawList(CDC * pDC, double scale, CRect &clip);
+
 	int HighLight( int gtype, int x, int y, int xf, int yf, int w, int orig_layer=LAY_SELECTION );
 	int CancelHighLight();
 	void * TestSelect( int x, int y, id * sel_id, int * layer, 

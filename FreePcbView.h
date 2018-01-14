@@ -449,6 +449,11 @@ public:
 	HBITMAP m_old_bitmap;
 	CRect m_bitmap_rect;
 	
+    CRect m_printBoundaries;   // boundaries are in PCB units
+
+    int m_numPagesHigh;
+    int m_numPagesWide;
+
 // Operations
 public:
 	void InitInstance();
@@ -460,7 +465,6 @@ public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	protected:
-	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
 	//}}AFX_VIRTUAL
@@ -560,6 +564,9 @@ public:
    CPoint SegmentStartPosition();
    CPoint SegmentEndPosition();
 
+   void bounds(CRect *r1, CRect *r2);
+   bool getBoardBoundaries(CRect * r);
+
 protected:
 
 // Generated message map functions
@@ -575,6 +582,7 @@ protected:
 	afx_msg void OnSysKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg void OnSysKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 public:
@@ -706,6 +714,10 @@ public:
 	afx_msg void OnValueRotateCW();
 	afx_msg void OnValueRotateCCW();
 	afx_msg void OnSegmentMove();
+    virtual void OnPrint(CDC* pDC, CPrintInfo* pInfo);
+    virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
+    afx_msg void OnFilePrint();
+    virtual void OnPrepareDC(CDC* pDC, CPrintInfo* pInfo = NULL);
 };
 
 #ifndef _DEBUG  // debug version in FreePcbView.cpp
