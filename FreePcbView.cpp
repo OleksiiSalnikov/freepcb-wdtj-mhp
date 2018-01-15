@@ -589,6 +589,7 @@ void CFreePcbView::OnDraw(CDC* pDC)
 */
 void CFreePcbView::OnFilePrint()
 {
+    m_Doc->SetTitle(m_Doc->m_name); // Document title to pass to print description
     CView::OnFilePrint();
 }
 
