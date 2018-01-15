@@ -593,6 +593,9 @@ void CFreePcbView::OnFilePrint()
     CView::OnFilePrint();
 }
 
+/**
+    Open Print Dialog and start a print.
+*/
 BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
 {
     // Set default paper to Letter TODO: put in defaults.cfg file.
@@ -611,6 +614,7 @@ BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
         return 0;
     }
 
+    delete(pInfo->m_pPD);   // Delete previous/default print dialog 
     CPrintDialog *dlg = new CPrintDialog(FALSE);
     pInfo->m_pPD = dlg;
 
@@ -667,8 +671,6 @@ For each page being printed, the framework calls this function
 */
 void CFreePcbView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
 {
-    m_dlist->SetMapping(new CRect(0, 0, 5100, 6600), new CRect(0, 0, 5100, 6600), 0, 0, 10000 / 600, m_printBoundaries.left, m_printBoundaries.top);
-
     // set window scale (WU per pixel) and origin (WU)
     pDC->SetMapMode(MM_ANISOTROPIC);
 
