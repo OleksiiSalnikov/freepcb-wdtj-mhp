@@ -273,6 +273,9 @@
     <ClCompile Include="utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DlgPrint.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cuid.h">
@@ -543,6 +546,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DlgAddPoly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DlgPrint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -453,6 +453,12 @@ public:
 
     int m_numPagesHigh;
     int m_numPagesWide;
+    int m_hRes;
+    int m_hDpi;
+    int m_vRes;
+    int m_vDpi;
+
+    double m_printScale;
 
 // Operations
 public:

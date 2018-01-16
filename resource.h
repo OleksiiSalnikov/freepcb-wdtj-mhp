@@ -216,6 +216,7 @@
 #define IDD_DIALOG5                     349
 #define IDD_CHOOSE_NET                  349
 #define IDD_SAVE_LIB                    350
+#define IDD_PRINT                       351
 #define IDC_EDIT1                       1002
 #define IDC_PART_REF                    1002
 #define IDC_EDIT_VIA_PAD                1002
@@ -384,7 +385,10 @@
 #define IDC_RADIO_NETS                  1153
 #define IDD_MYFILEDLG                   1154
 #define ID_VIEW_FOOTPRINT               1155
+#define IDC_PRINT_SCALE_NUMERATOR       1155
 #define IDC_STATIC_SNAP_ANGLE           1156
+#define IDC_PRINT_SCALE2                1156
+#define IDC_PRINT_SCALE_DENOMINATOR     1156
 #define IDC_COMBO_SNAP_ANGLE            1157
 #define IDC_CHECK_TOP_SILK              1159
 #define IDC_CHECKBOTTOM_SOLDER_MASK     1160
@@ -923,7 +927,7 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        351
+#define _APS_NEXT_RESOURCE_VALUE        352
 #define _APS_NEXT_COMMAND_VALUE         32944
 #define _APS_NEXT_CONTROL_VALUE         1437
 #define _APS_NEXT_SYMED_VALUE           106

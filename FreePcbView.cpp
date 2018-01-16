@@ -29,6 +29,7 @@
 #include "DlgGroupPaste.h"
 #include "DlgSideStyle.h"
 #include "DlgValueText.h"
+#include "DlgPrint.h"
 
 // globals
 BOOL g_bShow_Ratline_Warning = TRUE;	
@@ -615,7 +616,8 @@ BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
     }
 
     delete(pInfo->m_pPD);   // Delete previous/default print dialog 
-    CPrintDialog *dlg = new CPrintDialog(FALSE);
+    //CPrintDialog *dlg = new CPrintDialog(FALSE);
+    CDlgPrint *dlg = new CDlgPrint();
     pInfo->m_pPD = dlg;
 
     // We can't calculate the size of the printed document because we don't yet know
@@ -623,8 +625,18 @@ BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
     // OnBeginPrinting.  This sets the framework up to do that.
     pInfo->SetMaxPage(0xFFFF);
 
+    pInfo->m_pPD->m_pd.hInstance = AfxGetInstanceHandle();
+    pInfo->m_pPD->m_pd.lpPrintTemplateName = MAKEINTRESOURCE(IDD_PRINT);
+    pInfo->m_pPD->m_pd.Flags |= PD_ENABLEPRINTTEMPLATE;
+
     // default preparation
     auto rc = DoPreparePrinting(pInfo);
+
+    UpdateData();
+
+    UINT m_Numerator = dlg->m_Numerator;
+    UINT m_Denominator = dlg->m_Denominator;
+    m_printScale = (double)m_Numerator / m_Denominator;
 
     // Todo: Allow us to select any specific boundaries of the board, for now we
     // do the entire thing.
@@ -636,21 +648,21 @@ BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
 void CFreePcbView::OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo)
 {
     /* We now know the printer specs, we calculate how many pages will print */
-    int hRes = pDC->GetDeviceCaps(HORZRES); // width, in pixels, of the printable area of the page.
-    int hDpi = pDC->GetDeviceCaps(LOGPIXELSX); // Number of pixels per logical inch
-    long long hSize = (long long)(hRes - hDpi) * 2540 * 10000 / hDpi;
+    m_hRes = pDC->GetDeviceCaps(HORZRES); // width, in pixels, of the printable area of the page.
+    m_hDpi = pDC->GetDeviceCaps(LOGPIXELSX); // Number of pixels per logical inch
+    long long hSize = (long long)(m_hRes - m_hDpi) * 2540 * 10000 / m_hDpi;
                                     // Actual world coordinates size of the printable area excluding
                                     // 2 .5 inch margins (one hDPI)
 
-    int vRes = pDC->GetDeviceCaps(VERTRES); // height, in pixels, of the printable area of the page.
-    int vDpi = pDC->GetDeviceCaps(LOGPIXELSY); // Number of pixels per logical inch
-    long long vSize = (long long)(vRes - vDpi) * 2540 * 10000 / vDpi;
+    m_vRes = pDC->GetDeviceCaps(VERTRES); // height, in pixels, of the printable area of the page.
+    m_vDpi = pDC->GetDeviceCaps(LOGPIXELSY); // Number of pixels per logical inch
+    long long vSize = (long long)(m_vRes - m_vDpi) * 2540 * 10000 / m_vDpi;
                                     // Actual world coordinates size of the printable area excluding
                                     // 2 .5 inch margins (one hDPI)
 
     // Given the actual size of a page in WU, figure out how many pages wide and high we will print
-    m_numPagesWide = (long long)(abs(m_printBoundaries.Width())) / hSize + 1;
-    m_numPagesHigh = (long long)(abs(m_printBoundaries.Height())) / vSize + 1;
+    m_numPagesWide = abs((long long)(m_printBoundaries.Width()*m_printScale)) / hSize + 1;
+    m_numPagesHigh = abs((long long)(m_printBoundaries.Height()*m_printScale)) / vSize + 1;
 }
 
 
@@ -678,25 +690,25 @@ void CFreePcbView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
     pDC->SetWindowExt(10000, -10000);
 
     // Set origin to map to top left of PCB
-    double org_x = (m_printBoundaries.left / 2540) - 5000;
-    double org_y = (m_printBoundaries.top / 2540) + 5000;
+    int org_x = (m_printBoundaries.left / 2540);
+    int org_y = (m_printBoundaries.top / 2540);
     pDC->SetWindowOrg(org_x, org_y);
 
     // set viewport to client rect with origin in lower left, rescale to printer units
-    pDC->SetViewportExt(600, 600);
+    pDC->SetViewportExt(m_hDpi * m_printScale, m_vDpi * m_printScale);
 
     // we've divided the print into columns, calculate the column and row this page has
-    int column = pInfo->m_nCurPage%m_numPagesWide;
-    int row = pInfo->m_nCurPage/m_numPagesWide;
+    int column = pInfo->m_nCurPage % m_numPagesWide;
+    int row = pInfo->m_nCurPage / m_numPagesWide;
 
-    pDC->SetViewportOrg(column * (-5100+600), row * (-6600+600));
+    pDC->SetViewportOrg((column * (-m_hRes + 600)) + 300, (row * (-m_vRes + 600)) + 300);
+
     CRgn rgn;
-    rgn.CreateRectRgn(300, 300, 5100 - 300, 6600 - 300);
+    rgn.CreateRectRgn(300, 300, m_hRes - 299, m_vRes - 299);
     pDC->SelectClipRgn(&rgn);
 
     // Load pDC with the PCB image
-    //m_dlist->DrawList(pDC, 4, CRect(-22101, 11720, 22400, -11689));
-    m_dlist->DrawList(pDC, 4, CRect(-32767, 32767, 32767, -32767));
+    m_dlist->DrawList(pDC, 4, CRect(m_printBoundaries.left / 2540, m_printBoundaries.top / 2540, m_printBoundaries.right / 2540, m_printBoundaries.bottom / 2540));
 }
 
 
