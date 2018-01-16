@@ -375,6 +375,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1B35641F3F494E0F9B1B5D27BD90D67D"
+        "OwnerKey" = "8:_561AB66D21E342F197D6D53CC91F7601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1B4F127B85A243F49E4BF076D5FCE204"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -491,6 +497,12 @@
         {
         "MsmKey" = "8:_219D3DFBA4A24047AB5559A6922586D8"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_2279C34EFE0432E859E7610EC3AED8C0"
+        "OwnerKey" = "8:_561AB66D21E342F197D6D53CC91F7601"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -831,6 +843,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_39C9BD0A8B0BFB7339796FCF8380A768"
+        "OwnerKey" = "8:_561AB66D21E342F197D6D53CC91F7601"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3AB89EC4305B42EBAFAF091FD884D112"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -1145,6 +1163,12 @@
         {
         "MsmKey" = "8:_5184EC5456BE44E1AE659F7B75B769B9"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_5186CCC1F3AC4FE584DA6068F8F06D80"
+        "OwnerKey" = "8:_561AB66D21E342F197D6D53CC91F7601"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -1907,6 +1931,12 @@
         {
         "MsmKey" = "8:_7F9A6E15A8E54198AB778C7F5B12E893"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_7FE2E568721D048A7E9538321ED85663"
+        "OwnerKey" = "8:_561AB66D21E342F197D6D53CC91F7601"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -3053,6 +3083,12 @@
         {
         "MsmKey" = "8:_CF5D0A3BB294476BBAB9BED1705F1478"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_CFA8509CAE3D830F7AF4EB6FA50F575A"
+        "OwnerKey" = "8:_561AB66D21E342F197D6D53CC91F7601"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -5468,6 +5504,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_2279C34EFE0432E859E7610EC3AED8C0"
+            {
+            "SourcePath" = "8:ucrtbased.dll"
+            "TargetName" = "8:ucrtbased.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_2711B42596C94F95B31569E1FBC84846"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_228B42EC86E643B68438AC6E32AE805F"
             {
             "SourcePath" = "8:..\\lib\\IPC7351-Least\\Inductor,Chip.fpl"
@@ -6586,6 +6642,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_39C9BD0A8B0BFB7339796FCF8380A768"
+            {
+            "SourcePath" = "8:COMDLG32.dll"
+            "TargetName" = "8:COMDLG32.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_2711B42596C94F95B31569E1FBC84846"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_3AB89EC4305B42EBAFAF091FD884D112"
@@ -10166,6 +10242,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_7FE2E568721D048A7E9538321ED85663"
+            {
+            "SourcePath" = "8:RPCRT4.dll"
+            "TargetName" = "8:RPCRT4.dll"
+            "Tag" = "8:"
+            "Folder" = "8:_2711B42596C94F95B31569E1FBC84846"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_805FD6F2BF304547ACFD0F5AE48A3D62"
@@ -13968,6 +14064,26 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CFA8509CAE3D830F7AF4EB6FA50F575A"
+            {
+            "SourcePath" = "8:ClibPDF-2.02.lib"
+            "TargetName" = "8:ClibPDF-2.02.lib"
+            "Tag" = "8:"
+            "Folder" = "8:_2711B42596C94F95B31569E1FBC84846"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CFD9241A57B94ED5BA6017ED7045FF51"
             {
             "SourcePath" = "8:..\\doc\\user_guide\\graphics\\add_part_5.gif"
@@ -16443,7 +16559,7 @@
             }
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_21B0908FB14E4E3CA175ED437128768A"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName].1361"
+            "DefaultLocation" = "8:[ProgramFilesFolder][ProductName].1362"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:TRUE"
             "Condition" = "8:"
@@ -16563,7 +16679,7 @@
                 {
                     "{9EF0B969-E518-4E46-987F-47570745A589}:_C63EE26FE7544A4F8AEAB6E5234EE4B6"
                     {
-                    "Name" = "8:FreePCB 1.361"
+                    "Name" = "8:FreePCB 1.362"
                     "AlwaysCreate" = "11:FALSE"
                     "Condition" = "8:"
                     "Transitive" = "11:FALSE"
@@ -16623,15 +16739,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:FreePCB"
-        "ProductCode" = "8:{A57C4E7E-F3DE-4F78-A053-81A4AB0BBD7B}"
-        "PackageCode" = "8:{6C487E01-18C3-42EC-BDEC-3AD3AF9F7EF2}"
+        "ProductCode" = "8:{B2A12B70-013D-4055-814B-78C15F10BCE3}"
+        "PackageCode" = "8:{B17482FD-E5D9-40C4-B0C8-7E0DC2AE7108}"
         "UpgradeCode" = "8:{58D44E62-2AC9-4195-AB51-866A73F8BA6B}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.361"
+        "ProductVersion" = "8:1.0.362"
         "Manufacturer" = "8:Allan Wright and many others"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -17169,6 +17285,34 @@
         }
         "MergeModule"
         {
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_1B35641F3F494E0F9B1B5D27BD90D67D"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:microsoft_vc140_debugmfc_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
+            "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_5186CCC1F3AC4FE584DA6068F8F06D80"
+            {
+            "UseDynamicProperties" = "11:TRUE"
+            "IsDependency" = "11:TRUE"
+            "SourcePath" = "8:microsoft_vc140_debugcrt_x86.msm"
+                "Properties"
+                {
+                }
+            "LanguageId" = "3:0"
+            "Exclude" = "11:FALSE"
+            "Folder" = "8:"
+            "Feature" = "8:"
+            "IsolateTo" = "8:"
+            }
             "{CEE29DC0-9FBA-4B99-8D47-5BC643D9B626}:_A98248EE225C4E03B612A556F6D1CA10"
             {
             "UseDynamicProperties" = "11:TRUE"

@@ -708,7 +708,7 @@ void CFreePcbView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
     pDC->SelectClipRgn(&rgn);
 
     // Load pDC with the PCB image
-    m_dlist->DrawList(pDC, 4, CRect(m_printBoundaries.left / 2540, m_printBoundaries.top / 2540, m_printBoundaries.right / 2540, m_printBoundaries.bottom / 2540));
+    m_dlist->DrawList(pDC, 1, CRect(m_printBoundaries.left / 2540, m_printBoundaries.top / 2540, m_printBoundaries.right / 2540, m_printBoundaries.bottom / 2540));
 }
 
 

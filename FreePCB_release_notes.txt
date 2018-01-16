@@ -1,5 +1,16 @@
 FreePCB release notes: (versions since 1.2) 
 -------------------------------------------
+1.362
+-----
+- Added direct print capabilities to main board designer.
+
+1.361
+-----
+- Added installer, moved build to Visual Studio 2015.
+
+1.360
+-----
+???
 
 1.359
 -----
