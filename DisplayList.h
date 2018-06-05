@@ -218,7 +218,7 @@ public:
 	void RemoveAllFromLayer( int layer );
 	id Remove( dl_element * element );
 	void Draw( CDC * pDC, bool print=false );
-    void DrawList(CDC * pDC, double scale, CRect &clip);
+    void DrawList(CDC * pDC, double scale, CRect &clip, CArray<void*> *selected=0);
 
 	int HighLight( int gtype, int x, int y, int xf, int yf, int w, int orig_layer=LAY_SELECTION );
 	int CancelHighLight();

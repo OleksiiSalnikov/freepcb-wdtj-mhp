@@ -459,6 +459,7 @@ public:
     int m_vDpi;
 
     double m_printScale;
+    bool m_printSelected;
 
 // Operations
 public:

@@ -615,10 +615,17 @@ BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
         return 0;
     }
 
+    bool itemsSelected = CurSelected();
+
     delete(pInfo->m_pPD);   // Delete previous/default print dialog 
     //CPrintDialog *dlg = new CPrintDialog(FALSE);
     CDlgPrint *dlg = new CDlgPrint();
     pInfo->m_pPD = dlg;
+
+    if(itemsSelected)
+    {
+        dlg->m_pd.Flags &= ~PD_NOSELECTION;
+    }
 
     // We can't calculate the size of the printed document because we don't yet know
     // The specs on the printer.  We decide where the end of the document is in 
@@ -634,9 +641,8 @@ BOOL CFreePcbView::OnPreparePrinting(CPrintInfo* pInfo)
 
     UpdateData();
 
-    UINT m_Numerator = dlg->m_Numerator;
-    UINT m_Denominator = dlg->m_Denominator;
-    m_printScale = (double)m_Numerator / m_Denominator;
+    m_printScale = (double)dlg->m_Numerator / dlg->m_Denominator;
+    m_printSelected = (dlg->m_pd.Flags & PD_SELECTION != 0);
 
     // Todo: Allow us to select any specific boundaries of the board, for now we
     // do the entire thing.
@@ -708,7 +714,13 @@ void CFreePcbView::OnPrint(CDC* pDC, CPrintInfo* pInfo)
     pDC->SelectClipRgn(&rgn);
 
     // Load pDC with the PCB image
-    m_dlist->DrawList(pDC, 1, CRect(m_printBoundaries.left / 2540, m_printBoundaries.top / 2540, m_printBoundaries.right / 2540, m_printBoundaries.bottom / 2540));
+    m_dlist->DrawList(pDC, 1, 
+        CRect(m_printBoundaries.left / 2540, 
+            m_printBoundaries.top / 2540, 
+            m_printBoundaries.right / 2540, 
+            m_printBoundaries.bottom / 2540),
+        m_printSelected?&m_sel_ptrs:0
+        );
 }
 
 

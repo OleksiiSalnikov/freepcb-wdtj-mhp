@@ -659,7 +659,12 @@ void CDisplayList::Draw( CDC * dDC, bool print )
 	}
 }
 
-void CDisplayList::DrawList(CDC *pDC, double scale, CRect &clip)
+/** 
+    Just draw the basics (no cursors et al.)
+
+    We use this for printing as well as the main windows frame.
+*/
+void CDisplayList::DrawList(CDC *pDC, double scale, CRect &clip, CArray<void*> *selected)
 {
     CPen black_pen(PS_SOLID, 1, RGB(0, 0, 0));
 
@@ -692,6 +697,24 @@ void CDisplayList::DrawList(CDC *pDC, double scale, CRect &clip)
         while(el->next->next)
         {
             el = el->next;
+            if(selected != 0)
+            {
+                // Check to see if element is in the selected list
+                bool found = false;
+                for(int i = 0; i < selected->GetSize(); ++i)
+                {
+                    void* selectedItem = (*selected)[i];
+                    if(el->ptr == selectedItem)
+                    {
+                        found = true;
+                    }
+                }
+                if(!found)
+                {
+                    continue;
+                }
+            }
+
             if(el->visible && m_vis[el->orig_layer])
             {
                 int xi = el->x;
