@@ -23,6 +23,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
+    - name: try install mfc build tools from chocolatey.org repo
+    - run: choco install visualstudio2022-workload-vctools
+    
     - uses: actions/checkout@v3
 
     - name: Add MSBuild to PATH
