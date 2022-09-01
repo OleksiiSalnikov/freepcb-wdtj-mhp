@@ -30,7 +30,8 @@ jobs:
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
       with:
-        vs-version: '[14.0,16.4,16.5)'
+ #       vs-version: '[14.0,16.4,16.5)'
+        vs-version: '17.3.1'
  #       msbuild-architecture: '[x64,x86]'
 
     - name: Restore NuGet packages
