@@ -23,16 +23,17 @@ jobs:
     runs-on: windows-latest
 
     steps:
-#    - run: choco install visualstudio2022-workload-vctools
+#    - run: choco install visualstudio2015-workload-vctools
     
     - uses: actions/checkout@v3
 
     - name: Add MSBuild to PATH
       uses: microsoft/setup-msbuild@v1.0.2
       with:
- #       vs-version: '[14.0,16.4,16.5)'
-        vs-version: '14.0'
+ #       vs-version: '['14.0','16.4','16.5')'
+        vs-version: 14.0
  #       msbuild-architecture: '[x64,x86]'
+        msbuild-architecture: 'x64'
 
     - name: Restore NuGet packages
       working-directory: ${{env.GITHUB_WORKSPACE}}
